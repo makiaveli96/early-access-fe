@@ -24,7 +24,7 @@ const request = async (endpoint: string, params: RequestI, method: string, ...co
     method: method,
     url: `${API}${endpoint}`,
     data: body,
-    headers: {
+    headers: { 
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       Authorization: token ? `Bearer ${token}` : '',
