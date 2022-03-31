@@ -27,6 +27,12 @@ function Signin() {
             const res = await createAccess(email, type, action)
             if(res.status == 200){
                 setLoading(false)
+                if(res.message == 'Email address is not registered yet'){
+                    setMsg(res.message);
+                    return setTimeout(()=>{
+                        setMsg('');
+                    }, 2000)
+                }
                 stetStep(1);
                 setPassword(res.password)
                 setAction('sign_in')
