@@ -31,16 +31,16 @@ function Account() {
   const [modal, showModal] = useState(false)
   const [message, setMessage] = useState('');
   const [messageColor, setMessageColor] = useState('black');
-  const [name, setName] = useState(userDetails.fullname);
-  const [email, setEmail] = useState(userDetails.email)
-  const [username, setUsername] = useState(userDetails.username || '')
-  const [ phone, setPhone ] = useState(userDetails.phone || '');
-  const [address, setAddress] = useState(userDetails.address)
+  const [name, setName] = useState(userDetails?.fullname);
+  const [email, setEmail] = useState(userDetails?.email)
+  const [username, setUsername] = useState(userDetails?.username || '')
+  const [ phone, setPhone ] = useState(userDetails?.phone || '');
+  const [address, setAddress] = useState(userDetails?.address)
   const [country, setCountry] = useState<any | null>(Countries[0])
   const [state, setState] = useState<any | null>(null)
   const [userCountry, setUserCountry] = useState(userDetails?.contry)
   const [userState, setUserState] = useState(userDetails?.state)
-  const [postalCode, setPostalCode] = useState(userDetails.postalCode)
+  const [postalCode, setPostalCode] = useState(userDetails?.postalCode)
   const [verificationCode, setVerificationCode] = useState('');
   const [verifyCodeBtn, setVerifyCodeBtn] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -148,9 +148,9 @@ function Account() {
 
   useEffect(()=>{
       if(
-          name.length > 2 && 
-          username.length > 3 &&
-          address.length > 5 && 
+          name && 
+          username &&
+          address && 
           userCountry && 
           userState
         ){
