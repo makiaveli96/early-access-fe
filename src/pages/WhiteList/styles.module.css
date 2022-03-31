@@ -1,0 +1,44 @@
+.container{
+    background-color: #F8FAFC;
+    width: 100%;
+    user-select: none;
+}
+
+.main{
+    max-width: 1500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 300px;
+}
+.summary_text{
+    width: 560px;
+    padding: 10px;
+    text-align: center;
+}
+.form{
+    margin-top: 10px;
+    width: 345px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media (min-width: 0px) and (max-width: 767px) { 
+    .summary_text{
+        width: 95%
+    }
+}
+    
+/* Media Query for Tablets Ipads portrait mode */ 
+@media (min-width: 768px) and (max-width: 1024px){ } 
+
+/* Media Query for Laptops and Desktops */ 
+@media (min-width: 1025px) and (max-width: 1280px){ }
+
+/* Media Query for Large screens */ 
+@media (min-width: 1281px) { } 
+
+@media only screen and(max-width: 700px) { } 

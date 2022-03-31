@@ -1,0 +1,60 @@
+.main{
+    width: 380px;
+    height: 118px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    justify-content: space-around;
+}
+
+.cell{
+    width: 100px;
+    height: 86px;
+    background-color: #00668F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+.time{
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+.label{
+    text-align: center;
+    width: 70px;
+    height: 20px;
+    border-radius: 8px;
+    color: #00668F;
+    font-size: 13px;
+    background-color: #EBFDFE;
+}
+
+@media (min-width: 0px) and (max-width: 767px) { 
+    .main{
+        width: 95%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Media Query for Tablets Ipads portrait mode */ 
+@media (min-width: 768px) and (max-width: 1024px){ 
+  
+} 
+
+/* Media Query for Laptops and Desktops */ 
+@media (min-width: 1025px) and (max-width: 1280px){
+}
+
+/* Media Query for Large screens */ 
+@media (min-width: 1281px) {
+} 
+
+@media only screen and(max-width: 700px) {
+} 

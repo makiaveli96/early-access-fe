@@ -1,0 +1,28 @@
+.main{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.label{
+    color: #64748B
+}
+.input_field{
+    height: 48px;
+    width: 98%;
+    border: 1px solid #E2E8F0;
+    outline: #0099D6;
+    border-radius: 5px;
+    text-indent: 5px;
+    margin-top: 8px;
+}
+.input_field:focus{
+    height: 48px;
+    width: 100%;
+    border: 2px solid #0099D6;
+}
+.search_result{
+    width: 100%;
+    background-color: red;
+    max-height: 300px;
+}

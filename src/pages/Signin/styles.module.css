@@ -1,0 +1,39 @@
+.main{
+    margin-top: 0px; 
+    display: flex; 
+    width: 400px; 
+    flex-direction: column; 
+    align-items: center
+}
+.button{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #00AFF5;
+    color: white;
+    height: 50px;
+    text-transform: uppercase;
+}
+
+
+@media (min-width: 0px) and (max-width: 767px) { 
+    .main{
+        width: 95%
+    }
+}
+    
+/* Media Query for Tablets Ipads portrait mode */ 
+@media (min-width: 768px) and (max-width: 1024px){ } 
+
+/* Media Query for Laptops and Desktops */ 
+@media (min-width: 1025px) and (max-width: 1280px){ }
+
+/* Media Query for Large screens */ 
+@media (min-width: 1281px) { } 
+
+@media only screen and(max-width: 700px) { } 

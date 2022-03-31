@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AuthContextApi from './contexts/authContextApi';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthContextApi>
+      <App />
+    </AuthContextApi>
   </React.StrictMode>,
   document.getElementById('root')
 );

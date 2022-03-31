@@ -1,0 +1,55 @@
+.container{
+    background-color: #F8FAFC;
+}
+.main{
+    padding-top: 40px;
+    max-width: 1500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 300px;
+}
+.referral_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+}
+.form{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+.summary_text{
+    margin-top: 30px;
+    border: 1px solid #00668F;
+    padding: 20px;
+    border-radius: 10px;
+}
+.summary_text p{
+    color: #2E3A59
+}
+
+
+@media (min-width: 0px) and (max-width: 767px) {
+    .referral_form{
+        width: 90%
+    }
+ }
+    
+/* Media Query for Tablets Ipads portrait mode */ 
+@media (min-width: 768px) and (max-width: 1024px){
+} 
+
+/* Media Query for Laptops and Desktops */ 
+@media (min-width: 1025px) and (max-width: 1280px){ }
+
+/* Media Query for Large screens */ 
+@media (min-width: 1281px) { } 
+
+@media only screen and(max-width: 700px) { } 

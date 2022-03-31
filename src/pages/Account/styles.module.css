@@ -1,0 +1,82 @@
+.container{
+    width: 100%; 
+    background-color: white;
+}
+
+.main{
+    max-width: 1200px;
+    margin: auto;
+    background-color: #F8FAFC;
+    padding-top: 40px;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 100px;
+}
+.main2{
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 40px;
+    height: 100%;
+    padding-bottom: 300px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 200px;
+}
+.col1{
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.col2{
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.input_box{
+    width: 70%
+}
+
+
+@media (min-width: 0px) and (max-width: 767px) {
+    .main{
+        flex-direction: column;
+        align-items: center;
+    }
+    .col1{
+        width: 95%
+    }
+    .col2{
+        width: 95%
+    }
+    .input_box{
+        width: 100%
+    }
+    .main2{
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+    }
+
+ }
+    
+/* Media Query for Tablets Ipads portrait mode */ 
+@media (min-width: 768px) and (max-width: 1024px){
+    .main2{
+        width: 90%
+    }
+} 
+
+/* Media Query for Laptops and Desktops */ 
+@media (min-width: 1025px) and (max-width: 1280px){ }
+
+/* Media Query for Large screens */ 
+@media (min-width: 1281px) { } 
+
+@media only screen and(max-width: 700px) { } 
