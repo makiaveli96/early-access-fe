@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Lato'), url(./assets/Fonts/Montserrat_500.ttf) format('truetype');
+}

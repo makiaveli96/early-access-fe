@@ -1,0 +1,131 @@
+@import "../../scss/abstracts/mixins";
+
+
+.navbar{
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 55px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
+    p{
+        margin-left: 20px;
+    }
+    .col1{
+      display: flex;
+      align-items: center;
+    }
+    .col2{
+      display: flex;
+      align-items: center;
+      span{
+        margin-right: 10px;
+      }
+    }
+}
+.toggler{
+    display: none;
+    @include respond(small_screens){
+        display: block;
+    }
+    @include respond(tablets_ipads){
+        display: block;
+    }
+}
+.drawer{
+    display:none;
+    justify-content:space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    position:fixed;
+    top:0;
+    left:0;
+    top:0;
+    height:100vh;
+    width:60%;
+    background-color:#EBF9FF;
+    box-shadow: 0px 0px 3px 3px rgba(221, 220, 220, 0.288);
+    z-index: 100;
+    transition:.2s;
+    @include respond(small_screens){
+        display: flex;
+    }
+    @include respond(tablets_ipads){
+        width: 25%;
+        display: flex;
+    }
+}
+.backmodal{
+    display:none;
+    justify-content:flex-start;
+    position:fixed;
+    top:0;
+    left:0;
+    top:0;
+    height:100vh;
+    width:100%;
+    background-color:rgba(0,0,0,.5);
+    box-shadow: 0px 0px 3px 3px rgba(221, 220, 220, 0.288);
+    z-index: 0;
+    @include respond(small_screens){
+        display: flex;
+    }
+    @include respond(tablets_ipads){
+        display: flex;
+    }
+}
+.drawer_items{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: flex-start;
+    li{
+      padding: 10px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      list-style-type: none;
+      span{
+        color: #00668F;
+        font-size: 14px;
+        margin-left: 10px;
+      }
+    }
+    li:hover{
+       background-color: #DCF3FF;
+       cursor: pointer;
+    }
+  }
+  .footer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    background-color: #E6F7FE;
+    bottom: 0;
+    li{
+      padding: 8px;
+      width: 100%;
+      padding-left: 10px;
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+      span{
+        font-size: 14px;
+        margin-left: 10px;
+        color: #00668F
+      }
+      p{
+        color: #00668F;
+        font-size: 14px;
+        margin: 0
+      }
+    }
+    li:hover{
+      background-color: #DCF3FF;
+      cursor: pointer;
+   }
+  }

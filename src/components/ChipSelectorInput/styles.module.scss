@@ -1,0 +1,70 @@
+
+
+.inputfield:focus{
+  border: .5px solid #0099D6;
+}
+.inputfield{
+  width: 98%;
+  height: 48px;
+  border: .5px solid #CBD5E1;
+  border-radius: 10px;
+  text-indent: 8px;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.dropdown::-webkit-scrollbar {
+  width: 3px;
+  overflow-x: hidden;
+}
+.dropdown::-webkit-scrollbar-thumb {
+  height: 50px;
+  border-radius: 5px;
+  background-color: rgb(197, 195, 195);
+}
+.dropdown::-webkit-scrollbar-thumb:hover {
+  height: 5px;
+  border-radius: 5px;
+  background-color: rgb(139, 139, 139);
+}
+.dropdown::-webkit-scrollbar-track {
+  background: transparent;
+  border-right: .5px solid lightgray;
+}
+.dropdown{
+  overflow-y: scroll;
+  width: 100%;
+  max-height: 200px;
+}
+.chip{
+  user-select: none;
+  height: 24px;
+  width: auto;
+  padding: 5px;
+  background-color: #F8FAFC;
+  border-radius: 10px;
+  margin: 5px;
+  font-size: 12px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.chip_selected{
+  user-select: none;
+  cursor: pointer;
+  height: 24px;
+  width: auto;
+  padding: 5px;
+  background-color: #F8FAFC;
+  border-radius: 10px;
+  margin: 5px;
+  font-size: 12px;
+  color: #F57A00;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFF5EB;
+}

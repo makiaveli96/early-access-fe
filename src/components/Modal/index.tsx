@@ -25,16 +25,14 @@ function Modal({ modal, showModal, children, backdropClose }: PropsI) {
 
   return (
     <ReactModal
-        open={modal}
-        style={{backgroundColor: 'rgba(0, 102, 143, 0.74)'}}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-         {children}
-
-       
-      </ReactModal>
+      open={modal}
+      style={{backgroundColor: 'rgba(255,255,255,.5)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      {children}
+    </ReactModal>
   )
 }
 

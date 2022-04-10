@@ -105,7 +105,7 @@ function Referral() {
   return (
       <>
       <Navbar />
-      <ToastContainer />
+      
       <div className={styles.container}>
           <div className={styles.main}>
                 <div className={styles.referral_form}>

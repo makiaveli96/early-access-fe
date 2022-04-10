@@ -120,21 +120,21 @@ function Account() {
     console.log(res)
   }
   const saveAccountDetails=async()=>{
-    try{
-        setLoading(true);
-        const res = await saveAcccountDetails(name, username, address, userCountry, userState, postalCode)
-        if(res.status == 200){
-            setLoading(false)
-            setUserDetails(res.user)
-            Notifier(res.message, 'success')
-        }else{
-            setLoading(false)
-            Notifier(res.message, 'error')
-        }
-    }catch(err){
-        setLoading(false)
-        ErrorHandler(err, navigate, setAuth)
-    }
+    // try{
+    //     setLoading(true);
+    //     // const res = await saveAcccountDetails(name, username, address, userCountry, userState, postalCode)
+    //     if(res.status == 200){
+    //         setLoading(false)
+    //         setUserDetails(res.user)
+    //         Notifier(res.message, 'success')
+    //     }else{
+    //         setLoading(false)
+    //         Notifier(res.message, 'error')
+    //     }
+    // }catch(err){
+    //     setLoading(false)
+    //     ErrorHandler(err, navigate, setAuth)
+    // }
   
   }
 
@@ -178,7 +178,7 @@ function Account() {
   return (
     <>
         <Navbar />
-        <ToastContainer />
+        
         <div className={styles.container}>
             <div className={styles.main}>
                 <div className={styles.col1}>

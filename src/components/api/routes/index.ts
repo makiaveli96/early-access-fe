@@ -1,6 +1,10 @@
 import request from '../router';
 
 enum Routes {
+  CONFIRM_ACCOUNT = '/ea/confirm-account',
+  CONFIRM_EMAIL_TOKEN = '/ea/confirm-email-token',
+  CREATE_PASSWORD = '/ea/create-password',
+  SIGN_IN='/ea/sign-in',
   CREATE_ACCESS='/ea/create-access',
   VERIFY_SESSION="/ea/verify-session",
   HAS_LOGGED_IN="/ea/has-logged-in",
@@ -9,7 +13,29 @@ enum Routes {
   VERIFY_CODE ='/ea/verify-code',
   SAVE_ACCOUNT_DETAIILS="/ea/save-account-details",
   SEND_INVITES="/ea/send-invites",
-  DELETE_PASSWORD='/ea/delete-password'
+  DELETE_PASSWORD='/ea/delete-password',
+  UPLOAD_PROFILE_IMAGE="/ea/update-profile-image",
+  GET_REFERRALS = '/ea/get-referrals'
+}
+
+export async function ConfirmAccount(email: string, accountType: string ){
+  let body = { email, type: accountType };
+  return await request(Routes.CONFIRM_ACCOUNT, { body }, 'POST')
+}
+
+export async function ConfirmEmailToken(token: string){
+  let body = { token };
+  return await request(Routes.CONFIRM_EMAIL_TOKEN, { body }, 'POST');
+}
+
+export async function CreatePassword(email: string, type: string, password: string){
+  let body = { email, type, password };
+  return await request(Routes.CREATE_PASSWORD, { body }, 'PATCH');
+}
+
+export async function SignIn(email: string, type: string, password: string){
+  const body = { email, type, password };
+  return await request(Routes.SIGN_IN, { body }, 'POST');
 }
 
 export async function createAccess(email: string, type: string, action: string, password?: string) {
@@ -28,26 +54,12 @@ export async function hasLoggedIn(){
 }
 
 export async function WhitelistAccount(
-  firstName: string,
-  lastName: string,
-  dob: Date,
-  address: string,
-  country: string,
-  state: string,
-  postalCode: string,
   amount: string,
   paymentMethod: string,
   purchaseType: string
 ){
   const token = localStorage.getItem('_EA_TOKEN');
   let body = {
-    firstName,
-    lastName,
-    dob,
-    address,
-    country,
-    state,
-    postalCode,
     amount,
     paymentMethod,
     purchaseType
@@ -67,16 +79,8 @@ export async function verifyCode( code: string ){
   return await request(Routes.VERIFY_CODE, { token, body }, 'POST')
 }
 
-export async function saveAcccountDetails(
-  fullname: string,
-  username: string,
-  address: string,
-  country: string,
-  state: string,
-  postalCode: string
-) {
+export async function saveAcccountDetails(body: object) {
   const token = localStorage.getItem('_EA_TOKEN');
-  let body ={ fullname, username, address, country, state, postalCode };
   return await request(Routes.SAVE_ACCOUNT_DETAIILS, { token, body }, 'POST')
 }
 
@@ -89,4 +93,15 @@ export async function sendInvites(sender: string, invitees: Array<[{name: string
 export async function deletePassToken(){
   const token = localStorage.getItem('_EA_TOKEN');
   return await request(Routes.DELETE_PASSWORD, { token }, 'DELETE')
+}
+
+export async function uploadProfileImage(image: string){
+  const token = localStorage.getItem('_EA_TOKEN');
+  let body = { image };
+  return await request(Routes.UPLOAD_PROFILE_IMAGE, { token, body }, 'PATCH')
+}
+
+export async function getReferrals(email: string){
+  const token = localStorage.getItem('_EA_TOKEN');
+  return await request(`${Routes.GET_REFERRALS}?email=${email}`, { token }, 'GET');
 }

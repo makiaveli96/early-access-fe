@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContextApi from './contexts/authContextApi';
+import GeneralContextApi from './contexts/generalContextApi';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextApi>
-      <App />
+      <GeneralContextApi>
+        <App />
+      </GeneralContextApi>
     </AuthContextApi>
   </React.StrictMode>,
   document.getElementById('root')

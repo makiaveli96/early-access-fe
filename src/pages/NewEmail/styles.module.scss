@@ -1,0 +1,21 @@
+@import "../../scss/abstracts/mixins";
+
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(../../../public/frame-1627.png);
+  .main{
+    margin-top: 100px;
+    width: 500px;
+    @include respond(mobile){
+      width: 90%;
+    }
+    p{
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+}

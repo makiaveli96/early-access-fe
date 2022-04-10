@@ -1,0 +1,38 @@
+@import "../../scss/abstracts/mixins";
+
+.container{
+  width: 50%;
+  height: 65%;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 20px;
+  @include respond(mobile){
+    width: 90%;
+  }
+  .header{
+    width: 95%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h2{
+      font-size: 15px;
+    }
+  }
+  .main{
+    width: 95%;
+    height: 80%;
+  }
+  .footer{
+    margin-top: 20px;
+    height: 50px;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}

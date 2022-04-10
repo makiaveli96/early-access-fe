@@ -1,0 +1,198 @@
+.sidebar::-webkit-scrollbar {
+  width: 3px;
+  overflow-x: hidden;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  height: 50px;
+  border-radius: 5px;
+  background-color: #c5c3c3;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  height: 5px;
+  border-radius: 5px;
+  background-color: #8b8b8b;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+  border-right: .5px solid lightgray;
+}
+
+.sidebar {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding-top: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 98vh;
+  width: 230px;
+  background-color: #EBF9FF;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+.sidebar .body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: auto;
+  padding: 0px;
+}
+
+.sidebar .body .header {
+  width: 90%;
+  margin-bottom: 10px;
+  height: 63px;
+  background-color: #DCF3FF;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.sidebar .body .header .header_text1 {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #0099D6;
+}
+
+.sidebar .body .header .header_text2 {
+  margin: 0;
+  margin-left: 10px;
+  text-transform: capitalize;
+  font-size: 12px;
+  color: #0099D6;
+}
+
+.sidebar .body .sidebar_items {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.sidebar .body .sidebar_items li {
+  padding: 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style-type: none;
+}
+
+.sidebar .body .sidebar_items li span {
+  font-size: 14px;
+  margin-left: 10px;
+  color: #00668F;
+}
+
+.sidebar .body .sidebar_items li:hover {
+  background-color: #DCF3FF;
+  cursor: pointer;
+}
+
+.sidebar .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  background-color: #E6F7FE;
+  bottom: 0;
+}
+
+.sidebar .footer li {
+  padding: 10px;
+  width: 100%;
+  padding-left: 10px;
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar .footer li span {
+  color: #00668F;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.sidebar .footer li p {
+  color: #00668F;
+  margin: 0;
+  font-size: 14px;
+}
+
+.sidebar .footer li:hover {
+  background-color: #DCF3FF;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .sidebar {
+    display: none;
+  }
+}
+/*# sourceMappingURL=styles.module.css.map */

@@ -13,10 +13,11 @@ interface PropsI {
     disabled?: boolean;
     iconUri?: string;
     style?: any;
-    loading?: boolean
+    loading?: boolean;
+    textSize?: string
 }
 
-export default function Button({ bgColor, height, width, text, textColor, style, disabled, onClick, iconUri, loading }: PropsI){
+export default function Button({ bgColor, height, width, text, textSize, textColor, style, disabled, onClick, iconUri, loading }: PropsI){
     return (
         <button onClick={onClick} disabled={disabled || false} 
             style={{ 
@@ -26,7 +27,7 @@ export default function Button({ bgColor, height, width, text, textColor, style,
                 color: textColor || 'white', 
                 height, 
                 width, 
-                borderRadius: '8px', 
+                borderRadius: '5px', 
                 border: '0px',
                 display: 'flex',
                 alignItems: "center",
@@ -35,7 +36,7 @@ export default function Button({ bgColor, height, width, text, textColor, style,
                 ...style
             }}
         >
-            {text}
+            <span style={{fontSize: textSize || '13px', fontWeight: 'lighter'}}>{text}</span>
             {iconUri && (
                 <img src={iconUri} style={{marginLeft: '15px'}} alt="icon" />
             )}

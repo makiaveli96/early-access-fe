@@ -1,0 +1,200 @@
+.container {
+  width: 436px;
+  max-height: 70%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+.container .header {
+  height: 50px;
+  width: 85%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container .header div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header p {
+  font-weight: 500;
+  margin: 0;
+  margin-right: 20px;
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 700px) {
+  .container {
+    width: 90%;
+  }
+}
+
+.container .main::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+}
+
+.container .main {
+  height: 100%;
+  width: 85%;
+  overflow-y: scroll;
+}
+
+.account_profile {
+  width: 820px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 70%;
+  background-color: white;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .account_profile {
+    width: 90%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .account_profile {
+    width: 90%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.account_profile .body::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+}
+
+.account_profile .body {
+  height: 90%;
+  width: 90%;
+  overflow-y: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .account_profile .body {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .account_profile .body {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.account_profile .body .col {
+  width: 48%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media only screen and (max-width: 700px) {
+  .account_profile .body .col {
+    width: 100%;
+  }
+}
+
+.account_profile .footer {
+  padding-top: 20px;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+/*# sourceMappingURL=styles.module.css.map */

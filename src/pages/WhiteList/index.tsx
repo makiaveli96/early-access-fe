@@ -146,28 +146,28 @@ export default function Whitelist() {
     }else{
       // navigate('/home?whitelisted=true')
       setBtnLoading(true)
-      try{
-        const response = await WhitelistAccount( 
-          firstName,
-          lastName,
-          dob,
-          address,
-          userCountry,
-          userState,
-          postalCode,
-          amount,
-          paymentMethod,
-          purchaseType
-        )
-        if(response.status == 200){
-          setBtnLoading(false)
-          setOpenModal(true);
-          setNewUserDetails(response.user)
-        }
-      }catch(err){
-        setBtnLoading(false)
-        ErrorHandler(err, navigate, setAuth)
-      }
+      // try{
+      //   const response = await WhitelistAccount( 
+      //     firstName,
+      //     lastName,
+      //     dob,
+      //     address,
+      //     userCountry,
+      //     userState,
+      //     postalCode,
+      //     amount,
+      //     paymentMethod,
+      //     purchaseType
+      //   )
+      //   if(response.status == 200){
+      //     setBtnLoading(false)
+      //     setOpenModal(true);
+      //     setNewUserDetails(response.user)
+      //   }
+      // }catch(err){
+      //   setBtnLoading(false)
+      //   ErrorHandler(err, navigate, setAuth)
+      // }
    
     }
   }
@@ -429,7 +429,7 @@ export default function Whitelist() {
   return (
       <>
         <Navbar />
-        <ToastContainer />
+        
         <div className={styles.container}>
             <div className={styles.main}>
                 <div className={styles.summary_text}>

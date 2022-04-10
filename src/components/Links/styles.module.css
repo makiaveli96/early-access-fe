@@ -6,15 +6,16 @@
 }
 .copy_link_btn{
     display: flex;
-    color: white;
+    border: 1px solid #DEE5E7;
+    color: #57584E;
+    background-color: white;
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    height: 62px;
-    width: 223px;
-    border-radius: 20px;
-    border: 0px;
-    background-color: #00668F;
+    height: 36px;
+    font-size: 14px;
+    /* width: 114px; */
+    border-radius: 4px;
 }
 .social{
     display: flex;

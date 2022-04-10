@@ -8,19 +8,28 @@ import Whitelist from './pages/WhiteList'
 import Referral from './pages/Referral';
 import Account from './pages/Account';
 import Signin from './pages/Signin';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import CreatePassword from './pages/CreatePassword';
+import NewEmail from './pages/NewEmail';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-            <Route path='/' element={<Signin />} />
+            <Route path='/' element={<Navigate to="/sign-in" />} />
+
+            <Route path='/sign-in' element={<Signin />} />
+
+            <Route path='/create-password' element={<CreatePassword />} />
+
+            <Route path="/new-email" element={<NewEmail />} />
+            
             <Route path='/home' element={<PrivateRoute />}>
-              <Route path='/home' element={<Home/>}/>
+              <Route path='/home' element={<Home/>}/> 
             </Route>
 
-            <Route path='/referral' element={<PrivateRoute />}>
+            {/* <Route path='/referral' element={<PrivateRoute />}>
               <Route path='/referral' element={<Referral />} />
             </Route>
 
@@ -30,7 +39,7 @@ function App() {
 
             <Route path='/account/whitelist' element={<PrivateRoute page="whitelist" />}>
               <Route path='/account/whitelist' element={<Whitelist />} />
-            </Route>
+            </Route> */}
       </Routes>
     </BrowserRouter>
   );

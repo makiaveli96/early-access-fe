@@ -308,49 +308,49 @@ const Countries = [
             }
         ]
     },
-    {
-        "name": "Aland Islands",
-        "iso3": "ALA",
-        "iso2": "AX",
-        "numeric_code": "248",
-        "phone_code": "+358-18",
-        "capital": "Mariehamn",
-        "currency": "EUR",
-        "currency_name": "Euro",
-        "currency_symbol": "€",
-        "tld": ".ax",
-        "native": "Åland",
-        "region": "Europe",
-        "subregion": "Northern Europe",
-        "timezones": [
-            {
-                "zoneName": "Europe\/Mariehamn",
-                "gmtOffset": 7200,
-                "gmtOffsetName": "UTC+02:00",
-                "abbreviation": "EET",
-                "tzName": "Eastern European Time"
-            }
-        ],
-        "translations": {
-            "kr": "올란드 제도",
-            "br": "Ilhas de Aland",
-            "pt": "Ilhas de Aland",
-            "nl": "Ålandeilanden",
-            "hr": "Ålandski otoci",
-            "fa": "جزایر الند",
-            "de": "Åland",
-            "es": "Alandia",
-            "fr": "Åland",
-            "ja": "オーランド諸島",
-            "it": "Isole Aland",
-            "cn": "奥兰群岛"
-        },
-        "latitude": "60.11666700",
-        "longitude": "19.90000000",
-        "emoji": "🇦🇽",
-        "emojiU": "U+1F1E6 U+1F1FD",
-        "states": []
-    },
+    // {
+    //     "name": "Aland Islands",
+    //     "iso3": "ALA",
+    //     "iso2": "AX",
+    //     "numeric_code": "248",
+    //     "phone_code": "+358-18",
+    //     "capital": "Mariehamn",
+    //     "currency": "EUR",
+    //     "currency_name": "Euro",
+    //     "currency_symbol": "€",
+    //     "tld": ".ax",
+    //     "native": "Åland",
+    //     "region": "Europe",
+    //     "subregion": "Northern Europe",
+    //     "timezones": [
+    //         {
+    //             "zoneName": "Europe\/Mariehamn",
+    //             "gmtOffset": 7200,
+    //             "gmtOffsetName": "UTC+02:00",
+    //             "abbreviation": "EET",
+    //             "tzName": "Eastern European Time"
+    //         }
+    //     ],
+    //     "translations": {
+    //         "kr": "올란드 제도",
+    //         "br": "Ilhas de Aland",
+    //         "pt": "Ilhas de Aland",
+    //         "nl": "Ålandeilanden",
+    //         "hr": "Ålandski otoci",
+    //         "fa": "جزایر الند",
+    //         "de": "Åland",
+    //         "es": "Alandia",
+    //         "fr": "Åland",
+    //         "ja": "オーランド諸島",
+    //         "it": "Isole Aland",
+    //         "cn": "奥兰群岛"
+    //     },
+    //     "latitude": "60.11666700",
+    //     "longitude": "19.90000000",
+    //     "emoji": "🇦🇽",
+    //     "emojiU": "U+1F1E6 U+1F1FD",
+    //     "states": []
+    // },
     {
         "name": "Albania",
         "iso3": "ALB",
@@ -1279,49 +1279,49 @@ const Countries = [
             }
         ]
     },
-    {
-        "name": "American Samoa",
-        "iso3": "ASM",
-        "iso2": "AS",
-        "numeric_code": "016",
-        "phone_code": "+1-684",
-        "capital": "Pago Pago",
-        "currency": "USD",
-        "currency_name": "US Dollar",
-        "currency_symbol": "$",
-        "tld": ".as",
-        "native": "American Samoa",
-        "region": "Oceania",
-        "subregion": "Polynesia",
-        "timezones": [
-            {
-                "zoneName": "Pacific\/Pago_Pago",
-                "gmtOffset": -39600,
-                "gmtOffsetName": "UTC-11:00",
-                "abbreviation": "SST",
-                "tzName": "Samoa Standard Time"
-            }
-        ],
-        "translations": {
-            "kr": "아메리칸사모아",
-            "br": "Samoa Americana",
-            "pt": "Samoa Americana",
-            "nl": "Amerikaans Samoa",
-            "hr": "Američka Samoa",
-            "fa": "ساموآی آمریکا",
-            "de": "Amerikanisch-Samoa",
-            "es": "Samoa Americana",
-            "fr": "Samoa américaines",
-            "ja": "アメリカ領サモア",
-            "it": "Samoa Americane",
-            "cn": "美属萨摩亚"
-        },
-        "latitude": "-14.33333333",
-        "longitude": "-170.00000000",
-        "emoji": "🇦🇸",
-        "emojiU": "U+1F1E6 U+1F1F8",
-        "states": []
-    },
+    // {
+    //     "name": "American Samoa",
+    //     "iso3": "ASM",
+    //     "iso2": "AS",
+    //     "numeric_code": "016",
+    //     "phone_code": "+1-684",
+    //     "capital": "Pago Pago",
+    //     "currency": "USD",
+    //     "currency_name": "US Dollar",
+    //     "currency_symbol": "$",
+    //     "tld": ".as",
+    //     "native": "American Samoa",
+    //     "region": "Oceania",
+    //     "subregion": "Polynesia",
+    //     "timezones": [
+    //         {
+    //             "zoneName": "Pacific\/Pago_Pago",
+    //             "gmtOffset": -39600,
+    //             "gmtOffsetName": "UTC-11:00",
+    //             "abbreviation": "SST",
+    //             "tzName": "Samoa Standard Time"
+    //         }
+    //     ],
+    //     "translations": {
+    //         "kr": "아메리칸사모아",
+    //         "br": "Samoa Americana",
+    //         "pt": "Samoa Americana",
+    //         "nl": "Amerikaans Samoa",
+    //         "hr": "Američka Samoa",
+    //         "fa": "ساموآی آمریکا",
+    //         "de": "Amerikanisch-Samoa",
+    //         "es": "Samoa Americana",
+    //         "fr": "Samoa américaines",
+    //         "ja": "アメリカ領サモア",
+    //         "it": "Samoa Americane",
+    //         "cn": "美属萨摩亚"
+    //     },
+    //     "latitude": "-14.33333333",
+    //     "longitude": "-170.00000000",
+    //     "emoji": "🇦🇸",
+    //     "emojiU": "U+1F1E6 U+1F1F8",
+    //     "states": []
+    // },
     {
         "name": "Andorra",
         "iso3": "AND",

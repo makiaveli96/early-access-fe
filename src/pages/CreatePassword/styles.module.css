@@ -1,0 +1,59 @@
+.notification {
+  width: 100%;
+  height: 52px;
+  background-color: #BBF7D0;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-image: url(../../../public/frame-1627.png);
+}
+
+.container .form {
+  margin-top: 100px;
+  width: 420px;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .container .form {
+    width: 90%;
+  }
+}
+
+.container .form h1 {
+  font-size: 36px;
+  line-height: 45px;
+}
+
+.container .form p {
+  font-size: 14px;
+  line-height: 24px;
+}
+/*# sourceMappingURL=styles.module.css.map */
