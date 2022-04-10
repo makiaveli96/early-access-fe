@@ -514,7 +514,8 @@ function Signin() {
             <Divider width="85%" marginBottom="20px" marginTop='20px' />
           </Center>
           <Center>
-            <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="http://localhost/poket-website/#form" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p>
+            <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="https://poketfi.money#form" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p>
+            {/* <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="http://localhost/poket-website/#form" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p> */}
           </Center>
         </div>
       </main>
