@@ -10,6 +10,9 @@ export const ErrorHandler = (err, navigate, setAuth) => {
                 console.log('log out')
             }, 2000);
         }else{
+            if(err?.response?.data?.APP_ERR == 'CREATE_PASSWORD'){
+                return navigate(`/create-password?token=${err?.response?.data?.token}`)
+            }
             Notifier(err?.response?.data.message || 'Something went wrong, please try again.', 'error')
         }
     }
