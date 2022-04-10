@@ -434,7 +434,7 @@ function Home() {
         <Box sx={style}>
           <div style={{ width: "90%" }}>
             {/* <h3>You made it !</h3> */}
-            <img src="/sally-4.png" />
+            <img src="/sally-4.png" width="80%" />
             <p style={{ fontSize: "16px", lineHeight: '24px' }}>
             Congratulations on joining our Early Access, you have received <span style={{color: '#00AFF5'}}>10,000 points</span> from Poket to get you started! 
             </p>
