@@ -44,11 +44,11 @@ const textBool = [
 
 const employeeRange = [
   {label: 'less than 10'},
-  {label: '10 - 20 employees'},
-  {label: '20 - 50 employees'},
-  {label: '50 - 100 employees'},
-  {label: '100 - 500 employees'},
-  {label: '500+ employees'},
+  {label: '10 - 20 Employees'},
+  {label: '20 - 50 Employees'},
+  {label: '50 - 100 Employees'},
+  {label: '100 - 500 Employees'},
+  {label: '500+ Employees'},
 ]
 
 const numberRange = [
