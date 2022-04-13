@@ -66,15 +66,21 @@
     top:0;
     left:0;
     top:0;
-    height:100vh;
+    height:100%;
     width:100%;
     padding: 20px;
     background-color:#EBF9FF;
     box-shadow: 0px 0px 3px 3px rgba(221, 220, 220, 0.288);
     z-index: 100;
     transition:.2s;
+    // .drawer_body::-webkit-scrollbar {
+      // display: none;
+    // }
     .drawer_body{
       width: 90%;
+      height: 95%;
+      overflow-y: scroll;
+      overflow-x: hidden;
     }
     @include respond(small_screens){
         display: flex;
