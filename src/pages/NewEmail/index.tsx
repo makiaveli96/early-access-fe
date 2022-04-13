@@ -5,6 +5,8 @@ import HomeNavbar from "../../components/HomeNavbar";
 import { useSearchParams, useNavigate, Navigate } from "react-router-dom";
 import { ConfirmAccount, ConfirmEmailToken } from '../../components/api/routes'
 import { AuthContext } from '../../contexts/authContextApi';
+import { Icon } from "@iconify/react";
+
 
 function NewEmail() {
 
@@ -38,7 +40,18 @@ function NewEmail() {
       {tokenValid? (
       <Navigate to="/home?email_verified=true" />
       ):(
-        <h2>Invalid or Expired Token</h2>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+ <Icon icon="bxs:error" color="#00aff5" height="100" />
+          <p style={{ color: "#002C3D", fontSize: "20px", fontWeight: "400" }}>
+            Invalid or Expired token.{" "}
+            <span
+              onClick={() => navigate("/")}
+              style={{ color: "#00aff5", cursor: "pointer" }}
+            >
+              Home
+            </span>
+          </p>
+        </div>
       )}
      
     </main>

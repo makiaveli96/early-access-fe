@@ -8,7 +8,7 @@ function HomeNavbar() {
         <div className={styles.main}>
             <img src="/poket-logo.png" style={{ width: '110px', height: '30px' }} alt="logo" />
             <div className={styles.nav__items}>
-                <a href="https://poketfi.money#form" style={{ color: 'black', textDecoration: 'none' }}>Join early access</a>
+                <a href="https://poket-landing.herokuapp.com#form" style={{ color: 'black', textDecoration: 'none' }}>Join early access</a>
                 {/* <span>
                   <Button text="LOG IN" bgColor='#00AFF5' width='174px' height='52px' textColor='white' />
                 </span> */}
