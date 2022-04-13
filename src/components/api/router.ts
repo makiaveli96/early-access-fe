@@ -15,9 +15,9 @@ interface RequestI {
  */
 const request = async (endpoint: string, params: RequestI, method: string, ...config: any) => {
 
-  const API = 'http://localhost:3009/api'
+  // const API = 'http://localhost:3009/api'
   // const API = 'https://gradient-pocket-node.herokuapp.com/api'
-  // const API = 'https://early-access-demo.herokuapp.com/api'
+  const API = 'https://early-access-demo.herokuapp.com/api'
 
   const { body, token, headers } = params;
 

@@ -67,22 +67,28 @@ function CreatePassword() {
   }
 
   const createPassword = async () => {
-    if (password == password2) {
-      setLoading(true);
-      const res = await _CreatePassword(email, type, password);
-      if (res.status == 200) {
-        setLoading(false);
-        setAuth(true);
-        setUserDetails(res.user);
-        localStorage.setItem("_EA_TOKEN", res.token);
-        navigate("/home");
+    try{
+      if (password == password2) {
+        setLoading(true);
+        const res = await _CreatePassword(email, type, password);
+        if (res.status == 200) {
+          setLoading(false);
+          setAuth(true);
+          setUserDetails(res.user);
+          localStorage.setItem("_EA_TOKEN", res.token);
+          navigate("/home");
+        } else {
+          setLoading(false);
+          Notifier(res.message, "error");
+        }
       } else {
-        setLoading(false);
-        Notifier(res.message, "error");
+        Notifier("Password mismatch, check your password and try again", "warn");
       }
-    } else {
-      Notifier("Password mismatch, check your password and try again", "warn");
+    }catch(err){
+      setLoading(false);
+      ErrorHandler(err, navigate, setAuth)
     }
+    
   };
 
   useEffect(() => {
