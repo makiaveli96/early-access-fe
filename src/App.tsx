@@ -23,7 +23,7 @@ function App() {
 
             <Route path='/create-password' element={<CreatePassword />} />
 
-            <Route path="/new-email" element={<NewEmail />} />
+            <Route path="/verify-email" element={<NewEmail />} />
             
             <Route path='/home' element={<PrivateRoute />}>
               <Route path='/home' element={<Home/>}/> 

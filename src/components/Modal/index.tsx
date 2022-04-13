@@ -9,17 +9,19 @@ interface PropsI {
     modal: boolean;
     showModal: any;
     children: any;
-    backdropClose?: boolean
+    backdropClose?: boolean,
+    runOnClose?: ()=>void
 }
 
 
-function Modal({ modal, showModal, children, backdropClose }: PropsI) {
+function Modal({ modal, showModal, children, backdropClose, runOnClose }: PropsI) {
 
   const handleClose = () => {
     if(!backdropClose){
       return null
     }else{
-      showModal(false)
+      showModal(false);
+      runOnClose()
     }
   }
 

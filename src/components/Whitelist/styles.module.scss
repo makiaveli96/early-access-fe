@@ -1,52 +1,125 @@
+@import "../../scss/abstracts/mixins";
+
+
+// .main::-webkit-scrollbar-thumb {
+//   height: 50px;
+//   border-radius: 5px;
+//   background-color: rgb(197, 195, 195);
+// }
+// .main::-webkit-scrollbar-thumb:hover {
+//   height: 5px;
+//   border-radius: 5px;
+//   background-color: rgb(139, 139, 139);
+// }
+// .main::-webkit-scrollbar-track {
+//   background: transparent;
+//   border-right: .5px solid lightgray;
+// }
 .container{
+  width: 436px;
+  max-height: 70%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: white;
   border-radius: 20px;
-  max-height: 60%;
-  width: 436px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
   .header{
+    height: 50px;
     width: 85%;
-    height: 60px;
-    border-bottom: .5px solid #00668F;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    p{
-      font-size: 15px;
-      font-weight: bold;
-    }
-  }
-  .main{
-    height: 85%;
-    width: 85%;
-    p{
-      line-height: 22.5px;
-      font-size: 15px;
-      color: #64748B
-    }
-    .box{
-      width: auto;
-      border-radius: 4px;
-      height: 56px;
-      border: 1px solid #F57A00;
-      background-color: #FFF5EB;
+    justify-content: space-between;
+    div{
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      cursor: pointer;
-      h3{
-        font-size: 15px;
-        font-weight: 400;
+    }
+    p{
+      font-weight: 500;
+      margin: 0;
+      margin-right: 20px;
+      font-size: 15px;
+    }
+  }
+  @include respond(small_screens){
+    width: 90%;
+  }  
+  .main::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+  }
+  .main{
+    height: 100%;
+    width: 85%;
+      overflow-y: scroll;
+    
+    // .body{
+    //   background-color: red;
+    //   overflow-y: scroll;
+    //   max-height: 30%;
+    // }
+  }
+}
+
+// ==============================
+
+
+.account_profile{
+  width: 820px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 70%;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @include respond(mobile){
+    width: 90%;
+    flex-direction: column;
+  }
+  @include respond(small_screens){
+    width: 90%;
+    flex-direction: column;
+  }
+  .body::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+  }
+  .body{
+    height: 90%;
+    width: 90%;
+    overflow-y: scroll;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    @include respond(mobile){
+      flex-direction: column;
+    }
+    @include respond(small_screens){
+      flex-direction: column;
+    }
+    .col{
+      width: 48%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      @include respond(small_screens){
+        width: 100%
       }
-      p{
-        font-size: 15px;
-        color: black;
-      }
+    }
+  }
+  .footer{
+    padding-top: 20px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    @include respond(mobile){
+      width: 90%;
     }
   }
 }

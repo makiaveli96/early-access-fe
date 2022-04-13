@@ -9,7 +9,8 @@ import { RiBitCoinFill } from 'react-icons/ri'
 import { GeneralContext } from "../../contexts/generalContextApi";
 import { AuthContext } from '../../contexts/authContextApi';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { deletePassToken } from '../../components/api/routes'
+import { deletePassToken } from '../../components/api/routes';
+import { CgShoppingBag } from 'react-icons/cg'
 
 function Sidebar() {
 
@@ -22,7 +23,9 @@ function Sidebar() {
     showReferrals,
     showWhitelist,
     joinCommunityRef,
-    contactUsRef
+    contactUsRef,
+    showPresale,
+    showVerifyEmail
   }: any = useContext(GeneralContext)
 
   const logOut=async()=>{
@@ -39,18 +42,20 @@ function Sidebar() {
     <aside className={styles.sidebar}>
       <div className={styles.body}>
         <div className={styles.header}>
-            <p className={styles.header_text1}>Poket</p>
+            <p className={styles.header_text1} style={{display: 'flex', alignItems: 'flex-start'}}>
+              <img src="/icons/poket-logo.png" width="23px" height="23px" style={{ marginRight: '3px'}} /> Poket
+            </p>
             <p className={styles.header_text2}>{userDetails?.account} Account</p>
         </div>
         <div className={styles.sidebar_items}>
           <p style={{ color: "#00668F", fontSize: "12px", marginLeft: "10px" }}>
             Early Access
           </p>
-          <li onClick={()=>showProfile(true)}>
+          <li onClick={()=>userDetails?.isEmailVerified? showProfile(true):showVerifyEmail(true)}>
             <FiUser color="#002C3D" />
             <span>Profile</span>
           </li>
-          <li onClick={()=>showReferrals(true)}>
+          <li onClick={()=>userDetails?.isEmailVerified? showReferrals(true):showVerifyEmail(true)}>
             <FiUsers color="#002C3D" />
             <span>Referral</span>
           </li>
@@ -60,15 +65,17 @@ function Sidebar() {
               Community
             </span>
           </li>
-          <li style={{cursor: userDetails?.isWhitelisted? 'not-allowed' : 'pointer'}} onClick={()=>userDetails?.isWhitelisted? null : showWhitelist(true)}>
-            <BsFlag color="#002C3D" />
-            <span>Whitelist</span>
-            {userDetails?.isWhitelisted && (
-              <span>
-              <Icon icon="bi:check-circle-fill" width="14px" height="14px" color="#0099D6" />
-              </span>
-            )}
-          </li>
+          {userDetails?.isWhitelisted ? (
+          <li onClick={()=>userDetails?.isEmailVerified? showPresale(true):showVerifyEmail(true)}>
+              <CgShoppingBag color="#002C3D" />
+              <span>Presale Event</span>
+            </li>
+          ):(
+            <li onClick={()=>userDetails?.isEmailVerified? showWhitelist(true):showVerifyEmail(true)}>
+              <BsFlag color="#002C3D" />
+              <span>Whitelist</span>
+            </li>
+          )}
           <li onClick={()=>contactUsRef.current.scrollIntoView({behavior: 'smooth'})}>
             <FiMail color="#002C3D"  />
             <span>Contact sales</span>

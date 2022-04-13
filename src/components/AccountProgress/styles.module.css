@@ -1,0 +1,197 @@
+.parent_container {
+  padding-top: 30px;
+  width: 100%;
+  -webkit-box-shadow: 0px 1px 12px -3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 1px 12px -3px rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .parent_container {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.info {
+  width: 97%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.container::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  display: none;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media only screen and (max-width: 766px) {
+  .container::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.container::-webkit-scrollbar-thumb {
+  height: 5px;
+  border-radius: 5px;
+  background-color: #ece9e9;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  height: 5px;
+  border-radius: 5px;
+  background-color: #CBD5E1;
+}
+
+.container::-webkit-scrollbar-track {
+  background: transparent;
+  border-right: .5px solid lightgray;
+}
+
+.container {
+  margin-top: 20px;
+  width: 97%;
+  overflow-x: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container .main p {
+  font-size: 14px;
+  color: #002C3D;
+}
+
+.container .indicator_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .indicator_container .indicator {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: white;
+  border: 5px solid #CBD5E1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .indicator_container .indicator__active {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background-color: #F57A00;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .indicator_container .indicator__active .indicator__child {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 5px solid white;
+  background-color: #FFE0C2;
+}
+
+.container .indicator_container .indicator__done {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #E6F7FE;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.container .indicator_container .indicator_line {
+  background-color: #CBD5E1;
+  width: 200px;
+  height: 5px;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media only screen and (max-width: 766px) {
+  .container .indicator_container .indicator_line {
+    width: 170px;
+  }
+}
+
+.container .indicator_container .indicator_line__done {
+  background-color: #E6F7FE;
+  width: 200px;
+  height: 5px;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media only screen and (max-width: 766px) {
+  .container .indicator_container .indicator_line__done {
+    width: 170px;
+  }
+}
+/*# sourceMappingURL=styles.module.css.map */

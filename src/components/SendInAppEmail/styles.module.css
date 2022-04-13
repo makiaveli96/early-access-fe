@@ -13,11 +13,29 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .container {
+    width: 90%;
+  }
 }
 
 .container .main {
   width: 85%;
-  height: 90%;
+  height: 55%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

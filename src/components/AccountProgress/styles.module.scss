@@ -1,0 +1,113 @@
+@import "../../scss/abstracts/mixins";
+
+.parent_container{
+  padding-top: 30px;
+  width: 100%;
+  box-shadow: 0px 1px 12px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  @include respond(mobile){
+    align-items: center;
+  }
+}
+.info {
+  width: 97%;
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start
+}
+
+.container::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  display: none;
+  @include respond(small_screens){
+    display: none;
+  }
+}
+.container::-webkit-scrollbar-thumb {
+  height: 5px;
+  border-radius: 5px;
+  background-color: rgb(236, 233, 233);
+}
+.container::-webkit-scrollbar-thumb:hover {
+  height: 5px;
+  border-radius: 5px;
+  background-color: #CBD5E1;
+}
+.container::-webkit-scrollbar-track {
+  background: transparent;
+  border-right: .5px solid lightgray;
+}
+.container{
+  margin-top: 20px;
+  width: 97%;
+  overflow-x: scroll;
+  display: flex;
+  align-items: center;
+  .main{
+    display: flex;
+    flex-direction: column;
+    p{
+      font-size: 14px;
+      color: #002C3D
+    }
+  }
+  .indicator_container{
+    display: flex;
+    align-items: center;
+    .indicator{
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      background-color: white;
+      border: 5px solid #CBD5E1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .indicator__active{
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      background-color: #F57A00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .indicator__child{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        border: 5px solid white;
+        background-color: #FFE0C2;
+      }
+    }
+    .indicator__done{
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #E6F7FE;
+      width: 50px;
+      // border: 5px solid #CBD5E1;
+      border-radius: 50%;
+    }
+    .indicator_line{
+      background-color: #CBD5E1;
+      width: 200px;
+      height: 5px;
+      @include respond(small_screens){
+        width: 170px;
+      }
+    }
+    .indicator_line__done{
+      background-color: #E6F7FE;
+      width: 200px;
+      height: 5px;
+      @include respond(small_screens){
+        width: 170px;
+      }
+    }
+  }
+}

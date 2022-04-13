@@ -11,7 +11,7 @@ import PointBalance from "../../components/PointBalance";
 import Divider from "../../components/Divider";
 import Modal from "../../components/Modal";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import ProfileModal from "../../components/ProfileModal";
 import UploadImage from "../../components/UploadProfileImage";
@@ -25,29 +25,57 @@ import { hasLoggedIn } from "../../components/api/routes";
 import { format, parseISO } from "date-fns";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { Icon } from '@iconify/react';
+import { Icon } from "@iconify/react";
 import SocialMedia from "../../components/SocialMedia";
-import { FiBell, FiUser, FiUsers, FiMail } from 'react-icons/fi'
-import { ToastContainer } from 'react-toastify'
+import { FiBell, FiUser, FiUsers, FiMail } from "react-icons/fi";
+import { ToastContainer } from "react-toastify";
 import SendInAppMessage from "../../components/SendInAppEmail";
+import AccountProgress from "../../components/AccountProgress";
+import Verifyemail from "../../components/Verifyemail";
+import Verifynubmer from "../../components/Verifynumber";
+import Presale from "../../components/Presale";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import EmailVerified from '../../components/EmailVerified'
 
-function QuickAccess({ text, status, onClick }: {text: string, status: string, onClick: ()=>void}){
-  return(
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+
+function QuickAccess({
+  text,
+  status,
+  onClick,
+}: {
+  text: string;
+  status: string;
+  onClick: () => void;
+}) {
+  return (
     <>
-    {status == 'completed'? (
-      <div className={styles.action_completed}>
-        <p style={{color: '#16A34A'}}>{text}</p>
-        <Icon icon="bi:check-circle-fill" width="24px" height="24px" color="#16A34A" />
-      </div>
-    ):(
-      <div onClick={onClick} className={styles.action}>
-        <p>{text}</p>
-        <img src="/icons/action_arr_right.png" />
-      </div>
-    )}
+      {status == "completed" ? (
+        <div className={styles.action_completed}>
+          <p style={{ color: "#16A34A" }}>{text}</p>
+          <Icon
+            icon="bi:check-circle-fill"
+            width="24px"
+            height="24px"
+            color="#16A34A"
+          />
+        </div>
+      ) : (
+        <div onClick={onClick} className={styles.action}>
+          <p>{text}</p>
+          <img src="/icons/action_arr_right.png" />
+        </div>
+      )}
     </>
-   
-  )
+  );
 }
 
 function Home() {
@@ -60,10 +88,13 @@ function Home() {
     showNewReferral,
     joinCommunityRef,
     contactUsRef,
-    showContactForm
+    showContactForm,
+    showVerifyEmail,
+    showEmailVerified
   }: any = useContext(GeneralContext);
 
   const [refs, setRefs] = useState([]);
+  const [searchParams] = useSearchParams();
   const referrals: Array<{ time: string; points: string }> = [];
 
   const isMobile = useMediaQuery({
@@ -83,8 +114,8 @@ function Home() {
     transform: "translate(-50%, -50%)",
     width: 446,
     height: "auto",
-    paddingTop: '30px',
-    paddingBottom: '30px',
+    paddingTop: "30px",
+    paddingBottom: "30px",
     maxWidth: "85%",
     bgcolor: "white",
     display: "flex",
@@ -104,6 +135,10 @@ function Home() {
         }
       })();
       setOpenModal(true);
+    }
+
+    if (searchParams.get("email_verified") == 'true') {
+      showEmailVerified(true)
     }
 
     userDetails.businessReferrals.forEach((ref) => {
@@ -129,145 +164,82 @@ function Home() {
 
   return (
     <>
-    <ToastContainer />
-      <main className={styles.main}>
-        <Sidebar />
-        <div className={styles.left}>
+      <ToastContainer />
+
+      <div className={styles.container}>
+        <div className={styles.side_nav}>
+          <Sidebar />
+        </div>
+        <div className={styles.body__container}>
           <Navbar />
           <div className={styles.body}>
             <div className={styles.col1}>
+              <div style={{display: 'flex', flexDirection: userDetails?.isEmailVerified? 'column' : 'column-reverse' }}>
               <div className={styles.section_1}>
-                <p className={styles.section_1_header_text}>
-                  Current Points balance
-                </p>
-                <div className={styles.balance}>
-                  <h1>{formatCurrency(userDetails?.referralPoints)} Pts</h1>
-                  <Button
-                    onClick={() => showNewReferral(true)}
-                    width="114px"
-                    height="36px"
-                    text="New Referral"
-                    bgColor="#0099D6"
-                    textColor="white"
-                  />
-                </div>
-                <Divider width="100%" />
-                <div className={styles.welcome}>
-                  <br />
-                  <h2 style={{margin: 0}}>
-                    Hi,{" "}
-                    {userDetails?.firstName
-                      ? userDetails?.firstName
-                      : userDetails?.fullname}
-                  </h2>
-                  <p>
-                  You will earn <span style={{ color: "orange" }}>10,000 points</span> for
-                    every individual referral and{" "}
-                    <span style={{ color: "orange" }}>20,000 points</span> for
-                    Business referrals
-                  </p>
-                  <Links />
-                </div>
-              </div>
-              <div className={styles.section_2}>
-                <h3>
-                  Get the most out of your Early Access
-                </h3>
-                <div style={{ width: "100%", border: ".5px dashed #B3BCCE" }} />
-                {/* <div className={styles.slider}>
-                  <Carousel
-                    isRTL={false}
-                    itemsToShow={isMobile ? 1 : 3}
-                    showArrows={false}
-                    renderPagination={({ pages, activePage }) => (
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          marginTop: "15px",
-                        }}
-                      >
-                        {pages.map((page, i) => (
-                          <span
-                            style={{
-                              width: "5px",
-                              height: "5px",
-                              borderRadius: "50%",
-                              backgroundColor:
-                                i == activePage ? "#F57A00" : "#0099D6",
-                            }}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  >
-                    <div className={styles.slider_item}>
-                      <h2>Build a profile</h2>
-                      <p>
-                        Build your poket profile and help us set up just the
-                        right type of account that suits all your needs.
-                      </p>
+                <div className={styles.section_1__main}>
+                  <div className={styles.balance}>
+                    <p className={styles.section_1_header_text}>
+                    Your reward points balance
+                    </p>
+                    <div>
+                      <h1>{formatCurrency(userDetails?.referralPoints)} Pts</h1>
                       <Button
-                        text="Get Started"
-                        bgColor="#F57A00"
+                        onClick={() => userDetails?.isEmailVerified? showNewReferral(true) : showVerifyEmail(true)}
+                        width="114px"
+                        height="36px"
+                        text="New Referral"
+                        bgColor="#0099D6"
                         textColor="white"
-                        width="auto"
-                        height="28px"
                       />
                     </div>
-
-                    <div className={styles.slider_item}>
-                      <h2>Invite Family & Friends</h2>
-                      <p>
-                        Invite family, friends and businesses and earn points.
-                        Your points will be redeemable for tokens, cash and
-                        other amazing prices when we launch.
-                      </p>
-                      <Button
-                        text="Start a New referral"
-                        bgColor="#F57A00"
-                        textColor="white"
-                        width="auto"
-                        height="28px"
-                      />
-                    </div>
-                    <div className={styles.slider_item}>
-                      <h2>Get Whitelisted</h2>
-                      <p>
-                        To qualify for our upcoming Token presale event, your
-                        account must be whitelisted. Read more about the presale
-                        event and account whitelisting here.
-                      </p>
-                      <Button
-                        text="Get Started"
-                        bgColor="#F57A00"
-                        textColor="white"
-                        width="auto"
-                        height="28px"
-                      />
-                    </div>
-                  </Carousel>
-                </div> */}
-                <div className={styles.quick_access}>
-                  <QuickAccess text="Build Profile" onClick={()=>{showProfile(true)}} status={userDetails?.isProfileSet? 'completed':'pending'} />
-                  <QuickAccess text="Invite Family & Friends" onClick={()=>{showNewReferral(true)}} status="pending" />
-                  <QuickAccess text="Get Whitelisted" onClick={()=>{showWhitelist(true)}} status={userDetails?.isWhitelisted? 'completed':'pending'} />
-                  <QuickAccess text="Join our Community" onClick={()=>{}} status="pending" />
+                  </div>
+                  <div className={styles.point_balance_mobile}>
+                    <PointBalance />
+                  </div>
+                  <Divider width="100%" />
+                  <div className={styles.welcome}>
+                    <br />
+                    <h2 style={{ margin: 0, textTransform: 'capitalize' }}>
+                      Hi,{" "}
+                      {userDetails?.firstName
+                        ? userDetails?.firstName
+                        : userDetails?.fullname}
+                    </h2>
+                    <p style={{fontSize: '16px'}}>
+                      You will earn{" "}
+                      <span style={{ color: "orange" }}>10,000 points</span> for
+                      every individual referral and{" "}
+                      <span style={{ color: "orange" }}>20,000 points</span> for
+                      Business referrals
+                    </p>
+                    <Links />
+                  </div>
                 </div>
               </div>
-
+              {/* <div className={styles.section_2}> */}
+                {/* <div className={styles.section_2__main}> */}
+                  {/* <h3>Get the most out of your Early Access</h3> */}
+                  {/* <p style={{fontSize: '15px', lineHeight: '22.5px', margin: 0}}>Complete these steps and earn up to <br /><span style={{color: '#0099D6'}}>100,000 reward points!</span></p> */}
+                  <AccountProgress />
+                {/* </div> */}
+              {/* </div> */}
+              </div>
+              
               <div ref={joinCommunityRef} className={styles.section_3}>
                 <div className={styles.section_3__main}>
                   <h3>Join our community</h3>
                   <Divider type="dashed" />
-                  <p>Stay up to date with new products, features, exclusive offers and launch dates.</p>
+                  <p>
+                    Stay up to date with new products, features, exclusive
+                    offers and launch dates.
+                  </p>
                   <div className={styles.link_buttons}>
                     <a>
                       <img src="/icons/discord.png" />
                       <p>Discord community</p>
                       <Icon icon="bi:arrow-right" />
                     </a>
-                    <br/>
+                    <br />
                     <a>
                       <Icon icon="logos:telegram" width="24px" height="24px" />
                       <p>Telegram community</p>
@@ -277,10 +249,11 @@ function Home() {
                   <br />
                   <Divider />
                   <div className={styles.follow_us}>
-                    <p>Follow Us <Icon icon="bi:arrow-right" /></p>
-                    <SocialMedia style={{ height: '36px', width: '36px' }} />
+                    <p>
+                      Follow Us <Icon icon="bi:arrow-right" />
+                    </p>
+                    <SocialMedia style={{ height: "36px", width: "36px" }} />
                   </div>
-                  <Divider marginTop="20px" type="dashed" />
                 </div>
               </div>
 
@@ -288,155 +261,132 @@ function Home() {
                 <div className={styles.section_4__main}>
                   <h3>Get in touch</h3>
                   <Divider type="dashed" />
-                  <p>Send us a message or set up a meeting with us to learn more about how you can use poket for yourself and business.</p>
+                  <p>
+                    Send us a message or set up a meeting with us to learn more
+                    about how you can use poket for yourself and business.
+                  </p>
                   <Divider type="dashed" />
                   <div className={styles.link_buttons}>
-                    <a onClick={()=>showContactForm(true)}>
+                    <a onClick={() => showContactForm(true)}>
                       <p>Send a message</p>
-                      <FiMail color="#002C3D"  />
+                      <FiMail color="#002C3D" />
                     </a>
-                    <br/>
-                    <a>
+                    <br />
+                    <a href="https://calendly.com/hellopoket/30min" target="_blank">
                       <p>Schedule a meeting</p>
                       <FiUsers color="#002C3D" />
                     </a>
                   </div>
                 </div>
-
               </div>
             </div>
 
             {/* COLUMN FAR RIGHT */}
             <div className={styles.col2}>
               <div className={styles.col2_body}>
-                <div onClick={()=>showUploadImage(true)} className={styles.profile}>
-                  {userDetails?.profilePhoto? (
-                      <img src={userDetails?.profilePhoto} style={{width: "80px", height: "80px", borderRadius: '50%'}}/>
-                  ):(
-                    <>{userDetails?.account == 'personal'? (
-                      <img src="/icons/no-image.png" />
-                    ):(
-                      <Icon icon="ion:business-sharp" color="#00668F" height="80px" width= '70px' />
-                    )}
+                <div
+                  onClick={() => showUploadImage(true)}
+                  className={styles.profile}
+                >
+                  {userDetails?.profilePhoto ? (
+                    <img
+                      src={userDetails?.profilePhoto}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  ) : (
+                    <>
+                      {userDetails?.account == "personal" ? (
+                        <img src="/icons/no-image.png" />
+                      ) : (
+                        <Icon
+                          icon="ion:business-sharp"
+                          color="#00668F"
+                          height="80px"
+                          width="70px"
+                        />
+                      )}
                     </>
                   )}
                 </div>
-                <p>
+                <p style={{textTransform: 'capitalize'}}>
                   Hi,{" "}
                   {userDetails?.firstName
                     ? userDetails?.firstName
                     : userDetails?.fullname}
                 </p>
                 <PointBalance />
-                <p
-                  onClick={() => toggleActivity()}
+                <br />
+                <br />
+                <h3
                   style={{
-                    color: "#00668F",
-                    cursor: "pointer",
-                    display: "flex",
-                    userSelect: "none",
-                    alignItems: "center",
+                    color: "#002C3D",
                     margin: 0,
-                    fontWeight: 'bold',
-                    marginTop: "15px",
-                    marginBottom: "10px",
+                    fontSize: "16px",
+                    fontWeight: "500",
                   }}
                 >
-                  See Activity
-                  {activity == "none" ? (
-                    <MdKeyboardArrowDown size={20} />
-                  ) : (
-                    <MdKeyboardArrowUp size={20} />
-                  )}
-                </p>
-                <div style={{ display: activity }} className={styles.activity}>
-                  {[
-                    ...userDetails?.businessReferrals,
-                    ...userDetails?.referrals,
-                  ].length == 0 && (
-                    <div style={{ width: "100%", marginBottom: "10px" }}>
-                      <p
-                        style={{
-                          textAlign: "center",
-                          margin: 0,
-                          fontSize: "13px",
-                          color: "#B3BCCE",
-                        }}
-                      >
-                        No recent Activity
-                      </p>
-                    </div>
-                  )}
-                  {refs.map((referral, i) => (
-                    <div style={{ width: "100%" }} key={i}>
-                      <Divider type="dashed" width="100%" />
-                      <div className={styles.activity__item}>
-                        <div>
-                          <p
-                            style={{
-                              color: "#231712",
-                              margin: 0,
-                              fontWeight: "400",
-                              fontSize: "16px",
-                            }}
-                          >
-                            Poket referral bonus
-                          </p>
-                          {referral?.time && (
-                            <p
-                              style={{
-                                color: "#B3BCCE",
-                                margin: 0,
-                                fontSize: "13px",
-                              }}
-                            >
-                              {format(
-                                parseISO(referral?.time),
-                                "LLL, dd, yyyy"
-                              )}
-                            </p>
-                          )}
-                        </div>
-                        <span className={styles.activity_points}>
-                         {referral.points+' Pts'}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                {/* <Divider type="dashed" width="100%" /> */}
-                <h3 style={{ color: "#002C3D", margin: 0, fontSize: '18px', fontWeight: '500' }}>Latest from Poket</h3>
+                  Latest from Poket
+                </h3>
                 {/* <Divider type="dashed" width="100%" /> */}
                 <div className={styles.social_media}>
+                  <Divider width="100%" marginTop="15px" marginBottom="15px" />
+
                   <div className={styles.header}>
-                    <img src="/icons/poket-logo.png" />
-                    <div>
-                      <p>@poket.finance</p>
-                      <p style={{ fontSize: "15px", color: "#9CA0AC" }}>
-                        1,234 posts
-                      </p>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                      <img src="/icons/poket-logo.png" />
+                      <div>
+                        <p style={{fontSize: '15px'}}>@poket.finance</p>
+                        <p style={{ fontSize: "12px", color: "#9CA0AC" }}>
+                          1,234 posts
+                        </p>
+                      </div>
+                    </div>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                      <SocialMedia
+                        margin="2.5px"
+                        style={{ height: "23px", width: "23px" }}
+                      />
                     </div>
                   </div>
-                  <div className={styles.social_icons}>
-                    <SocialMedia margin="2.5px" style={{ height: "23px", width: "23px" }} />
-                  </div>
+                  {/* <div className={styles.social_icons}>
+                    <SocialMedia
+                      margin="2.5px"
+                      style={{ height: "23px", width: "23px" }}
+                    />
+                  </div> */}
                   <br />
-                  <div className={styles.posts}>
-                    <img src="/post_img_1.png" />
-                  </div>
+                  
                 </div>
+                  
               </div>
+              <div className={styles.posts}>
+                    <div className={styles.post_item}>
+                      <img src ="/post_img_1.png" width="250px" height="250px" />
+                    </div>
+                    <div className={styles.post_item}>
+                      <img src ="/post_img_1.png" width="250px" height="250px" />
+                    </div>
+                    <div className={styles.post_item}>
+                      <img src ="/post_img_1.png" width="250px" height="250px" />
+                    </div>
+                  </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
       <Modal modal={openModal} showModal={setOpenModal} backdropClose={true}>
         <Box sx={style}>
           <div style={{ width: "90%" }}>
             {/* <h3>You made it !</h3> */}
-            <img src="/sally-4.png" width="80%" />
-            <p style={{ fontSize: "16px", lineHeight: '24px' }}>
-            Congratulations on joining our Early Access, you have received <span style={{color: '#00AFF5'}}>10,000 points</span> from Poket to get you started! 
+            <img src="/box_animation.gif" width="80%" />
+            <p style={{ fontSize: "16px", lineHeight: "24px" }}>
+              Congratulations on joining our Early Access, you have received{" "}
+              <span style={{ color: "#00AFF5" }}>{userDetails?.account == 'personal'? '10,000':'25,000'} points</span> from Poket
+              to get you started!
             </p>
           </div>
           <Button
@@ -454,6 +404,10 @@ function Home() {
       <NewReferral />
       <Whitelist />
       <SendInAppMessage />
+      <Verifyemail />
+      <Verifynubmer />
+      <Presale />
+      <EmailVerified />
     </>
   );
 }

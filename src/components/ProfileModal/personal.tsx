@@ -3,76 +3,85 @@ import Modal from "../Modal";
 import styles from "./styles.module.css";
 import { Icon } from "@iconify/react";
 import { GeneralContext } from "../../contexts/generalContextApi";
-import Button from '../../components/Button'
-import TextField from '@mui/material/TextField';
-import MobileDatePicker from '@mui/lab/MobileDatePicker';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { BsArrowLeft } from 'react-icons/bs'
-import Countries from '../../utils/countries-states';
-import { AuthContext } from '../../contexts/authContextApi';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/material.css'
-import Chip from '@mui/material/Chip';
-import Currencies from '../../utils/currencies';
-import Cryptocurrencies from '../../utils/crypto-currencies';
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
+import Button from "../../components/Button";
+import TextField from "@mui/material/TextField";
+import MobileDatePicker from "@mui/lab/MobileDatePicker";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { BsArrowLeft } from "react-icons/bs";
+import Countries from "../../utils/countries-states";
+import { AuthContext } from "../../contexts/authContextApi";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/material.css";
+import Chip from "@mui/material/Chip";
+import Currencies from "../../utils/currencies";
+import Cryptocurrencies from "../../utils/crypto-currencies";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
 import { Notifier } from "../Notifier";
 import { ToastContainer } from "react-toastify";
-import { format, parseISO } from 'date-fns';
-import { sendVerificationCode, verifyCode, saveAcccountDetails } from '../../components/api/routes'
+import { format, parseISO } from "date-fns";
+import {
+  sendVerificationCode,
+  verifyCode,
+  saveAcccountDetails,
+} from "../../components/api/routes";
 import { ErrorHandler } from "../../helpers/Errorhandler";
-import { useNavigate } from 'react-router-dom' 
+import { useNavigate } from "react-router-dom";
 import ModalProgress from "../ModalProgress";
-import OtpInput from '../../components/OtpInput'
+import OtpInput from "../../components/OtpInput";
 import ChipSelectorInput from "../ChipSelectorInput";
 
 function Perosonal() {
-  const navigate = useNavigate()
-  const { showProfile }: any = useContext(GeneralContext);
-  const { auth, setAuth, userDetails, setUserDetails }: any = useContext(AuthContext);
-  const [selectedAccount, setSelectedAccount] = useState('personal');
-  const [step, setStep] = useState(0);
-  const [saving, setSaving] = useState(false)
+  const navigate = useNavigate();
+  const { showProfile, showUploadImage }: any = useContext(GeneralContext);
+  const { auth, setAuth, userDetails, setUserDetails }: any =
+    useContext(AuthContext);
+  const [selectedAccount, setSelectedAccount] = useState("personal");
+  const [step, setStep] = useState(userDetails?.profileStep || 0);
+  const [saving, setSaving] = useState(false);
 
-  
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState(userDetails?.firstName || "");
+  const [lastName, setLastName] = useState(userDetails?.lastName || "");
   const [dob, setDob] = useState<any | null>(new Date());
-  
-  const [countryOfResidence, setCountryOfResidence] = useState<any | null>(Countries[0]);
-  const [countryOfCitizenship,setCountryOfCitizenship] = useState<any | null>(Countries[0]);
-  const [states, setStates] = useState<any>([])
-  const [userCountry, setUserCountry] = useState(userDetails?.contry)
+
+  const [countryOfResidence, setCountryOfResidence] = useState<any | null>(
+    Countries[0]
+  );
+  const [countryOfCitizenship, setCountryOfCitizenship] = useState<any | null>(
+    Countries[0]
+  );
+  const [states, setStates] = useState<any>([]);
+  const [userCountry, setUserCountry] = useState(userDetails?.contry);
   const [userState, setUserState] = useState(userDetails?.state);
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState("");
 
-  const [otpCode, setOtpCode] = useState('')
+  const [otpCode, setOtpCode] = useState("");
 
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
   const [state, setState] = useState<any | null>(null);
-  const [city, setCity] = useState('');
-  const [postalCode, setPostalCode] = useState('')
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState("");
 
-  const [supportedCurrencies, setSupportedCurrencies] = useState([])
-  const [supportedCountries, setSupportedCountries] = useState([]);
+  const [supportedCurrencies, setSupportedCurrencies] = useState(userDetails?.supportedCurrencies || []);
+  const [supportedCrypto, setSupportedCrypto] = useState(userDetails?.supportedCrypto || []);
+  const [supportedCountries, setSupportedCountries] = useState(userDetails?.supportedCountries || []);
 
-  const [userHasAccount, setUserHasAccount] = useState('yes');
-  const [userHasCryptoWallet, setUserHasCryptoWallet] = useState('yes');
-  const [poketUseCase, setPoketUseCase] = useState('private')
+  const [userHasAccount, setUserHasAccount] = useState("Yes");
+  const [userHasCryptoWallet, setUserHasCryptoWallet] = useState("Yes");
+  const [poketUseCase, setPoketUseCase] = useState("Private");
 
   const textBool = [
-    {key: 0, label: 'yes'},
-    {key: 1, label: 'no'}
+    { key: 0, label: "Yes" },
+    { key: 1, label: "No" },
   ];
 
   const poketUseCases = [
-    {label: 'private'},
-    {label: 'company use'},
-  ]
-
+    { label: "Private" },
+    { label: "Company use" },
+    { label: "Both" },
+  ];
 
   const accountTypes = [
     {
@@ -94,70 +103,140 @@ function Perosonal() {
   //   setUserState(state?.name)
   // },[country, state]);
 
+  useEffect(() => {
+    setStates(Countries[0].states);
+  }, []);
+
   useEffect(()=>{
-    setStates(Countries[0].states)
+    if(userDetails?.countryOfResidence){
+      const findCountry = Countries.find(country => country.name == userDetails?.countryOfResidence)
+      if(findCountry){
+        setCountryOfResidence(findCountry)
+        setStates(findCountry.states)
+      }
+    }
+    if(userDetails?.countryOfCitizenship){
+      const findCountry = Countries.find(country => country.name == userDetails?.countryOfCitizenship)
+      if(findCountry){
+        setCountryOfCitizenship(findCountry)
+      }
+    }
   },[])
 
-  const handleOtpCode=(e)=>{
+  const handleOtpCode = (e) => {
     const re = /^[0-9\b]+$/;
-    if (e.target.value === '' || re.test(e.target.value)) {
-      setOtpCode(e.target.value)
+    if (e.target.value === "" || re.test(e.target.value)) {
+      setOtpCode(e.target.value);
     }
-  }
+  };
 
   const AccountType = (
     <div className={styles.body}>
       <p style={{ color: "#64748B" }}>
         How do you want to use your Poket account?
       </p>
-      {accountTypes.map((type, i)=>(
-        <div key={i} onClick={()=>setSelectedAccount(type.label)} style={{height: '130px', display: 'flex', cursor: 'pointer', flexDirection: 'column', alignItems: 'center', borderRadius: '8px', marginBottom: '15px', width: '100%', border: type.label == selectedAccount? '1px solid #FFF5EB' : '1px solid #64748B', backgroundColor: type.label == selectedAccount? '#FFF5EB' : 'white'}}>
-          <div style={{height: '100%', width: '90%', display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
-            <div style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-              <p style={{textTransform: 'capitalize', margin: 0}}>{type.label}</p>
+      {accountTypes.map((type, i) => (
+        <div
+          key={i}
+          onClick={() => setSelectedAccount(type.label)}
+          style={{
+            height: "130px",
+            display: "flex",
+            cursor: "pointer",
+            flexDirection: "column",
+            alignItems: "center",
+            borderRadius: "8px",
+            marginBottom: "15px",
+            width: "100%",
+            border:
+              type.label == selectedAccount
+                ? "1px solid #FFF5EB"
+                : "1px solid #64748B",
+            backgroundColor:
+              type.label == selectedAccount ? "#FFF5EB" : "white",
+          }}
+        >
+          <div
+            style={{
+              height: "100%",
+              width: "90%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <p style={{ textTransform: "capitalize", margin: 0 }}>
+                {type.label}
+              </p>
               {type.label == selectedAccount && (
-                <span style={{backgroundColor: '#F57A00', padding: '4px', fontSize: '10px', width: '70px', textAlign: 'center', borderRadius: '4px', color: 'white'}}>selected</span>
+                <span
+                  style={{
+                    backgroundColor: "#F57A00",
+                    padding: "4px",
+                    fontSize: "10px",
+                    width: "70px",
+                    textAlign: "center",
+                    borderRadius: "4px",
+                    color: "white",
+                  }}
+                >
+                  selected
+                </span>
               )}
             </div>
-            <p style={{margin: 0}}>{type.info}</p>
+            <p style={{ margin: 0 }}>{type.info}</p>
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 
   const Name = (
-    <div style={{width: '100%', marginBottom: '20px'}}>
-      <p style={{color: '#64748B', fontSize: '15px', lineHeight: '30px'}}>Please make sure your name matches the details on your ID Documents</p>
+    <div style={{ width: "100%", marginBottom: "20px" }}>
+      <p style={{ color: "#64748B", fontSize: "15px", lineHeight: "30px" }}>
+        Please make sure your name matches the details on your ID Documents
+      </p>
       <div>
-        <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>First Name</p>
+        <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
+          First Name
+        </p>
         <TextField
           id="outlined-fname"
           // label="Name"
-          autoComplete='new-password'
-          placeholder='Jonh'
+          autoComplete="new-password"
+          placeholder="Jonh"
           helperText="please enter a valid firstname"
-          style={{width: '100%'}}
+          style={{ width: "100%" }}
           value={firstName}
-          onChange={e=>setFirstName(e.target.value)}
+          onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
 
       <div>
-        <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Last Name</p>
+        <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
+          Last Name
+        </p>
         <TextField
           id="outlined-lname"
           // label="Name"
-          placeholder='Doe'
+          placeholder="Doe"
           helperText="please enter a valid lastname"
-          autoComplete='new-password'
-          style={{width: '100%'}}
+          autoComplete="new-password"
+          style={{ width: "100%" }}
           value={lastName}
-          onChange={e=>setLastName(e.target.value)}
+          onChange={(e) => setLastName(e.target.value)}
         />
       </div>
 
-      <div>
+      {/* <div>
         <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Date of Birth</p>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
         <MobileDatePicker
@@ -168,29 +247,30 @@ function Perosonal() {
         />
         </LocalizationProvider>
         
-      </div>
+      </div> */}
     </div>
-  )
+  );
 
-  const Country=(
-    <div style={{ marginBottom: '20px' }}>
+  const Country = (
+    <div style={{ marginBottom: "20px" }}>
       <div>
-        <p  style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Country of Citizenship*</p>
+        <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
+          Country of Citizenship*
+        </p>
         <Autocomplete
           value={countryOfCitizenship}
-          style={{width: '100%'}}
+          style={{ width: "100%" }}
           onChange={(event, newValue) => {
-            if (typeof newValue["name"] === 'string') {
-                setCountryOfCitizenship(newValue);
-                console.log(newValue, ' new val 1')
+            if (typeof newValue["name"] === "string") {
+              setCountryOfCitizenship(newValue);
+              console.log(newValue, " new val 1");
             } else if (newValue && newValue.inputValue) {
-                console.log(newValue, ' new val 2')
-                // Create a new value from the user input
-                // setCountry(newValue);
-
+              console.log(newValue, " new val 2");
+              // Create a new value from the user input
+              // setCountry(newValue);
             } else {
-                console.log(newValue, ' new val 3')
-                setCountryOfCitizenship(newValue);
+              console.log(newValue, " new val 3");
+              setCountryOfCitizenship(newValue);
             }
           }}
           selectOnFocus
@@ -199,44 +279,47 @@ function Perosonal() {
           id="country-selector"
           options={Countries}
           getOptionLabel={(option) => {
-              if (typeof option.name === 'string') {
-                  return option.name;
-              }
-              if (option.inputValue) {
-                  return option.inputValue;
-              }
+            if (typeof option.name === "string") {
               return option.name;
+            }
+            if (option.inputValue) {
+              return option.inputValue;
+            }
+            return option.name;
           }}
           renderOption={(props, option) => <li {...props}>{option.name}</li>}
           sx={{ width: 300 }}
           freeSolo
           renderInput={(params) => (
-              <TextField placeholder='select a country'
-                  autoComplete='new-password'
-              {...params} />
+            <TextField
+              placeholder="select a country"
+              autoComplete="new-password"
+              {...params}
+            />
           )}
         />
       </div>
 
       <div>
-        <p  style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Country of Residence*</p>
+        <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
+          Country of Residence*
+        </p>
         <Autocomplete
           value={countryOfResidence}
-          style={{width: '100%'}}
+          style={{ width: "100%" }}
           onChange={(event, newValue) => {
-            if (typeof newValue["name"] === 'string') {
-                setCountryOfResidence(newValue);
-                setStates(newValue.states)
-                console.log(newValue, ' new val 1')
+            if (typeof newValue["name"] === "string") {
+              setCountryOfResidence(newValue);
+              setStates(newValue.states);
+              console.log(newValue, " new val 1");
             } else if (newValue && newValue.inputValue) {
-                console.log(newValue, ' new val 2')
-                // Create a new value from the user input
-                // setCountry(newValue);
-
+              console.log(newValue, " new val 2");
+              // Create a new value from the user input
+              // setCountry(newValue);
             } else {
-                console.log(newValue, ' new val 3')
-                setCountryOfResidence(newValue);
-                setStates(newValue.states)
+              console.log(newValue, " new val 3");
+              setCountryOfResidence(newValue);
+              setStates(newValue.states);
             }
           }}
           selectOnFocus
@@ -245,26 +328,28 @@ function Perosonal() {
           id="country-selector"
           options={Countries}
           getOptionLabel={(option) => {
-              if (typeof option.name === 'string') {
-                  return option.name;
-              }
-              if (option.inputValue) {
-                  return option.inputValue;
-              }
+            if (typeof option.name === "string") {
               return option.name;
+            }
+            if (option.inputValue) {
+              return option.inputValue;
+            }
+            return option.name;
           }}
           renderOption={(props, option) => <li {...props}>{option.name}</li>}
           sx={{ width: 300 }}
           freeSolo
           renderInput={(params) => (
-              <TextField placeholder='select a country'
-                  autoComplete='new-password'
-              {...params} />
+            <TextField
+              placeholder="select a country"
+              autoComplete="new-password"
+              {...params}
+            />
           )}
         />
       </div>
 
-      <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Phone number</p>
+      {/* <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Phone number</p>
         <PhoneInput
           specialLabel=''
           inputStyle={{width: '100%'}}
@@ -273,13 +358,15 @@ function Perosonal() {
           disabled={userDetails.isPhoneVerified}
           onChange={phone=>setPhone(phone)}
         />
-        <p style={{fontSize: '12px'}}>you will receive an sms code to verify this number</p>
+        <p style={{fontSize: '12px'}}>you will receive an sms code to verify this number</p> */}
     </div>
-  )
+  );
 
-  const VerifyNumber=(
-    <div style={{marginBottom: '20px'}}>
-      <p style={{fontSize: '15px', color: '#64748B'}}>Enter the OTP Verification code we sent to your phone.</p>
+  const VerifyNumber = (
+    <div style={{ marginBottom: "20px" }}>
+      <p style={{ fontSize: "15px", color: "#64748B" }}>
+        Enter the OTP Verification code we sent to your phone.
+      </p>
       <OtpInput value={otpCode} onChange={handleOtpCode} />
       {/* <TextField
         id="outlined-lname"
@@ -290,39 +377,42 @@ function Perosonal() {
         onChange={handleOtpCode}
       /> */}
     </div>
-  )
+  );
 
-  const Address=(
-    <div style={{marginBottom: '20px'}}>
+  const Address = (
+    <div style={{ marginBottom: "20px" }}>
       <div>
-        <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Address*</p>
+        <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
+          Address*
+        </p>
         <TextField
           id="outlined-address"
-          placeholder='add an address'
+          placeholder="add an address"
           // label="Name"
-          autoComplete='new-password'
-          style={{width: '100%'}}
+          autoComplete="new-password"
+          style={{ width: "100%" }}
           value={address}
-          onChange={e=>setAddress(e.target.value)}
+          onChange={(e) => setAddress(e.target.value)}
         />
       </div>
 
       <div>
-        <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>State*</p>
+        <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
+          State*
+        </p>
         <Autocomplete
           value={state}
-          style={{width: '100%'}}
+          style={{ width: "100%" }}
           onChange={(event, newValue) => {
-            if (typeof newValue?.name === 'string') {
+            if (typeof newValue?.name === "string") {
               setState(newValue);
-              console.log(newValue, ' new state val 1')
+              console.log(newValue, " new state val 1");
             } else if (newValue && newValue.inputValue) {
-              console.log(newValue, ' new state val 2')
+              console.log(newValue, " new state val 2");
               // Create a new value from the user input
               // setCountry(newValue);
-
             } else {
-              console.log(newValue, ' new state val 3')
+              console.log(newValue, " new state val 3");
               setState(newValue);
             }
           }}
@@ -332,71 +422,75 @@ function Perosonal() {
           id="state-selector"
           options={states}
           getOptionLabel={(option) => {
-            if (typeof option.name === 'string') {
-                return option.name;
+            if (typeof option.name === "string") {
+              return option.name;
             }
             if (option.inputValue) {
-                return option.inputValue;
+              return option.inputValue;
             }
-            return option?.name || '';
+            return option?.name || "";
           }}
           renderOption={(props, option) => <li {...props}>{option?.name}</li>}
           sx={{ width: 300 }}
           freeSolo
           renderInput={(params) => (
-            <TextField 
-              autoComplete='new-password'
-              placeholder='select state' 
-              {...params} 
+            <TextField
+              autoComplete="new-password"
+              placeholder="select state"
+              {...params}
             />
           )}
         />
       </div>
 
       <div>
-        <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>City*</p>
+        <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
+          City*
+        </p>
         <TextField
           id="outlined-address"
-          placeholder='enter city'
+          placeholder="enter city"
           // label="Name"
-          autoComplete='new-password'
-          style={{width: '100%'}}
+          autoComplete="new-password"
+          style={{ width: "100%" }}
           value={city}
-          onChange={e=>setCity(e.target.value)}
+          onChange={(e) => setCity(e.target.value)}
         />
       </div>
 
       <div>
-        <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Postal Code</p>
+        <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
+          Postal Code
+        </p>
         <TextField
           id="outlined-postal"
-          placeholder='postal code(optional)'
+          placeholder="postal code(optional)"
           // label="Name"
-          autoComplete='new-password'
-          style={{width: '100%'}}
+          autoComplete="new-password"
+          style={{ width: "100%" }}
           value={postalCode}
-          onChange={e=>setPostalCode(e.target.value)}
+          onChange={(e) => setPostalCode(e.target.value)}
         />
       </div>
     </div>
-  )
-  const handleCurrency=(e, val)=>{
-    setSupportedCurrencies(val)
-  }
-  const NeededCurrencies=(
-    <div style={{marginBottom: '20px', marginTop: '20px'}}>
-      <p style={{color: '#64748B', fontSize: '14px'}}>Which of these currencies do you need most often? Select up to 5</p>
-      <ChipSelectorInput 
+  );
+  const handleCurrency = (e, val) => {
+    setSupportedCurrencies(val);
+  };
+
+  const NeededCurrencies = (
+    <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      <p style={{ color: "#64748B", fontSize: "14px" }}>
+        Which of these currencies do you need most often? Select up to 5
+      </p>
+      <ChipSelectorInput
         highlights={[
-          { name: 'United States Dollar' },
-          { name: 'Canadian Dollar' },
-          { name: 'European Euro' },
-          { name: 'Rwandan Franc' },
-          { name: 'Bitcoin' },
-          { name: "Ethereum" },
-          { name: "Ethereum Classic" },
-        ]} 
-        allItems={[...Currencies, ...Cryptocurrencies]}
+          { name: "United States Dollar" },
+          { name: "Canadian Dollar" },
+          { name: "European Euro" },
+          { name: "Rwandan Franc" },
+        ]}
+        allItems={Currencies}
         selected={supportedCurrencies}
         setSelected={setSupportedCurrencies}
         placeholder="Add currency"
@@ -424,13 +518,36 @@ function Perosonal() {
         )}
       /> */}
     </div>
-  )
-  const handleCountry=(e, val)=>{
-    setSupportedCountries(val)
-  }
-  const SupportedCountries=(
-    <div style={{marginBottom: '20px', marginTop: '20px'}}>
-      <p style={{color: '#64748B', fontSize: '14px'}}>Which of these countries do you mostly receive international transfers from?</p>
+  );
+
+  const NeededCrypto = (
+    <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      <p style={{ color: "#64748B", fontSize: "14px" }}>
+        Which of these Cryptocurrencies do you need most often? Select up to 5
+      </p>
+      <ChipSelectorInput
+        highlights={[
+          { name: "Bitcoin" },
+          { name: "Ethereum" },
+          { name: "Ethereum Classic" },
+        ]}
+        allItems={Cryptocurrencies}
+        selected={supportedCrypto}
+        setSelected={setSupportedCrypto}
+        placeholder="Add currency"
+      />
+    </div>
+  );
+
+  const handleCountry = (e, val) => {
+    setSupportedCountries(val);
+  };
+  const SupportedCountries = (
+    <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      <p style={{ color: "#64748B", fontSize: "14px" }}>
+        Which of these countries do you mostly receive international transfers
+        from?
+      </p>
       {/* <Autocomplete
         key={2}
         multiple
@@ -452,31 +569,33 @@ function Perosonal() {
           />
         )}
       /> */}
-       <ChipSelectorInput 
+      <ChipSelectorInput
         highlights={[
-          { name: 'United States' },
-          { name: 'United Kingdom' },
-          { name: 'Nigeria' },
-          { name: 'Canada' }
-        ]} 
+          { name: "United States" },
+          { name: "United Kingdom" },
+          { name: "Nigeria" },
+          { name: "Canada" },
+        ]}
         allItems={Countries}
         selected={supportedCountries}
         setSelected={setSupportedCountries}
         placeholder="Add country"
       />
     </div>
-  )
+  );
 
-  const Account=(
-    <div style={{marginBottom: '20px', marginTop: '20px'}}>
-      <p style={{ color: '#64748B', fontSize: '14px' }}>Do you have a bank account?</p>
+  const Account = (
+    <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      <p style={{ color: "#64748B", fontSize: "14px" }}>
+        Do you have a bank account?
+      </p>
       <TextField
         id="has-account"
         select
-        style={{width: '100%'}}
+        style={{ width: "100%" }}
         // label="Native select"
         value={userHasAccount}
-        onChange={e=>setUserHasAccount(e.target.value)}
+        onChange={(e) => setUserHasAccount(e.target.value)}
         variant="outlined"
       >
         {textBool.map((option) => (
@@ -486,14 +605,16 @@ function Perosonal() {
         ))}
       </TextField>
 
-      <p style={{ color: '#64748B', fontSize: '14px' }}>Do you have a crypto wallet?</p>
+      <p style={{ color: "#64748B", fontSize: "14px" }}>
+        Do you have a crypto wallet?
+      </p>
       <TextField
         id="has-account"
         select
-        style={{width: '100%'}}
+        style={{ width: "100%" }}
         // label="Native select"
         value={userHasCryptoWallet}
-        onChange={e=>setUserHasCryptoWallet(e.target.value)}
+        onChange={(e) => setUserHasCryptoWallet(e.target.value)}
         variant="outlined"
       >
         {textBool.map((option) => (
@@ -503,14 +624,16 @@ function Perosonal() {
         ))}
       </TextField>
 
-      <p style={{ color: '#64748B', fontSize: '14px' }}>How do you intend to use poket?</p>
+      <p style={{ color: "#64748B", fontSize: "14px" }}>
+        How do you intend to use poket?
+      </p>
       <TextField
         id="has-account"
         select
-        style={{width: '100%'}}
+        style={{ width: "100%" }}
         // label="Native select"
         value={poketUseCase}
-        onChange={e=>setPoketUseCase(e.target.value)}
+        onChange={(e) => setPoketUseCase(e.target.value)}
         variant="outlined"
       >
         {poketUseCases.map((option) => (
@@ -520,72 +643,119 @@ function Perosonal() {
         ))}
       </TextField>
     </div>
-  )
+  );
 
-
-
-  const RenderStage=()=>{
-    switch(step){
+  const RenderStage = () => {
+    switch (step) {
       // case 0: return AccountType;
-      case 0: return Name;
-      case 1: return Country;
-      case 2: return VerifyNumber;
-      case 3: return Address;
-      case 4: return NeededCurrencies;
-      case 5: return SupportedCountries;
-      case 6: return Account;
-    }
-  }
-  const Prev=()=>{
-    if(step > 0){
-      setStep(step - 1)
-    }
-  }
-  const Next=()=>{
-    switch(step){
       case 0:
-        if(!firstName || !lastName){
-          return Notifier('firstname and lastname are required', 'warning');
+        return Name;
+      case 1:
+        return Country;
+      // case 2: return VerifyNumber;
+      // case 3: return Address;
+      case 2:
+        return Account;
+      case 3:
+        return NeededCurrencies;
+      case 4:
+        return NeededCrypto;
+      case 5:
+        return SupportedCountries;
+    }
+  };
+  const Prev = () => {
+    if (step > 0) {
+      setStep(step - 1);
+    }
+  };
+  const Next = () => {
+    switch (step) {
+      case 0:
+        if (!firstName || !lastName) {
+          return Notifier("firstname and lastname are required", "warning");
         }
-        setStep(step + 1);
+        SaveProfileStep({ firstName, lastName });
+        // setStep(step + 1);
         break;
       case 1:
-        if(phone.length < 5){
-          return Notifier('enter a valid phone number', 'warning');
-        }
-        setStep(step + 1);
+        // if(phone.length < 5){
+        //   return Notifier('enter a valid phone number', 'warning');
+        // }
+        // setStep(step + 1);
+        SaveProfileStep({
+          countryOfResidence: countryOfResidence.name,
+          countryOfCitizenship: countryOfCitizenship.name,
+        });
+        break;
+      case 2:
+        // if(address.length < 5 || !state || city.length < 4){
+        //   return Notifier('all fields are required', 'warning');
+        // }
+        // SaveProfileStep({ address })
+        SaveProfileStep({
+          userHasValidBankAccount: userHasAccount,
+          userHasCryptoWallet: userHasCryptoWallet,
+          intendedUsageOfPoket: poketUseCase,
+        });
+        // setStep(step + 1);
         break;
       case 3:
-        if(address.length < 5 || !state || city.length < 4){
-          return Notifier('all fields are required', 'warning');
+        if (supportedCurrencies.length == 0) {
+          return Notifier("select at least one currency", "warning");
         }
-        setStep(step + 1);
+        // setStep(step + 1);
+        SaveProfileStep({ supportedCountries })
         break;
       case 4:
-        if(supportedCurrencies.length == 0){
-          return Notifier('select at least one currency', 'warning');
+        if (supportedCrypto.length == 0) {
+          return Notifier("select at least one cryptocurrency", "warning");
         }
-        setStep(step + 1)
+        // setStep(step + 1);
+        SaveProfileStep({ supportedCrypto })
+
         break;
       case 5:
-        if(supportedCountries.length == 0){
-          return Notifier('select at least one country', 'warning');
+        if (supportedCountries.length == 0) {
+          return Notifier("select at least one country", "warning");
         }
-        setStep(step + 1)
+        // setStep(step + 1);
+        SaveProfileStep({ supportedCountries, referralPoints: userDetails?.referralPoints + 6000, isProfileSet: true })
+        showProfile(false)
+        showUploadImage(true)
         break;
     }
-    
-  }
+  };
 
-  const verifyOtp=()=>{
-    setStep(step + 1)
-  }
+  const verifyOtp = () => {
+    setStep(step + 1);
+  };
 
-  const SaveInfo=async()=>{
-    let data = {  
+  const SaveProfileStep = async (data) => {
+    try {
+      setSaving(true);
+      const res = await saveAcccountDetails({...data, profileStep: step + 1});
+      if (res.status == 200) {
+        setSaving(false);
+        setUserDetails(res.user);
+        setStep(step + 1);
+        // Notifier(res.message, 'success')
+        // showProfile(false)
+      } else {
+        setSaving(false);
+        // Notifier(res.message, 'error')
+      }
+    } catch (err) {
+      setSaving(false);
+      ErrorHandler(err, navigate, setAuth);
+    }
+  };
+
+  const SaveInfo = async () => {
+    let data = {
       firstName,
       lastName,
-      dateOfBirth: format(parseISO(dob.toISOString()), 'dd LLL, yyyy'),
+      dateOfBirth: format(parseISO(dob.toISOString()), "dd LLL, yyyy"),
       countryOfResidence: countryOfResidence.name,
       countryOfCitizenship: countryOfCitizenship.name,
       phone,
@@ -598,68 +768,120 @@ function Perosonal() {
       userHasValidBankAccount: userHasAccount,
       userHasCryptoWallet: userHasCryptoWallet,
       intendedUsageOfPoket: poketUseCase,
-      isProfileSet: true
-    }
-    try{
+      isProfileSet: true,
+    };
+    try {
       setSaving(true);
-      const res = await saveAcccountDetails(data)
-      if(res.status == 200){
-        setSaving(false)
-        setUserDetails(res.user)
-        Notifier(res.message, 'success')
+      const res = await saveAcccountDetails(data);
+      if (res.status == 200) {
+        setSaving(false);
+        setUserDetails(res.user);
+        Notifier(res.message, "success");
         // showProfile(false)
-      }else{
-        setSaving(false)
-        Notifier(res.message, 'error')
+      } else {
+        setSaving(false);
+        Notifier(res.message, "error");
       }
-    }catch(err){
-      setSaving(false)
-      ErrorHandler(err, navigate, setAuth)
+    } catch (err) {
+      setSaving(false);
+      ErrorHandler(err, navigate, setAuth);
     }
-  }
-
-
+  };
 
   return (
     <>
-    
       <main className={styles.container}>
+        <div style={{width: '80%'}}>
+          <p style={{fontSize: '14px', fontWeight: 'bold', color: '#16A34A'}}>+1000 points</p>
+        </div>
         <div className={styles.header}>
           {step > 0 && (
-            <span style={{cursor: 'pointer'}} onClick={()=>Prev()}>
+            <span style={{ cursor: "pointer" }} onClick={() => Prev()}>
               <BsArrowLeft size={25} />
             </span>
           )}
-          <ModalProgress length={7} current={step} />
+          <ModalProgress length={6} current={step} setStep={setStep} />
           <span
             onClick={() => showProfile(false)}
             style={{ cursor: "pointer" }}
           >
             <Icon icon="clarity:times-line" height={25} width={25} />
           </span>
-          </div>
+        </div>
         <div className={styles.main}>
-          {step == 2? (
-            <p>Verify your phone number</p>
-          ):(
-            <p>Set up your profile</p>
-          )}
+          <p>Set up your profile</p>
           {RenderStage()}
-          {step !== 2? (
-          <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-            <Button onClick={()=>showProfile(false)} text="Close" width= '48%' textSize="14px" height="58px" textColor="black" bgColor='transparent' style={{border: '.5px solid #CBD5E1'}} />
-            {step == 6? ( 
-              <Button loading={saving} disabled={saving} onClick={()=>SaveInfo()} text="Save" textSize="14px" width= '48%' height="58px" bgColor='#0099D6' />
-            ):(
-              <Button onClick={()=>Next()} text="Next" width= '48%' textSize="14px" height="58px" bgColor='#0099D6' />
-            )}
-          </div>
-          ):(
-            <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-              <Button onClick={()=>setStep(step + 1)} text="Skip" width= '48%' textSize="14px" height="58px" textColor="black" bgColor='transparent' style={{border: '.5px solid #CBD5E1'}} />
-              <Button onClick={()=>verifyOtp()} text="Verify" width= '48%' height="58px" bgColor='#0099D6' />
+          {/* {step !== 2 ? ( */}
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                onClick={() => showProfile(false)}
+                text="Close"
+                width="48%"
+                textSize="14px"
+                height="58px"
+                textColor="black"
+                bgColor="transparent"
+                style={{ border: ".5px solid #CBD5E1" }}
+              />
+              {/* {step == 6 ? (
+                <Button
+                  loading={saving}
+                  disabled={saving}
+                  onClick={() => SaveInfo()}
+                  text="Save"
+                  textSize="14px"
+                  width="48%"
+                  height="58px"
+                  bgColor="#0099D6"
+                />
+              ) : ( */}
+                <Button
+                  loading={saving}
+                  disabled={saving}
+                  onClick={() => Next()}
+                  text="Next"
+                  width="48%"
+                  textSize="14px"
+                  height="58px"
+                  bgColor="#0099D6"
+                />
+              {/* )} */}
             </div>
-          )}
+          {/* ) : (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                onClick={() => setStep(step + 1)}
+                text="Skip"
+                width="48%"
+                textSize="14px"
+                height="58px"
+                textColor="black"
+                bgColor="transparent"
+                style={{ border: ".5px solid #CBD5E1" }}
+              />
+              <Button
+                onClick={() => verifyOtp()}
+                text="Verify"
+                width="48%"
+                height="58px"
+                bgColor="#0099D6"
+              />
+            </div>
+          )} */}
         </div>
       </main>
     </>

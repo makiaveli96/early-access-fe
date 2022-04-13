@@ -26,18 +26,19 @@ export function Container({ children, styles }: { children: any, styles?: any })
 
 const employeeRange = [
   {label: 'less than 10'},
-  {label: '10 - 20 employees'},
-  {label: '20 - 50 employees'},
-  {label: '50 - 100 employees'},
-  {label: '100 - 500 employees'},
-  {label: '500+ employees'},
+  {label: '10 - 20 Employees'},
+  {label: '20 - 50 Employees'},
+  {label: '50 - 100 Employees'},
+  {label: '100 - 500 Employees'},
+  {label: '500+ Employees'},
 ]
 
 function BusinessProfile() {
   const navigate = useNavigate()
   const {
     showProfile,
-    showUploadImage
+    showUploadImage,
+    showPhoneModal
   }: any = useContext(GeneralContext)
   const [btnDisabled, setBtnDisabled] = useState(false)
   const { setAuth, userDetails, setUserDetails } = useContext(AuthContext)
@@ -266,6 +267,11 @@ function BusinessProfile() {
               value={userDetails?.phone}
               disabled={true}
             />
+            {userDetails?.isPhoneVerified? (
+              <p style={{color: '#16A34A', fontSize: '12px'}}>Verified</p>
+            ):(
+              <p onClick={()=>showPhoneModal(true)} style={{color: '#0099D6', cursor: 'pointer', fontSize: '12px'}}>Verify number</p>
+            )}
           </Container>
 
           <Container>

@@ -41,8 +41,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 98vh;
-  width: 230px;
+  height: 100%;
+  max-width: 230px;
   background-color: #EBF9FF;
   /* Media Query for Tablets Ipads portrait mode */
   /* Media Query for Laptops and Desktops */
@@ -190,7 +190,7 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 766px) {
   .sidebar {
     display: none;
   }

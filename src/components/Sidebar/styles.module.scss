@@ -1,6 +1,5 @@
 @import "../../scss/abstracts/mixins";
 
-
 .sidebar::-webkit-scrollbar {
   width: 3px;
   overflow-x: hidden;
@@ -28,8 +27,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 98vh;
-    width: 230px;
+    height: 100%;
+    max-width: 230px;
     background-color: #EBF9FF;
     .body{
       display: flex;

@@ -28,7 +28,8 @@ function PersonalProfile() {
   const { auth, setAuth, userDetails, setUserDetails } = useContext(AuthContext) 
   const {
     showProfile,
-    showUploadImage
+    showUploadImage,
+    showPhoneModal
   }: any = useContext(GeneralContext)
   const [userCountry, setUserCountry] = useState(userDetails?.contry)
   const [userState, setUserState] = useState(userDetails?.state)
@@ -48,8 +49,6 @@ function PersonalProfile() {
         setCountryOfResidence(findCountry)
         setStates(findCountry.states)
       }
-
-     
     }
   },[])
 
@@ -147,7 +146,7 @@ function PersonalProfile() {
             />
           </Container>
 
-          <Container>
+          {/* <Container>
             <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Date of Birth</p>
             <TextField
               id="outlined-lname"
@@ -156,7 +155,7 @@ function PersonalProfile() {
               style={{width: '100%'}}
               value={userDetails?.dateOfBirth}
             />
-          </Container>
+          </Container> */}
 
           <Container>
             <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Phone number</p>
@@ -164,9 +163,13 @@ function PersonalProfile() {
               specialLabel=''
               inputStyle={{width: '100%'}}
               country={'us'}
-              disabled={true}
               value={userDetails?.phone}
             />
+            {userDetails?.isPhoneVerified? (
+              <p style={{color: '#16A34A', fontSize: '12px'}}>Verified</p>
+            ):(
+              <p onClick={()=>showPhoneModal(true)} style={{color: '#0099D6', cursor: 'pointer', fontSize: '12px'}}>Verify number</p>
+            )}
           </Container>
         </div>
 

@@ -15,7 +15,8 @@ enum Routes {
   SEND_INVITES="/ea/send-invites",
   DELETE_PASSWORD='/ea/delete-password',
   UPLOAD_PROFILE_IMAGE="/ea/update-profile-image",
-  GET_REFERRALS = '/ea/get-referrals'
+  GET_REFERRALS = '/ea/get-referrals',
+  SEND_EMAIL ='/ea/send-email'
 }
 
 export async function ConfirmAccount(email: string, accountType: string ){
@@ -23,9 +24,9 @@ export async function ConfirmAccount(email: string, accountType: string ){
   return await request(Routes.CONFIRM_ACCOUNT, { body }, 'POST')
 }
 
-export async function ConfirmEmailToken(token: string){
+export async function ConfirmEmailToken(token: string, type: string){
   let body = { token };
-  return await request(Routes.CONFIRM_EMAIL_TOKEN, { body }, 'POST');
+  return await request(`${Routes.CONFIRM_EMAIL_TOKEN}?type=${type}`, { body }, 'POST');
 }
 
 export async function CreatePassword(email: string, type: string, password: string){
@@ -104,4 +105,10 @@ export async function uploadProfileImage(image: string){
 export async function getReferrals(email: string){
   const token = localStorage.getItem('_EA_TOKEN');
   return await request(`${Routes.GET_REFERRALS}?email=${email}`, { token }, 'GET');
+}
+
+export async function sendEmail(from: string, subject, message: string){
+  const token = localStorage.getItem('_EA_TOKEN');
+  const body = { from, subject,message }
+  return await request(Routes.SEND_EMAIL, { token, body }, 'POST')
 }

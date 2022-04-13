@@ -85,6 +85,7 @@ function NewReferral() {
     try {
       const res = await sendInvites(userDetails.email, invitees);
       if (res.status == 200) {
+        setUserDetails(res.user)
         GetReferrals(userDetails?.email, navigate, setAuth);
         setLoading(false);
         setName("");
@@ -196,7 +197,7 @@ function NewReferral() {
                       alignItems: "flex-start",
                     }}
                   >
-                    <p>Name</p>
+                    <p>Full name</p>
                     <TextField
                       placeholder="Invitee’s name"
                       value={name}
@@ -267,6 +268,7 @@ function NewReferral() {
         {step == 1 && (
           <main className={styles.feed_back}>
             <div className={styles.main}>
+              <img src="/check_mark.gif" width="80%" />
               <h2 style={{ fontSize: '15px', textAlign: 'center' }}>Your Invitation was sent succesfully!</h2>
               <div style={{ marginTop: "30px", width: "100%" }}>
                 <Button

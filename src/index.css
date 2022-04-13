@@ -3,6 +3,8 @@ body {
   font-family: Montserrat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: #EBF9FF; */
+  overflow-x: hidden;
 }
 
 code {

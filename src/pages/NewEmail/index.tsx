@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Button from '../../components/Button';
 import styles from './styles.module.css'
 import HomeNavbar from "../../components/HomeNavbar";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { ConfirmAccount } from '../../components/api/routes'
+import { useSearchParams, useNavigate, Navigate } from "react-router-dom";
+import { ConfirmAccount, ConfirmEmailToken } from '../../components/api/routes'
+import { AuthContext } from '../../contexts/authContextApi';
 
 function NewEmail() {
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('')
-  const [acountType, setAccountType] = useState('')
+  const [tokenValid, setTokenValid] = useState(false);
+  const { setAuth, setUserDetails } = useContext(AuthContext)
 
   useEffect(()=>{
     (async ()=>{
-      if (searchParams.get("email") && searchParams.get("account_type")) {
-        const res = await ConfirmAccount(searchParams.get("email"), searchParams.get("account_type"));
+      if (searchParams.get("token")) {
+        const res = await ConfirmEmailToken(searchParams.get("token"), 'verify_email');
         if(res.status == 200){
-          setEmail(searchParams.get("email"));
-          setAccountType(searchParams.get("account_type"))
+          setTokenValid(true)
+          setAuth(true)
+          setUserDetails(res.user);
+          localStorage.setItem("_EA_TOKEN", res.token);
         }else{
-          navigate('/')
+          setTokenValid(false)
         }
       }else{
-        navigate('/')
+        setTokenValid(false)
       }
     })()
   },[])
@@ -32,11 +35,12 @@ function NewEmail() {
     <>
     <HomeNavbar />
     <main className={styles.container}>
-      <div className={styles.main}>
-        <h1>Verify your email address</h1>
-        <p>We sent you a verification email to the email address your provided. Please click on the link in the email to verify your email address</p>
-        <Button width='212px' height='36px' bgColor="#16A34A" text="Resend Email" />
-      </div>
+      {tokenValid? (
+      <Navigate to="/home?email_verified=true" />
+      ):(
+        <h2>Invalid or Expired Token</h2>
+      )}
+     
     </main>
     </>
   )

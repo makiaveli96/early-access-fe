@@ -32,6 +32,14 @@ interface ContextTypesI {
   GetReferrals: (email: string, navigate: NavigateFunction, setAuth: any)=>void;
   contactForm: boolean;
   showContactForm: any;
+  presale: boolean;
+  showPresale: any;
+  verifyEmail: boolean, 
+  showVerifyEmail: any,
+  phoneModal: boolean, 
+  showPhoneModal: any,
+  emailVerified: boolean,
+  showEmailVerified: any
 }
 
 export const GeneralContext = createContext<ContextTypesI | undefined>(undefined);
@@ -47,7 +55,11 @@ function GeneralContextApi(props) {
   const joinCommunityRef = useRef()
   const contactUsRef = useRef();
   const [_referrals, _setReferrals] = useState<Array<ReferralI>>([])
-  const [contactForm, showContactForm] = useState(false)
+  const [contactForm, showContactForm] = useState(false);
+  const [presale, showPresale] = useState(false);
+  const [verifyEmail, showVerifyEmail] = useState(false);
+  const [ phoneModal, showPhoneModal] = useState(false);
+  const [emailVerified, showEmailVerified] = useState(false)
 
 
   async function GetReferrals(email: string, navigate: NavigateFunction, setAuth: any){
@@ -73,7 +85,11 @@ function GeneralContextApi(props) {
     contactUsRef,
     GetReferrals,
     _referrals, _setReferrals,
-    contactForm, showContactForm
+    contactForm, showContactForm,
+    presale, showPresale,
+    verifyEmail, showVerifyEmail,
+    phoneModal, showPhoneModal,
+    emailVerified, showEmailVerified
   };
 
   return (

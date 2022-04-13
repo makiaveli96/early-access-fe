@@ -6,13 +6,14 @@ import { Notifier } from '../../components/Notifier'
 import SocialMedia from '../SocialMedia';
 
 export default function Links(){
-
-    // "Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out linktopoket.com/thisisjustasamplehsjek=01"
+    
     const { userDetails } = useContext(AuthContext)
+    const refMessage = `Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}`
+    
     return(
         <div className={styles.main}>
             <button className={styles.copy_link_btn}>
-                <CopyToClipboard text={`http://localhost/poket-website?ref=${userDetails?.referralID}#form`}
+                <CopyToClipboard text={refMessage}
                     onCopy={() => Notifier('Referral link copied!', 'success')}>
                         <span style={{marginRight: '20px', fontSize: '14px'}}>
                             Copy referral link
@@ -21,7 +22,7 @@ export default function Links(){
                 <img src="/icons/copy.png" alt="copy" />
             </button>
             <div className={styles.social}>
-                <SocialMedia style={{ height: '36px', width: '36px' }} />
+                <SocialMedia style={{ height: '36px', width: '36px' }} type="referral" />
                 {/* <a href="https://mobile.facebook.com/gradientfi" target="_blank">
                     <img src="/facebook_lg.png" alt="facebook" style={{height: '36px', width: '36px'}} />
                 </a>

@@ -1,0 +1,30 @@
+@import "../../scss/abstracts/mixins";
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // height: 50%;
+  width: 500px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 20px;
+  background-color: white;
+  @include respond(mobile){
+    width: 90%;
+    height: auto;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    text-align: center;
+    height: 85%;
+    p{
+      color: #002C3D;
+      line-height: 24px;
+      font-size: 16px;
+    }
+  }
+}

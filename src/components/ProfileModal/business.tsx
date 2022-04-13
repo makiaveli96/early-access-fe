@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import Modal from "../Modal";
+import Modal from "../Modal"; 
 import styles from "./styles.module.css";
 import { Icon } from "@iconify/react";
 import { GeneralContext } from "../../contexts/generalContextApi";
@@ -38,8 +38,8 @@ const industries = [
 ]
 
 const textBool = [
-  {key: 0, label: 'yes'},
-  {key: 1, label: 'no'}
+  {key: 0, label: 'Yes'},
+  {key: 1, label: 'No'}
 ];
 
 const employeeRange = [
@@ -52,14 +52,14 @@ const employeeRange = [
 ]
 
 const numberRange = [
-  {label: 'less than 5'},
-  {label: 'btw 5 - 10'},
+  {label: '1-5'},
+  {label: '5 - 10'},
   {label: '10 - 50'},
   {label: '50+'},
 ]
 
 const amountRange = [
-  {label: 'less than $1000'},
+  {label: 'Less than $1,000'},
   {label: '$1,000 - $5,000'},
   {label: '$5,000 - $10,000'},
   {label: '$10,000 - $50,000'},
@@ -71,14 +71,14 @@ const amountRange = [
 
 function Business() {
   const navigate = useNavigate()
-  const { showProfile }: any = useContext(GeneralContext);
+  const { showProfile, showUploadImage }: any = useContext(GeneralContext);
   const { auth, setAuth, userDetails, setUserDetails }: any = useContext(AuthContext);
   const [selectedAccount, setSelectedAccount] = useState('personal');
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(userDetails?.profileStep || 0);
   const [saving, setSaving] = useState(false)
 
   
-  const [bizName, setBizName] = useState('');
+  const [bizName, setBizName] = useState(userDetails?.businessName || '');
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('');
   const [industry, setIndustry] = useState(industries[0].label)
@@ -94,24 +94,26 @@ function Business() {
   const [city, setCity] = useState('');
   const [postalCode, setPostalCode] = useState('');
 
-  const [isCompanyFullyRegistered, setIsCompanyFullyRegistered] = useState(textBool[0].label);
-  const [numberOfEmployees, setNumberOfEmployees] = useState(employeeRange[0].label)
-  const [taxNo, setTaxNo] = useState('');
-  const [countryRemittances, setCountryRemittances] = useState(numberRange[0].label);
-  const [monthlyRemittance, setMonthlyRemittance] = useState(amountRange[1].label)
+  const [isCompanyFullyRegistered, setIsCompanyFullyRegistered] = useState(userDetails?.isCompanyFullyRegistered || textBool[0].label);
+  const [numberOfEmployees, setNumberOfEmployees] = useState(userDetails?.numberOfEmployees || employeeRange[0].label)
+  const [taxNo, setTaxNo] = useState(userDetails?.taxIdNumber || '');
+  const [countryRemittances, setCountryRemittances] = useState(userDetails?.countryRemittances || numberRange[0].label);
+  const [monthlyRemittance, setMonthlyRemittance] = useState(userDetails?.monthlyRemittance || amountRange[1].label)
 
-  const [supportedCurrencies, setSupportedCurrencies] = useState([])
-  const [supportedCountries, setSupportedCountries] = useState([]);
+  const [supportedCurrencies, setSupportedCurrencies] = useState(userDetails?.supportedCurrencies || []);
+  const [supportedCrypto, setSupportedCrypto] = useState(userDetails?.supportedCrypto || []);
+  const [supportedCountries, setSupportedCountries] = useState(userDetails?.supportedCountries || []);
 
-  const [userHasAccount, setUserHasAccount] = useState('yes');
-  const [userHasCryptoWallet, setUserHasCryptoWallet] = useState('yes');
-  const [poketUseCase, setPoketUseCase] = useState('private')
+  const [userHasAccount, setUserHasAccount] = useState(userDetails?.userHasValidBankAccount || 'Yes');
+  const [userHasCryptoWallet, setUserHasCryptoWallet] = useState(userDetails?.userHasCryptoWallet || 'Yes');
+  const [poketUseCase, setPoketUseCase] = useState(userDetails?.intendedUsageOfPoket || 'Private')
 
   
 
   const poketUseCases = [
-    {label: 'private'},
-    {label: 'company use'},
+    {label: 'Private'},
+    {label: 'Company use'},
+    { label: "Both" },
   ]
 
 
@@ -132,6 +134,14 @@ function Business() {
   //   setUserCountry(country?.name)
   //   setUserState(state?.name)
   // },[country, state]);
+  useEffect(()=>{
+    if(userDetails?.countryOfOperation){
+      const findCountry = Countries.find(country => country.name == userDetails?.countryOfOperation)
+      if(findCountry){
+        setCountryOfOperation(findCountry)
+      }
+    }
+  },[])
 
   useEffect(()=>{
     setStates(Countries[0].states)
@@ -197,7 +207,7 @@ function Business() {
         />
       </div>
 
-      <div>
+      {/* <div>
         <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Phone number</p>
           <PhoneInput
             specialLabel=''
@@ -208,7 +218,7 @@ function Business() {
             onChange={phone=>setPhone(phone)}
           />
         <p style={{fontSize: '12px'}}>you will receive an sms code to verify this number</p>
-      </div>
+      </div> */}
 
       <div>
         <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Industry</p>
@@ -385,6 +395,53 @@ function Business() {
 
   const CompanyInfo=(
     <div style={{marginBottom: '20px'}}>
+        <div>
+        <p  style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Country of operation*</p>
+        <Autocomplete
+          value={countryOfOperation}
+          style={{width: '100%'}}
+          onChange={(event, newValue) => {
+            if (typeof newValue["name"] === 'string') {
+                setCountryOfOperation(newValue);
+                setStates(newValue.states)
+                console.log(newValue, ' new val 1')
+            } else if (newValue && newValue.inputValue) {
+                console.log(newValue, ' new val 2')
+                // Create a new value from the user input
+                // setCountry(newValue);
+
+            } else {
+                console.log(newValue, ' new val 3')
+                setCountryOfOperation(newValue);
+                setStates(newValue.states)
+            }
+          }}
+          selectOnFocus
+          clearOnBlur
+          handleHomeEndKeys
+          id="country-selector"
+          options={Countries}
+          getOptionLabel={(option) => {
+              if (typeof option.name === 'string') {
+                  return option.name;
+              }
+              if (option.inputValue) {
+                  return option.inputValue;
+              }
+              return option.name;
+          }}
+          renderOption={(props, option) => <li {...props}>{option.name}</li>}
+          sx={{ width: 300 }}
+          freeSolo
+          renderInput={(params) => (
+              <TextField placeholder='select a country'
+                  autoComplete='new-password'
+              {...params} />
+          )}
+        />
+      </div>
+
+
       <div>
         <p style={{ color: '#64748B', fontSize: '14px' }}>Is your business registered in every country it operates in?</p>
           <TextField
@@ -437,7 +494,7 @@ function Business() {
       </div>
 
       <div>
-        <p style={{ color: '#64748B', fontSize: '14px' }}>How many countries do you make remittances to?</p>
+        <p style={{ color: '#64748B', fontSize: '14px' }}>How many countries do you send money to?</p>
           <TextField
             id="has-account"
             select
@@ -473,10 +530,10 @@ function Business() {
             ))}
         </TextField>
       </div>
-      
-       
     </div>
   )
+
+  
 
   const handleCurrency=(e, val)=>{
     setSupportedCurrencies(val)
@@ -526,6 +583,26 @@ function Business() {
   const handleCountry=(e, val)=>{
     setSupportedCountries(val)
   }
+
+  const NeededCrypto = (
+    <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      <p style={{ color: "#64748B", fontSize: "14px" }}>
+        Which of these Cryptocurrencies do you need most often? Select up to 5
+      </p>
+      <ChipSelectorInput
+        highlights={[
+          { name: "Bitcoin" },
+          { name: "Ethereum" },
+          { name: "Ethereum Classic" },
+        ]}
+        allItems={Cryptocurrencies}
+        selected={supportedCrypto}
+        setSelected={setSupportedCrypto}
+        placeholder="Add currency"
+      />
+    </div>
+  );
+
   const SupportedCountries=(
     <div style={{marginBottom: '20px', marginTop: '20px'}}>
       <p style={{color: '#64748B', fontSize: '14px'}}>Which of these countries do you mostly receive international transfers from?</p>
@@ -567,7 +644,7 @@ function Business() {
 
   const Account=(
     <div style={{marginBottom: '20px', marginTop: '20px'}}>
-      <p style={{ color: '#64748B', fontSize: '14px' }}>Do you own a valid bank account?</p>
+      <p style={{ color: '#64748B', fontSize: '14px' }}>Does your business have a coperate bank account?</p>
       <TextField
         id="has-account"
         select
@@ -601,7 +678,7 @@ function Business() {
         ))}
       </TextField>
 
-      <p style={{ color: '#64748B', fontSize: '14px' }}>How do you intend to use poket?</p>
+      <p style={{ color: '#64748B', fontSize: '14px' }}>How do you intend to use poket primarily?</p>
       <TextField
         id="has-account"
         select
@@ -626,12 +703,13 @@ function Business() {
     switch(step){
       // case 0: return AccountType;
       case 0: return Name;
-      case 1: return VerifyNumber;
-      case 2: return Country;
-      case 3: return CompanyInfo;
-      case 4: return NeededCurrencies;
-      case 5: return SupportedCountries;
-      // case 5: return Account;
+      // case 1: return VerifyNumber;
+      // case 1: return Country;
+      case 1: return CompanyInfo;
+      case 2: return NeededCurrencies;
+      case 3: return NeededCrypto;
+      case 4: return SupportedCountries;
+      case 5: return Account;
     }
   }
   const Prev=()=>{
@@ -642,35 +720,50 @@ function Business() {
   const Next=()=>{
     switch(step){
       case 0:
-        if(!bizName || phone.length < 5){
-          return Notifier('enter a valid business name and phone nubmer', 'warning');
+        if(bizName.length < 4){
+          return Notifier('Business name cannot be less than 4 characters', 'warning');
         }
-        setStep(step + 1);
+        SaveProfileStep({ businessName: bizName })
         break;
-      case 2:
-        if(address.length < 5 || !state || city.length < 4){
-          return Notifier('all fields are required', 'warning');
-        }
-        setStep(step + 1);
-        break;
-      case 3:
+      case 1:
         if(!taxNo){
           return Notifier('tax id number is required', 'warning');
         }
-        setStep(step + 1);
+        SaveProfileStep({ countryOfOperation: countryOfOperation.name, isCompanyFullyRegistered,
+          numberOfEmployees,
+          taxIdNumber: taxNo,
+          countryRemittances,
+          monthlyRemittance, })
         break;
-      case 4:
+      case 2:
         if(supportedCurrencies.length == 0){
           return Notifier('select at least one currency', 'warning');
         }
-        setStep(step + 1)
+        SaveProfileStep({ supportedCurrencies })
         break;
-      // case 4:
-      //   if(supportedCountries.length == 0){
-      //     return Notifier('select at least one country', 'warning');
-      //   }
-      //   setStep(step + 1)
-      //   break;
+      case 3:
+        if(supportedCrypto.length == 0){
+          return Notifier('select at least one cryptocurrency', 'warning');
+        }
+        SaveProfileStep({ supportedCrypto })
+        break;
+      case 4:
+        if(supportedCountries.length == 0){
+          return Notifier('select at least one country', 'warning');
+        }
+        SaveProfileStep({ supportedCountries })
+        break;
+      case 5:
+        SaveProfileStep({
+          userHasValidBankAccount: userHasAccount,
+          userHasCryptoWallet: userHasCryptoWallet,
+          intendedUsageOfPoket: poketUseCase,
+          referralPoints: userDetails?.referralPoints + 6000,
+          isProfileSet: true
+        });
+        showProfile(false)
+        showUploadImage(true)
+        break;
     } 
   }
 
@@ -678,6 +771,25 @@ function Business() {
     setStep(step + 1)
   }
 
+  const SaveProfileStep = async (data) => {
+    try {
+      setSaving(true);
+      const res = await saveAcccountDetails({...data, profileStep: step + 1});
+      if (res.status == 200) {
+        setSaving(false);
+        setUserDetails(res.user);
+        setStep(step + 1);
+        // Notifier(res.message, 'success')
+        // showProfile(false)
+      } else {
+        setSaving(false);
+        // Notifier(res.message, 'error')
+      }
+    } catch (err) {
+      setSaving(false);
+      ErrorHandler(err, navigate, setAuth);
+    }
+  };
  
   const SaveInfo=async()=>{
     let data = {  
@@ -723,15 +835,17 @@ function Business() {
 
   return (
     <>
-    
       <main className={styles.container}>
+        <div style={{width: '80%'}}>
+          <p style={{fontSize: '14px', fontWeight: 'bold', color: '#16A34A'}}>+1000 points</p>
+        </div>
         <div className={styles.header}>
           {step > 0 && (
             <span style={{cursor: 'pointer'}} onClick={()=>Prev()}>
               <BsArrowLeft size={25} />
             </span>
           )}
-          <ModalProgress length={6} current={step} />
+          <ModalProgress length={6} current={step} setStep={setStep}  />
           <span
             onClick={() => showProfile(false)}
             style={{ cursor: "pointer" }}
@@ -741,27 +855,12 @@ function Business() {
         </div>
        
         <div className={styles.main}>
-          {step == 1? (
-            <p>Verify your phone number</p>
-          ):(
-            <p>Build a business profile</p>
-          )}
+          <p>Build a business profile</p>
           {RenderStage()}
-          {step !== 1? (
           <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <Button onClick={()=>showProfile(false)} text="Close" width= '48%' textSize="14px" height="58px" textColor="black" bgColor='transparent' style={{border: '.5px solid #CBD5E1'}} />
-            {step == 5? ( 
-              <Button loading={saving} disabled={saving} onClick={()=>SaveInfo()} text="Save" textSize="14px" width= '48%' height="58px" bgColor='#0099D6' />
-            ):(
-              <Button onClick={()=>Next()} text="Next" width= '48%' textSize="14px" height="58px" bgColor='#0099D6' />
-            )}
+            <Button loading={saving} disabled={saving} onClick={()=>Next()} text="Next" width= '48%' textSize="14px" height="58px" bgColor='#0099D6' />
           </div>
-          ):(
-            <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-              <Button onClick={()=>setStep(step + 1)} text="Skip" width= '48%' textSize="14px" height="58px" textColor="black" bgColor='transparent' style={{border: '.5px solid #CBD5E1'}} />
-              <Button onClick={()=>verifyOtp()} text="Verify" width= '48%' height="58px" bgColor='#0099D6' />
-            </div>
-          )}
         </div>
       </main>
     </>

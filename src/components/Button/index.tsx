@@ -36,7 +36,7 @@ export default function Button({ bgColor, height, width, text, textSize, textCol
                 ...style
             }}
         >
-            <span style={{fontSize: textSize || '13px', fontWeight: 'lighter'}}>{text}</span>
+            <span style={{fontSize: textSize || '16px', fontWeight: 'lighter'}}>{text}</span>
             {iconUri && (
                 <img src={iconUri} style={{marginLeft: '15px'}} alt="icon" />
             )}

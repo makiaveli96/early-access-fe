@@ -70,7 +70,7 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 766px) {
   .container .form {
     width: 90%;
     -webkit-box-align: center;

@@ -50,7 +50,7 @@ function CreatePassword() {
 
   async function ValidateEmailToken() {
     if (searchParams.get("token")) {
-      const res = await ConfirmEmailToken(searchParams.get("token"));
+      const res = await ConfirmEmailToken(searchParams.get("token"), 'create_pwd');
       setToken(searchParams.get("token"));
       if (res.status == 200) {
         setEmail(res.data.email);

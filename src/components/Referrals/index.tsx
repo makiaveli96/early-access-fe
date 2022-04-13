@@ -9,6 +9,7 @@ import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import Button from "../../components/Button";
 import { ErrorHandler } from "../../helpers/Errorhandler";
 import { useNavigate } from 'react-router-dom';
+import { format, parseISO } from "date-fns";
 
 
 function Referrals() {
@@ -50,8 +51,18 @@ function Referrals() {
   }
 
   const columns: GridColDef[] = [
-    { field: "receiverName", sortable: false, headerName: "Name", width: 220 },
-    { field: "receiverEmail", sortable: false, headerName: "Email", width: 160 },
+    { field: "receiverName", sortable: false, headerName: "Name", width: 220, 
+    renderCell: (params) => (
+      <span>
+        <p style={{textTransform: 'capitalize', margin: 0, color: '#57584E'}}>{params.row.receiverName}</p>
+        <p style={{margin: 0, color: '#94A3B8', fontSize: '12px'}}>{format(parseISO(params.row.time), "LLL, dd, yyyy")}</p>
+      </span>
+    ) },
+    { field: "receiverEmail", sortable: false, headerName: "Email", width: 160, 
+      renderCell: (params) => (
+        <p style={{color: '#57584E'}}>{params.row.receiverEmail}</p>
+      )  
+    },
     { field: "receiverType", headerName: "Class", sortable: false, width: 160,
       renderCell: (params) => <span style={{ color: params.row.receiverType == 'nil'? 'lightgrey' : 'black' }}>{params.row.receiverType}</span>
     },

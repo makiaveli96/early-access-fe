@@ -18,6 +18,15 @@
   /* Media Query for Tablets Ipads portrait mode */
   /* Media Query for Laptops and Desktops */
   /* Media Query for Large screens */
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .container {
+    width: 90%;
+  }
 }
 
 .container .header {
@@ -50,7 +59,7 @@
   font-size: 15px;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 766px) {
   .container {
     width: 90%;
   }
@@ -105,7 +114,7 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 766px) {
   .account_profile {
     width: 90%;
     -webkit-box-orient: vertical;
@@ -150,7 +159,7 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 766px) {
   .account_profile .body {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -179,7 +188,7 @@
   /* Media Query for Large screens */
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 766px) {
   .account_profile .body .col {
     width: 100%;
   }
@@ -196,5 +205,14 @@
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  /* Media Query for Tablets Ipads portrait mode */
+  /* Media Query for Laptops and Desktops */
+  /* Media Query for Large screens */
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .account_profile .footer {
+    width: 90%;
+  }
 }
 /*# sourceMappingURL=styles.module.css.map */

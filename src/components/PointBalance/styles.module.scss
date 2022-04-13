@@ -1,0 +1,38 @@
+@import "../../scss/abstracts/mixins";
+
+
+.main{
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    .activity{
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .activity__item{
+        height: 80px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .activity_points{
+        width: 100px;
+        background-color: #BBF7D0;
+        font-size: 13px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+      }
+}
