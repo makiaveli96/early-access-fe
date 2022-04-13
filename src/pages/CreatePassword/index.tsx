@@ -33,6 +33,7 @@ function CreatePassword() {
   const [type, setType] = useState("");
   const [msg, setMsg] = useState("");
   const [password, setPassword] = useState("");
+  const [validatingToken, setValidatingToken] = useState(false)
   const [password2, setPassword2] = useState("");
   const [token, setToken] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -50,18 +51,22 @@ function CreatePassword() {
 
   async function ValidateEmailToken() {
     if (searchParams.get("token")) {
+      setValidatingToken(true)
       const res = await ConfirmEmailToken(searchParams.get("token"), 'create_pwd');
       setToken(searchParams.get("token"));
       if (res.status == 200) {
+        setValidatingToken(false)
         setEmail(res.data.email);
         setType(res.data.accountType);
         // displayVerificationNotif();
         console.log(res, " token res");
         setIsToken(true);
       } else {
+        setValidatingToken(false)
         setIsToken(false);
       }
     } else {
+      setValidatingToken(false)
       setIsToken(false);
     }
   }
@@ -106,6 +111,15 @@ function CreatePassword() {
       setBtnDisabled(true);
     }
   }, [password, password2]);
+
+
+  if(validatingToken){
+    return(
+      <div style={{height: '100vh', width: '100vw', display: 'flex', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}}>
+        <CircularProgress style={{color: '#0099D6'}} size={40} />
+      </div>
+    )
+  }
 
   return (
     <>
