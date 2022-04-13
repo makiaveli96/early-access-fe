@@ -20,14 +20,14 @@ function SocialMedia({ style, margin, type }: { style?: any; margin?: string, ty
         <SocialIcon
           style={style}
           network="linkedin"
-          url={type == 'referral'? `https://www.linkedin.com/sharing/share-offsite/?url=https://poketfi.money?ref=${userDetails?.referralID}` : "https://www.linkedin.com/company/poketfi/"}
+          url={type == 'referral'? `https://www.linkedin.com/sharing/share-offsite/?url=https://poketfi.money?ref=${userDetails?.referralID}` : "https://www.linkedin.com/company/78340869/admin/"}
         />
       </span>
       <span style={{ margin: margin || "5px" }}>
         <SocialIcon
           style={style}
           network="twitter"
-          url={type == 'referral'? `https://twitter.com/intent/tweet?text=${refMessage}` : "https://twitter.com/gradient_fi"}
+          url={type == 'referral'? `https://twitter.com/intent/tweet?text=${refMessage}` : "https://twitter.com/poketfinance"}
         />
       </span>
       {type !== 'referral' && (
@@ -35,7 +35,7 @@ function SocialMedia({ style, margin, type }: { style?: any; margin?: string, ty
           <SocialIcon
             style={style}
             network="instagram"
-            url="https://www.instagram.com/poketfi"
+            url="https://www.instagram.com/poketfinance/"
           />
         </span>
       )}
