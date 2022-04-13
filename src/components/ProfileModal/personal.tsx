@@ -705,7 +705,7 @@ function Perosonal() {
           return Notifier("select at least one currency", "warning");
         }
         // setStep(step + 1);
-        SaveProfileStep({ supportedCountries })
+        SaveProfileStep({ supportedCurrencies })
         break;
       case 4:
         if (supportedCrypto.length == 0) {
@@ -800,7 +800,7 @@ function Perosonal() {
               <BsArrowLeft size={25} />
             </span>
           )}
-          <ModalProgress length={6} current={step} setStep={setStep} />
+          <ModalProgress length={7} current={step} setStep={setStep} />
           <span
             onClick={() => showProfile(false)}
             style={{ cursor: "pointer" }}
