@@ -1,26 +1,28 @@
 @import "../../scss/abstracts/mixins";
 
 .container{
-  width: 420px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  width: 436px;
+  max-height: 70%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: white;
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   @include respond(mobile){
     width: 90%;
   }
    @include respond(mobile){
     width: 90%;
   }
+  .main::-webkit-scrollbar {
+    display: none;
+  }
   .main{
+    height: 100%;
     width: 85%;
-    height: 55%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+      overflow-y: scroll;
     .header{
       width: 100%;
       display: flex;
@@ -37,6 +39,7 @@
     }
     .form{
       width: 100%;
+      height: 100%;
     }
   }
 }

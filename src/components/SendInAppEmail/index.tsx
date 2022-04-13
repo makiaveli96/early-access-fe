@@ -88,9 +88,12 @@ function SendInAppMessage() {
               />
             </div>
           </div>
+          <div style={{height: '100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Button onClick={()=>sendMessage()} loading={loading} disabled={loading} bgColor="#0099D6" textSize='16px' text="Send Message" width="100%" height="58px" />
           <br />
           <Button onClick={()=>showContactForm(false)} bgColor="transparent" text="Cancel" textColor='black' width="60%" height="58px" style={{border: '.5px solid #CBD5E1'}} />
+          </div>
+        
         </div>
       </main>
     </Modal>

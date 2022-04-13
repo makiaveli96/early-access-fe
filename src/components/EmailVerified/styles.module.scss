@@ -9,6 +9,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @include respond(mobile){
+    width: 90%;
+  }
   .main{
     width: 85%;
     height: 85%;
