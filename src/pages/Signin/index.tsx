@@ -502,7 +502,7 @@ function Signin() {
               onClick={()=>signin()}
               width="100%"
               height="60px"
-              disabled={btnDisabled2}
+              disabled={btnDisabled2? true : loading}
               loading={loading}
               bgColor="#00AFF5"
               textColor="white" 

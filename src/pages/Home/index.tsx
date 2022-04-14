@@ -340,9 +340,9 @@ function Home() {
                       <img src="/icons/poket-logo.png" />
                       <div>
                         <p style={{fontSize: '15px'}}>@poket.finance</p>
-                        <p style={{ fontSize: "12px", color: "#9CA0AC" }}>
+                        {/* <p style={{ fontSize: "12px", color: "#9CA0AC" }}>
                           1,234 posts
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                     <div style={{display: 'flex', alignItems: 'center'}}>
