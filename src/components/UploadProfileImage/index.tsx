@@ -24,7 +24,6 @@ function UploadImage({ modal, showModal }) {
   function handleProfilePhoto(event: any) {
     // setProfilePhoto(event.target.files[0])
     // setIsImg(true)
-    console.log(event.target.files[0], '   oimageeeeg')
     setImageName(event.target.files[0].name)
     if(event.target.files[0].size > 1000000){
       return Notifier('Image size should be less than 1mb', 'warning')
@@ -42,7 +41,6 @@ function UploadImage({ modal, showModal }) {
       );
     }catch(err){
       Notifier('Something went wrong, please try again', 'error')
-      console.log(err, 'err occur resizer')
     }
   }
 

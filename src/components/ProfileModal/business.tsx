@@ -268,14 +268,11 @@ function Business() {
             if (typeof newValue["name"] === 'string') {
                 setCountryOfOperation(newValue);
                 setStates(newValue.states)
-                console.log(newValue, ' new val 1')
             } else if (newValue && newValue.inputValue) {
-                console.log(newValue, ' new val 2')
                 // Create a new value from the user input
                 // setCountry(newValue);
 
             } else {
-                console.log(newValue, ' new val 3')
                 setCountryOfOperation(newValue);
                 setStates(newValue.states)
             }
@@ -326,14 +323,10 @@ function Business() {
           onChange={(event, newValue) => {
             if (typeof newValue?.name === 'string') {
               setState(newValue);
-              console.log(newValue, ' new state val 1')
             } else if (newValue && newValue.inputValue) {
-              console.log(newValue, ' new state val 2')
               // Create a new value from the user input
               // setCountry(newValue);
-
             } else {
-              console.log(newValue, ' new state val 3')
               setState(newValue);
             }
           }}
@@ -404,14 +397,10 @@ function Business() {
             if (typeof newValue["name"] === 'string') {
                 setCountryOfOperation(newValue);
                 setStates(newValue.states)
-                console.log(newValue, ' new val 1')
             } else if (newValue && newValue.inputValue) {
-                console.log(newValue, ' new val 2')
                 // Create a new value from the user input
                 // setCountry(newValue);
-
             } else {
-                console.log(newValue, ' new val 3')
                 setCountryOfOperation(newValue);
                 setStates(newValue.states)
             }

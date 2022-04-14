@@ -117,7 +117,6 @@ function Account() {
         setVerificationCode('')
         Notifier(res.message, 'error')
     }
-    console.log(res)
   }
   const saveAccountDetails=async()=>{
     // try{
@@ -171,7 +170,6 @@ function Account() {
   useEffect(()=>{
     if(states.length > 0){
         setState(states[0])
-        console.log(states[0]["name"], " first state")
     }
   },[states])
 
@@ -252,14 +250,10 @@ function Account() {
                                 if (typeof newValue["name"] === 'string') {
                                     setCountry(newValue);
                                     setStates(newValue.states)
-                                    console.log(newValue, ' new val 1')
                                 } else if (newValue && newValue.inputValue) {
-                                    console.log(newValue, ' new val 2')
                                     // Create a new value from the user input
                                     // setCountry(newValue);
-
                                 } else {
-                                    console.log(newValue, ' new val 3')
                                     setCountry(newValue);
                                     setStates(newValue.states)
                                 }
@@ -298,14 +292,10 @@ function Account() {
                             onChange={(event, newValue) => {
                                 if (typeof newValue?.name === 'string') {
                                     setState(newValue);
-                                    console.log(newValue, ' new state val 1')
                                 } else if (newValue && newValue.inputValue) {
-                                    console.log(newValue, ' new state val 2')
                                     // Create a new value from the user input
                                     // setCountry(newValue);
-
                                 } else {
-                                    console.log(newValue, ' new state val 3')
                                     setState(newValue);
                                 }
                             }}

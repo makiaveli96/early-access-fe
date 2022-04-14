@@ -151,7 +151,6 @@ function Home() {
       return new Date(b.time).valueOf() - new Date(a.time).valueOf();
     });
     setRefs(referrals);
-    console.log(referrals, " refsss");
   }, []);
 
   const toggleActivity = () => {

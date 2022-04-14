@@ -56,7 +56,6 @@ function PersonalProfile() {
     if(userDetails?.state && states.length > 0){
       const findState = states.find(state => state.name == userDetails?.state)
       if(findState){
-        console.log(findState, ' stat found')
         setState(findState)
       }
     }
@@ -237,14 +236,10 @@ function PersonalProfile() {
               onChange={(event, newValue) => {
                 if (typeof newValue?.name === 'string') {
                   setState(newValue);
-                  console.log(newValue, ' new state val 1')
                 } else if (newValue && newValue.inputValue) {
-                  console.log(newValue, ' new state val 2')
                   // Create a new value from the user input
                   // setCountry(newValue);
-
                 } else {
-                  console.log(newValue, ' new state val 3')
                   setState(newValue);
                 }
               }}

@@ -59,7 +59,6 @@ function CreatePassword() {
         setEmail(res.data.email);
         setType(res.data.accountType);
         // displayVerificationNotif();
-        console.log(res, " token res");
         setIsToken(true);
       } else {
         setValidatingToken(false)

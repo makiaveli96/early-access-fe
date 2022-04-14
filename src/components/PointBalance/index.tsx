@@ -17,7 +17,6 @@ function PointBalance() {
   const totalEarnablePoints = 1000000;
   function getPercentage() {
     const percent = (userDetails?.referralPoints / totalEarnablePoints) * 100;
-    console.log(percent, " percent");
     return percent;
   }
 
@@ -57,7 +56,6 @@ function PointBalance() {
       return new Date(b.time).valueOf() - new Date(a.time).valueOf();
     });
     setRefs(_referrals);
-    console.log(referrals, " refsss");
   }, []);
 
   const toggleActivity = () => {

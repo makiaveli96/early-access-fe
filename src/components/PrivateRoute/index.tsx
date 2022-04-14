@@ -14,7 +14,6 @@ export default function PrivateRoute({ page } : { page?: string }){
             let token = localStorage.getItem("_EA_TOKEN");
             if(token){
                 const res = await VerifySession();
-                console.log(res.status, ' refresh')
                 if(res.status !== 200){
                     navigate('/')
                 }else{
@@ -31,9 +30,7 @@ export default function PrivateRoute({ page } : { page?: string }){
             setAuth(false)
             setIsTokenValidated(true); // in case there is no token
             if(err?.response){
-                console.log(err.response)
                 if(err?.response?.data?.status ==  403){
-                    console.log(err?.response?.data?.status)
                     navigate('/');
                     setAuth(false)
                 }

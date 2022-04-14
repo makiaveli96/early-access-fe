@@ -263,13 +263,10 @@ function Perosonal() {
           onChange={(event, newValue) => {
             if (typeof newValue["name"] === "string") {
               setCountryOfCitizenship(newValue);
-              console.log(newValue, " new val 1");
             } else if (newValue && newValue.inputValue) {
-              console.log(newValue, " new val 2");
               // Create a new value from the user input
               // setCountry(newValue);
             } else {
-              console.log(newValue, " new val 3");
               setCountryOfCitizenship(newValue);
             }
           }}
@@ -311,13 +308,10 @@ function Perosonal() {
             if (typeof newValue["name"] === "string") {
               setCountryOfResidence(newValue);
               setStates(newValue.states);
-              console.log(newValue, " new val 1");
             } else if (newValue && newValue.inputValue) {
-              console.log(newValue, " new val 2");
               // Create a new value from the user input
               // setCountry(newValue);
             } else {
-              console.log(newValue, " new val 3");
               setCountryOfResidence(newValue);
               setStates(newValue.states);
             }
@@ -406,13 +400,10 @@ function Perosonal() {
           onChange={(event, newValue) => {
             if (typeof newValue?.name === "string") {
               setState(newValue);
-              console.log(newValue, " new state val 1");
             } else if (newValue && newValue.inputValue) {
-              console.log(newValue, " new state val 2");
               // Create a new value from the user input
               // setCountry(newValue);
             } else {
-              console.log(newValue, " new state val 3");
               setState(newValue);
             }
           }}

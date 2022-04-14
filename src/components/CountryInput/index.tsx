@@ -17,7 +17,6 @@ export default function CountryInput({ label, placeholder, value, key, setValue,
         const result = countryList.filter(country=>{
             return country.toLowerCase().indexOf(val.toLowerCase()) !== -1
         })
-        console.log(result, ' search res')
     }
 
     return(

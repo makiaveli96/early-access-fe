@@ -7,7 +7,6 @@ export const ErrorHandler = (err, navigate, setAuth) => {
             setTimeout(() => {
                 setAuth(false)
                 navigate('/')
-                console.log('log out')
             }, 2000);
         }else{
             if(err?.response?.data?.APP_ERR == 'CREATE_PASSWORD'){

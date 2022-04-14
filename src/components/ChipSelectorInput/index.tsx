@@ -23,7 +23,6 @@ function ChipSelectorInput({ highlights, allItems, selected, setSelected, placeh
   const [arrayToRender, setArrayToRender] = useState<any | null>([])
   const filter = createFilterOptions<any>();
 
-  console.log(dropdownResult.length, ' l---length')
 
   function checkSelected(option){
     let isSelected: boolean;
@@ -68,12 +67,9 @@ function ChipSelectorInput({ highlights, allItems, selected, setSelected, placeh
   }
 
   function rendeArray(){
-
     let result = [...selected, ...highlights].filter(function({name}) {
       return !this.has(name) && this.add(name);
     }, new Set)
-
-    console.log(result, ' result--')
     setArrayToRender(result)
   }
 
