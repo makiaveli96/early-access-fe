@@ -65,17 +65,22 @@ function Sidebar() {
               Community
             </span>
           </li>
-          {userDetails?.isWhitelisted ? (
-          <li onClick={()=>userDetails?.isEmailVerified? showPresale(true):showVerifyEmail(true)}>
-              <CgShoppingBag color="#002C3D" />
-              <span>Presale Event</span>
-            </li>
-          ):(
-            <li onClick={()=>userDetails?.isEmailVerified? showWhitelist(true):showVerifyEmail(true)}>
-              <BsFlag color="#002C3D" />
-              <span>Whitelist</span>
-            </li>
+          {userDetails?.isProfileSet && (
+            <>
+              {userDetails?.isWhitelisted ? (
+              <li onClick={()=>userDetails?.isEmailVerified? showPresale(true):showVerifyEmail(true)}>
+                  <CgShoppingBag color="#002C3D" />
+                  <span>Presale Event</span>
+                </li>
+              ):(
+                <li onClick={()=>userDetails?.isEmailVerified? showWhitelist(true):showVerifyEmail(true)}>
+                  <BsFlag color="#002C3D" />
+                  <span>Whitelist</span>
+                </li>
+              )}
+            </>
           )}
+          
           <li onClick={()=>contactUsRef.current.scrollIntoView({behavior: 'smooth'})}>
             <FiMail color="#002C3D"  />
             <span>Contact sales</span>

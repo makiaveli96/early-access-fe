@@ -87,17 +87,22 @@ function Navbar() {
               <Icon icon="fluent:people-community-24-regular" color="#002C3D" />
               <span>Community</span>
             </li>
-            {userDetails?.isWhitelisted ? (
-            <li onClick={()=>{navClick(showPresale)}}>
-              <CgShoppingBag color="#002C3D" />
-              <span>Presale Event</span>
-            </li>
-            ):(
-              <li onClick={()=>{navClick(showWhitelist)}}>
-                <BsFlag color="#002C3D" />
-                <span>Whitelist</span>
+            {userDetails?.isProfileSet && (
+              <>
+              {userDetails?.isWhitelisted ? (
+              <li onClick={()=>{navClick(showPresale)}}>
+                <CgShoppingBag color="#002C3D" />
+                <span>Presale Event</span>
               </li>
+              ):(
+                <li onClick={()=>{navClick(showWhitelist)}}>
+                  <BsFlag color="#002C3D" />
+                  <span>Whitelist</span>
+                </li>
+              )}
+              </>
             )}
+            
             <li onClick={()=>{contactUsRef.current.scrollIntoView({behavior: 'smooth'}); showDrawer(-100); showOverlay('none')}}>
               {/* <img src="/icons/mail.png" /> */}
               <FiMail color="#002C3D"  />
