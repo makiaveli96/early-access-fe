@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom'
 export function ModalHeader({ text, closeModal }:{text: string, closeModal: ()=>void}){
   return(
     <div className={styles.header}>
-      <p>{text}</p>
+      <p style={{fontWeight: '700', fontSize: '17px'}}>{text}</p>
       <span onClick={()=>closeModal()}>
         <Icon icon="clarity:times-line" height={25} width={25} />
       </span>

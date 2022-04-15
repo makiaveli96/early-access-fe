@@ -85,7 +85,7 @@ export async function saveAcccountDetails(body: object) {
   return await request(Routes.SAVE_ACCOUNT_DETAIILS, { token, body }, 'POST')
 }
 
-export async function sendInvites(sender: string, invitees: Array<[{name: string, email: string}]>){
+export async function sendInvites(sender: string, invitees: Array<any>){
   const token = localStorage.getItem('_EA_TOKEN');
   let body = { sender, invitees };
   return await request(Routes.SEND_INVITES, { token, body }, 'POST')

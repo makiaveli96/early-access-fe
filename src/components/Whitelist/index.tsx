@@ -239,7 +239,7 @@ const purchaseTypes = [
 
 function Perosonal() {
   const navigate = useNavigate();
-  const { showProfile, showUploadImage, whitelist, showWhitelist }: any = useContext(GeneralContext);
+  const { showProfile, showUploadImage, whitelist, showWhitelist, showWhitelistSuccess }: any = useContext(GeneralContext);
   const { auth, setAuth, userDetails, setUserDetails }: any =
     useContext(AuthContext);
   const [selectedAccount, setSelectedAccount] = useState("personal");
@@ -605,7 +605,7 @@ function Perosonal() {
                   </Container>
 
                   <Container>
-                    <p style={{ color: '#64748B', fontSize: '14px' }}>Preffered payment method</p>
+                    <p style={{ color: '#64748B', fontSize: '14px' }}>Preferred payment method</p>
                     <TextField
                       id="has-account"
                       select
@@ -1060,6 +1060,7 @@ function Perosonal() {
           referralPoints: userDetails?.referralPoints + 20000, 
         });
         showWhitelist(false)
+        showWhitelistSuccess(true)
         setSaving(false)
         setUserDetails(res.user);
         Notifier('Thanks for applying for our whitelisting!', 'success')

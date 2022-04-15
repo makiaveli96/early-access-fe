@@ -89,7 +89,7 @@ function Sidebar() {
 
         <div className={styles.sidebar_items}>
           <p style={{ color: "#00668F", fontSize: "12px", marginLeft: "10px" }}>
-            Comming soon
+            Coming soon
           </p>
           <li style={{cursor: 'not-allowed', opacity: '.7'}}>
             <Icon icon="la:wallet" color="#002C3D"  /> 

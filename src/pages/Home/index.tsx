@@ -38,6 +38,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import EmailVerified from '../../components/EmailVerified'
+import WhitelistSuccess from "../../components/Whitelisted";
 
 const settings = {
   dots: true,
@@ -336,7 +337,7 @@ function Home() {
                   <Divider width="100%" marginTop="15px" marginBottom="15px" />
 
                   <div className={styles.header}>
-                    <div style={{display: 'flex', alignItems: 'center'}}>
+                    <div style={{display: 'flex', alignItems: 'flex-start'}}>
                       <img src="/icons/poket-logo.png" />
                       <div>
                         <p style={{fontSize: '15px'}}>@poket.finance</p>
@@ -408,6 +409,7 @@ function Home() {
       <Verifynubmer />
       <Presale />
       <EmailVerified />
+      <WhitelistSuccess />
     </>
   );
 }

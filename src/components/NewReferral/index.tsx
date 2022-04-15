@@ -17,6 +17,7 @@ import { Notifier } from "../../components/Notifier";
 import { useNavigate } from "react-router-dom";
 import { ErrorHandler } from "../../helpers/Errorhandler";
 import Validator from "../../utils/validator";
+import { BsPenFill } from 'react-icons/bs'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { Icon } from "@iconify/react";
 
@@ -36,7 +37,9 @@ function NewReferral() {
   const [loading, setLoading] = useState(false);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [addBtnDisabled, setAddBtnDisabled] = useState(false);
+  const [multiple, setMultiple] = useState(false)
   const [step, setStep] = useState(0);
+
 
   useEffect(() => {
     if (invitees.length > 0) {
@@ -49,6 +52,7 @@ function NewReferral() {
   const handleClose = () => showModal(false);
 
   const addInvitee = () => {
+    setMultiple(true)
     if (name && email) {
       setInvitees((prev: any) => {
         var checkEmail = prev.find(
@@ -75,6 +79,13 @@ function NewReferral() {
     }
   };
 
+  const editRef=(item)=>{
+    setEmail(item.email);
+    setName(item.name)
+    var filtered = invitees.filter((invitee: any) => invitee.id !== item.id);
+    setInvitees(filtered);
+  }
+
   const removeItem = (id: string) => {
     var filtered = invitees.filter((invitee: any) => invitee.id !== id);
     setInvitees(filtered);
@@ -82,40 +93,84 @@ function NewReferral() {
 
   const sendReferral = async () => {
     setLoading(true);
-    try {
-      const res = await sendInvites(userDetails.email, invitees);
-      if (res.status == 200) {
-        setUserDetails(res.user)
-        GetReferrals(userDetails?.email, navigate, setAuth);
-        setLoading(false);
-        setName("");
-        setEmail("");
-        setInvitees([]);
-        setStep(1)
-        setAddBtnDisabled(true);
-      } else {
-        setLoading(false);
-        Notifier(res.message, "error");
+    if(multiple){
+      if(invitees.length == 0){
+        setLoading(false)
+        setBtnDisabled(true)
+        return 
       }
-    } catch (err) {
-      setLoading(false);
-      ErrorHandler(err, navigate, setAuth);
+      try {
+        const res = await sendInvites(userDetails.email, invitees);
+        if (res.status == 200) {
+          setUserDetails(res.user)
+          GetReferrals(userDetails?.email, navigate, setAuth);
+          setLoading(false);
+          setName("");
+          setEmail("");
+          setInvitees([]);
+          setStep(1)
+          setAddBtnDisabled(true);
+          setMultiple(false)
+        } else {
+          setLoading(false);
+          Notifier(res.message, "error");
+        }
+      } catch (err) {
+        setLoading(false);
+        ErrorHandler(err, navigate, setAuth);
+      }
+    }else{
+      if(!name || !email){
+        Notifier('Both fields are required', "error");
+        setLoading(false)
+        setBtnDisabled(true)
+        return 
+      }
+      try {
+        const res = await sendInvites(userDetails.email, [{ name, email }]);
+        if (res.status == 200) {
+          setUserDetails(res.user)
+          GetReferrals(userDetails?.email, navigate, setAuth);
+          setLoading(false);
+          setName("");
+          setEmail("");
+          setStep(1)
+          setBtnDisabled(true)
+          setAddBtnDisabled(true);
+        } else {
+          setLoading(false);
+          Notifier(res.message, "error");
+        }
+      } catch (err) {
+        setLoading(false);
+        ErrorHandler(err, navigate, setAuth);
+      }
     }
   };
 
+  useEffect(()=>{
+    if(invitees.length > 1){
+      setMultiple(true)
+    }else{
+      setMultiple(false)
+    }
+  },[invitees])
+
   useEffect(() => {
-    if (email.length > 5) {
-      if (email.length > 5 && !Validator.validateEmail(email)) {
+    if (name.length > 3 && email.length > 5) {
+      if (name.length < 3 || email.length > 5 && !Validator.validateEmail(email)) {
         setAddBtnDisabled(true);
-        setMessage("enter a valid email address");
+        setMessage("enter a valid name or email address");
       } else {
         setMessage("");
+        setBtnDisabled(false)
         setAddBtnDisabled(false);
       }
     } else {
       setAddBtnDisabled(true);
+      // setBtnDisabled(true)
     }
-  }, [email]);
+  }, [name, email]);
 
   return (
     <>
@@ -174,9 +229,15 @@ function NewReferral() {
                         <p style={{ margin: 0, fontSize: "14px", color: '#94A3B8' }}>{invitee.name.length > 30? invitee.name.substring(0,27)+'...' : invitee.name}</p>
                         <p style={{ margin: 0, fontSize: "14px", color: '#94A3B8' }}>{invitee.email.length > 30? invitee.email.substring(0,27)+'...' : invitee.email}</p>
                       </div>
-                      <span style={{cursor: 'pointer'}} onClick={() => removeItem(invitee.id)}>
-                        <HiOutlineTrash color="#94A3B8" />
-                      </span>
+                      <div style={{display: 'flex', alignItems: 'center'}}>
+                        <span style={{cursor: 'pointer', marginRight: '8px'}} onClick={()=>editRef(invitee)}>
+                          <BsPenFill color="94A3B8" />
+                        </span>
+                        <span style={{cursor: 'pointer'}} onClick={() => removeItem(invitee.id)}>
+                          <HiOutlineTrash color="#94A3B8" />
+                        </span>
+                      </div>
+                     
                     </div>
                   ))}
                 </div>
@@ -197,7 +258,7 @@ function NewReferral() {
                       alignItems: "flex-start",
                     }}
                   >
-                    <p>Full name</p>
+                    <p style={{fontSize: '14px', color: '#57584E', marginBottom: '2px'}}>Full name</p>
                     <TextField
                       placeholder="Invitee’s name"
                       value={name}
@@ -214,7 +275,7 @@ function NewReferral() {
                       alignItems: "flex-start",
                     }}
                   >
-                    <p>Email address</p>
+                    <p style={{fontSize: '14px', color: '#57584E', marginBottom: '2px'}}>Email address</p>
                     <TextField
                       placeholder="Invitee’s email address"
                       value={email}
@@ -227,7 +288,7 @@ function NewReferral() {
                   <span
                     style={{
                       color: "tomato",
-                      fontSize: "13px",
+                      fontSize: "11.5px",
                       marginTop: "5px",
                     }}
                   >

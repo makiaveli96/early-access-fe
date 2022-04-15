@@ -112,7 +112,7 @@ function Navbar() {
 
           <div className={styles.drawer_items}>
             <p style={{ color: "#00668F", fontSize: "12px", marginLeft: "10px" }}>
-              Comming soon
+              Coming soon
             </p>
             <li style={{cursor: 'not-allowed', opacity: '.7'}}>
               {/* <img src="/icons/wallet.png" /> */}
