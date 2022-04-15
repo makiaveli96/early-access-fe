@@ -10,6 +10,8 @@
   padding-bottom: 20px;
   border-radius: 20px;
   background-color: white;
+  outline: none;
+  user-select: none;
   @include respond(mobile){
     width: 90%;
     height: auto;

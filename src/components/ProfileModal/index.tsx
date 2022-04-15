@@ -15,7 +15,7 @@ function ProfileModal({ modal, showModal }) {
   return (
     <>
     
-    <Modal modal={modal} showModal={showModal} backdropClose>
+    <Modal modal={modal} showModal={showModal}>
       {!userDetails.isProfileSet? (
         <>
           {userDetails.account == 'personal'? (

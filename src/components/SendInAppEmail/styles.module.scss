@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  outline: none;
+  user-select: none;
   @include respond(mobile){
     width: 90%;
   }

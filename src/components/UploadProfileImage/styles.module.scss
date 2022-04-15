@@ -11,6 +11,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  outline: none;
+  user-select: none;
   @include respond(mobile){
     width: 90%;
   }

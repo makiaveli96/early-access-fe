@@ -184,11 +184,12 @@ function Home() {
                       <h1>{formatCurrency(userDetails?.referralPoints)} Pts</h1>
                       <Button
                         onClick={() => userDetails?.isEmailVerified? showNewReferral(true) : showVerifyEmail(true)}
-                        width="114px"
+                        width="auto"
                         height="36px"
                         text="New Referral"
                         bgColor="#0099D6"
                         textColor="white"
+                        style={{paddingLeft: '5px', paddingRight: '5px'}}
                       />
                     </div>
                   </div>

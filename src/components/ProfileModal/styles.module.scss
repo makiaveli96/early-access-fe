@@ -16,6 +16,8 @@
 //   border-right: .5px solid lightgray;
 // }
 .container{
+  outline: none;
+  user-select: none;
   width: 436px;
   max-height: 70%;
   padding-top: 20px;
@@ -69,6 +71,8 @@
 
 
 .account_profile{
+  outline: none;
+  user-select: none;
   width: 820px;
   padding-top: 20px;
   padding-bottom: 20px;

@@ -53,6 +53,7 @@ function UploadImage({ modal, showModal }) {
         setUserDetails(res.user)
         setProfilePhoto(null)
         setImageName('')
+        showUploadImage(false);
         Notifier(res.message, 'success');
       }else{
         setLoading(false)

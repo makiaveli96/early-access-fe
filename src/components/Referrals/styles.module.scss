@@ -10,6 +10,8 @@
   flex-direction: column;
   justify-content: center;
   padding-bottom: 20px;
+  outline: none;
+  user-select: none;
   @include respond(mobile){
     width: 90%;
   }

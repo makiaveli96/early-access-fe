@@ -32,6 +32,11 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   /* Media Query for Tablets Ipads portrait mode */
   /* Media Query for Laptops and Desktops */
   /* Media Query for Large screens */
