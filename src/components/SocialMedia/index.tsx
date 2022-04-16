@@ -20,7 +20,7 @@ function SocialMedia({ style, margin, type }: { style?: any; margin?: string, ty
         <SocialIcon
           style={style}
           network="linkedin"
-          url={type == 'referral'? `https://www.linkedin.com/sharing/share-offsite/?url=https://poketfi.money?ref=${userDetails?.referralID}` : "https://www.linkedin.com/company/78340869/admin/"}
+          url={type == 'referral'? `https://www.linkedin.com/sharing/share-offsite/?url=https://poketfi.money?ref%3D${userDetails?.referralID}` : "https://www.linkedin.com/company/78340869/admin/"}
         />
       </span>
       <span style={{ margin: margin || "5px" }}>
