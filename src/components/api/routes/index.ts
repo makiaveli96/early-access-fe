@@ -86,9 +86,9 @@ export async function saveAcccountDetails(body: object) {
   return await request(Routes.SAVE_ACCOUNT_DETAIILS, { token, body }, 'POST')
 }
 
-export async function sendInvites(sender: string, invitees: Array<any>, isReferralSent: boolean, referreralID: string, senderName: string){
+export async function sendInvites(sender: string, invitees: Array<any>, isReferralSent: boolean, referralID: string, senderName: string){
   const token = localStorage.getItem('_EA_TOKEN');
-  let body = { sender, invitees, isReferralSent, referreralID, senderName };
+  let body = { sender, invitees, isReferralSent, referralID, senderName };
   return await request(Routes.SEND_INVITES, { token, body }, 'POST')
 }
 
