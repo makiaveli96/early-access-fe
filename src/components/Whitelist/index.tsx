@@ -1076,7 +1076,7 @@ function Perosonal() {
 
   return (
     <>
-    <Modal modal={whitelist} showModal={showWhitelist} backdropClose>
+    <Modal modal={whitelist} showModal={showWhitelist}>
       <main className={styles.container}>
         {step !== 2 && (
           <div style={{width: '80%'}}>
