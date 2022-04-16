@@ -213,7 +213,7 @@ function Home() {
                     Your reward points balance
                     </p>
                     <div>
-                      <h1>{formatCurrency(userDetails?.referralPoints)} Pts</h1>
+                      <h1>{formatCurrency(userDetails?.referralPoints)} pts</h1>
                       <Button
                         onClick={() => userDetails?.isEmailVerified? showNewReferral(true) : showVerifyEmail(true)}
                         width="auto"
@@ -294,8 +294,7 @@ function Home() {
                   <h3>Get in touch</h3>
                   <Divider type="dashed" />
                   <p>
-                    Send us a message or set up a meeting with us to learn more
-                    about how you can use poket for yourself and business.
+                    Send a message or set up a meeting to learn more about how you can <br />use Poket for you and for your business
                   </p>
                   <Divider type="dashed" />
                   <div className={styles.link_buttons}>

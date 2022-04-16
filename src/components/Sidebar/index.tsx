@@ -43,7 +43,7 @@ function Sidebar() {
       <div className={styles.body}>
         <div className={styles.header}>
             <p className={styles.header_text1} style={{display: 'flex', alignItems: 'flex-start'}}>
-              <img src="/icons/poket-logo.png" width="23px" height="23px" style={{ marginRight: '3px'}} /> Poket
+              <img src="/poket-logo.png" height="20px" style={{ marginRight: '3px'}} />
             </p>
             <p className={styles.header_text2}>{userDetails?.account} Account</p>
         </div>

@@ -528,7 +528,7 @@ function Business() {
   }
   const NeededCurrencies=(
     <div style={{marginBottom: '20px', marginTop: '20px'}}>
-      <p style={{color: '#64748B', fontSize: '14px'}}>Which of these currencies do you need most often? Select up to 5</p>
+      <p style={{color: '#64748B', fontSize: '14px'}}>Which of these currencies do you need most often? Select as many as possible</p>
       {/* <Autocomplete
         key={1}
         multiple
@@ -575,7 +575,7 @@ function Business() {
   const NeededCrypto = (
     <div style={{ marginBottom: "20px", marginTop: "20px" }}>
       <p style={{ color: "#64748B", fontSize: "14px" }}>
-        Which of these Cryptocurrencies do you need most often? Select up to 5
+        Which of these Cryptocurrencies do you need most often? Select as many as possible
       </p>
       <ChipSelectorInput
         highlights={[
@@ -593,7 +593,9 @@ function Business() {
 
   const SupportedCountries=(
     <div style={{marginBottom: '20px', marginTop: '20px'}}>
-      <p style={{color: '#64748B', fontSize: '14px'}}>Which of these countries do you mostly receive international transfers from?</p>
+      <p style={{color: '#64748B', fontSize: '14px'}}>
+      Which of these countries do you receive payment from? Select as many as possible
+      </p>
       {/* <Autocomplete
         key={2}
         multiple

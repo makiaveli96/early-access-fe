@@ -26,7 +26,7 @@ function UploadImage({ modal, showModal }) {
     // setIsImg(true)
     setImageName(event.target.files[0].name)
     if(event.target.files[0].size > 1000000){
-      return Notifier('Image size should be less than 1mb', 'warning')
+      return Notifier('Image size should be less than 3mb', 'warning')
     }
     try{
       Resizer.imageFileResizer(
@@ -96,7 +96,7 @@ function UploadImage({ modal, showModal }) {
               </span>
             </div>
           ):(
-            <label htmlFor="photo" className={styles.uploadBtn}> + Add media</label>
+            <label htmlFor="photo" className={styles.uploadBtn}> + Click to add photo</label>
           )}
           <input
             style={{display: 'none'}}

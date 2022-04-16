@@ -234,7 +234,6 @@ const paymentMethods = [
 const purchaseTypes = [
   { value: 'For a business, fund or others' },
   { value: 'Personal' },
-  { value: 'Private' },
 ]
 
 function Perosonal() {

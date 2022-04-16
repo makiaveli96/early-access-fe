@@ -5,7 +5,7 @@ import { BiLogOut, BiUserCircle, BiCog } from "react-icons/bi";
 import { FiBell, FiUser, FiUsers, FiMail } from 'react-icons/fi'
 import { BsFlag } from 'react-icons/bs'
 import { Icon } from '@iconify/react';
-import { RiBitCoinFill } from 'react-icons/ri';
+import { RiBitCoinFill, RiArrowRightSLine } from 'react-icons/ri';
 import { GeneralContext } from "../../contexts/generalContextApi";
 import { AuthContext } from '../../contexts/authContextApi';
 import { CgShoppingBag } from 'react-icons/cg'
@@ -44,7 +44,7 @@ function Navbar() {
           <span className={styles.toggler}>
             <MdMenu color="#00668F" size="30" onClick={()=>{showDrawer(0); showOverlay('flex')}} />
           </span>
-          <p className={styles.link}>Home {'>'} Dashboard</p>
+          <p className={styles.link}>Home <RiArrowRightSLine /> Dashboard</p>
         </div>
         {userDetails?.profilePhoto? (
           <img src={userDetails?.profilePhoto} style={{borderRadius: '50%', height: '40px', width: '40px'}} />
@@ -68,7 +68,7 @@ function Navbar() {
           <Icon icon="clarity:times-line" height={35} width={35} />
         </span>
         <div className={styles.drawer_header}>
-          <p style={{fontSize: '14px', color: '#0099D6'}}>Poket</p>
+          <img src="/poket-logo.png" height="20px" style={{ marginRight: '3px'}} />
           <p style={{textTransform: 'capitalize', fontSize: '12px', color: '#0099D6'}}>{userDetails?.account} Account</p>
         </div>
           <div className={styles.drawer_items}>

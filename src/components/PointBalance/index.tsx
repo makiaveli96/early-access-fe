@@ -116,7 +116,7 @@ function PointBalance() {
         <span
           style={{ fontWeight: "lighter", fontSize: "13px", color: "#002C3D" }}
         >
-          {formatCurrency(userDetails?.referralPoints)} points
+          {formatCurrency(userDetails?.referralPoints)} pts
         </span>
         <span
           style={{ fontWeight: "lighter", fontSize: "13px", color: "#002C3D" }}
@@ -124,7 +124,7 @@ function PointBalance() {
           {formatCurrency(
             (totalEarnablePoints - userDetails?.referralPoints).toString()
           )}{" "}
-          points
+          pts
         </span>
       </div>
       <p

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import styles from './styles.module.css';
@@ -36,6 +36,7 @@ function Verifynubmer() {
   const [step, setStep] = useState(0)
   const [ phone, setPhone ] = useState('');
   const [otpCode, setOtpCode] = useState('')
+  const [btnDisabled, setBtnDisabled] = useState(true)
 
   const handleOtpCode = (e) => {
     // const re = /^[0-9\b]+$/;
@@ -44,20 +45,31 @@ function Verifynubmer() {
     // }
   };
 
+  useEffect(()=>{
+    if(otpCode.length == 6){
+      setBtnDisabled(false)
+    }else{
+      setBtnDisabled(true)
+    }
+  },[otpCode])
   
   const sendCode=()=>{
     if(phone.length > 5){
+        setLoading(true);
         (async()=>{
           const res = await sendVerificationCode(phone)
           if(res.status == 200){
+              setLoading(false);
               Notifier(res.message, 'success')
               setStep(1)
           }else{
+              setLoading(false);
               Notifier(res.message, 'error')
           }
         })()
     }else{
-       Notifier('Enter a valid phone nubmer', 'warning')
+      setLoading(false);
+      Notifier('Enter a valid phone nubmer', 'warning')
     }
 }
 
@@ -66,15 +78,18 @@ const verifyPhoneCode=async()=>{
     setLoading(true)
     const res = await verifyCode(otpCode)
     if(res.status == 200){
+        setOtpCode('')
         setLoading(false)
         setVerified(true)
         setUserDetails(res.user);
         Notifier(res.message, 'success')
     }else{
-        setLoading(false)
-        Notifier(res.message, 'error')
+      setOtpCode('')
+      setLoading(false)
+      Notifier(res.message, 'error')
     }
   }catch(err){
+    setOtpCode('')
     setLoading(false)
     ErrorHandler(err, navigate, setAuth)
   }
@@ -109,9 +124,9 @@ const verifyPhoneCode=async()=>{
             <footer className={styles.footer}>
               <Button onClick={()=>showPhoneModal(false)} bgColor='transparent' width="45%" text='Close' height='58px' textColor="black" style={{border: '1px solid #CBD5E1'}} />
               {step == 0? (
-                <Button onClick={()=>sendCode()} bgColor='#0099D6' width="45%" text='Next' height='58px' />
+                <Button onClick={()=>sendCode()} loading={loading} disabled={loading} bgColor='#0099D6' width="45%" text='Next' height='58px' />
               ):(
-                <Button loading={loading} disabled={loading} onClick={()=>verifyPhoneCode()} bgColor='#0099D6' width="45%" text='Verify' height='58px' />
+                <Button loading={loading} disabled={btnDisabled? true : loading} onClick={()=>verifyPhoneCode()} bgColor='#0099D6' width="45%" text='Verify' height='58px' />
               )}
             </footer>
           </div>

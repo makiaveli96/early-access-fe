@@ -458,7 +458,7 @@ function Perosonal() {
   const NeededCurrencies = (
     <div style={{ marginBottom: "20px", marginTop: "20px" }}>
       <p style={{ color: "#64748B", fontSize: "14px" }}>
-        Which of these currencies do you need most often? Select up to 5
+        Which of these currencies do you need most often? Select as many as possible.
       </p>
       <ChipSelectorInput
         highlights={[
@@ -500,7 +500,7 @@ function Perosonal() {
   const NeededCrypto = (
     <div style={{ marginBottom: "20px", marginTop: "20px" }}>
       <p style={{ color: "#64748B", fontSize: "14px" }}>
-        Which of these Cryptocurrencies do you need most often? Select up to 5
+        Which of these Cryptocurrencies do you need most often? Select as many as possible
       </p>
       <ChipSelectorInput
         highlights={[
@@ -522,8 +522,7 @@ function Perosonal() {
   const SupportedCountries = (
     <div style={{ marginBottom: "20px", marginTop: "20px" }}>
       <p style={{ color: "#64748B", fontSize: "14px" }}>
-        Which of these countries do you mostly receive international transfers
-        from?
+        Which of these countries do you receive payment from? Select as many as possible
       </p>
       {/* <Autocomplete
         key={2}

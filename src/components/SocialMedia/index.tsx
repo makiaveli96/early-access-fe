@@ -5,7 +5,8 @@ import { AuthContext } from '../../contexts/authContextApi'
 function SocialMedia({ style, margin, type }: { style?: any; margin?: string, type?: string }) {
 
   const { userDetails } = useContext(AuthContext)
-  const refMessage = `Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}`
+  const refMessage = `Hello. I just joined Poket Early Access. With Poket, you can send and receive money around the world, across currencies, and at the best rates. Check it out: poketfi.money?ref=${userDetails?.referralID}`
+  // const refMessage = `Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}`
 
   return (
     <div>
