@@ -21,13 +21,15 @@
   src: local('Lato'), url(../../assets/Fonts/Montserrat_500.ttf) format('truetype');
 }
 .main {
-  height: 56px;
+  height: 48px;
   width: auto;
   border-radius: 4px;
   display: flex;
   align-items: center;
   padding-right: 10px;
   padding-left: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   justify-content: space-between;
   .input::placeholder {
     font-family: 'Montserrat';
