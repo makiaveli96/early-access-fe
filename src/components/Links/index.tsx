@@ -7,8 +7,9 @@ import SocialMedia from '../SocialMedia';
 
 export default function Links(){
     
-    const { userDetails } = useContext(AuthContext)
-    const refMessage = `Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}`
+    const { userDetails } = useContext(AuthContext) 
+    const refMessage = `Hi, have you tried Poket Early Access? With Poket, you can send or receive money anywhere, across currencies and at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}` 
+    // const refMessage = `Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}`
     
     return(
         <div className={styles.main}>

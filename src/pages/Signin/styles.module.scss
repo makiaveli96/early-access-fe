@@ -23,6 +23,7 @@
         align-items: center;
       }
     }
+    
     @include respond(mobile){
       width: 90%;
       align-items: center;

@@ -39,6 +39,7 @@ function NewReferral() {
   const [addBtnDisabled, setAddBtnDisabled] = useState(false);
   const [multiple, setMultiple] = useState(false)
   const [step, setStep] = useState(0);
+  const [firstReferral, setFirstReferral] = useState(false)
 
 
   useEffect(() => {
@@ -100,8 +101,9 @@ function NewReferral() {
         return 
       }
       try {
-        const res = await sendInvites(userDetails.email, invitees);
+        const res = await sendInvites(userDetails.email, invitees, userDetails?.isReferralSent, userDetails?.referralID, userDetails?.fullname);
         if (res.status == 200) {
+          setFirstReferral(res.isReferralSent)
           setUserDetails(res.user)
           GetReferrals(userDetails?.email, navigate, setAuth);
           setLoading(false);
@@ -113,7 +115,7 @@ function NewReferral() {
           setMultiple(false)
         } else {
           setLoading(false);
-          Notifier(res.message, "error");
+          Notifier(res.message, "error"); 
         }
       } catch (err) {
         setLoading(false);
@@ -127,8 +129,9 @@ function NewReferral() {
         return 
       }
       try {
-        const res = await sendInvites(userDetails.email, [{ name, email }]);
+        const res = await sendInvites(userDetails.email, [{ name, email }], userDetails?.isReferralSent, userDetails?.referralID, userDetails?.fullname);
         if (res.status == 200) {
+          setFirstReferral(res.isReferralSent)
           setUserDetails(res.user)
           GetReferrals(userDetails?.email, navigate, setAuth);
           setLoading(false);
@@ -329,8 +332,16 @@ function NewReferral() {
         {step == 1 && (
           <main className={styles.feed_back}>
             <div className={styles.main}>
-              <img src="/check_mark.gif" width="80%" />
-              <h2 style={{ fontSize: '15px', textAlign: 'center' }}>Your Invitation was sent succesfully!</h2>
+              {!firstReferral? (
+                <img src="/box_animation.gif" width="80%" />
+              ):(
+                <img src="/check_mark.gif" width="80%" />
+              )}
+              {!firstReferral? (
+                <h2 style={{ fontSize: '15px', textAlign: 'center' }}>You have received <span style={{color: '#0099D6'}}>10,000 points</span> for making your first referral</h2>
+              ):(
+                <h2 style={{ fontSize: '15px', textAlign: 'center' }}>Your Invitation was sent succesfully!</h2>
+              )}
               <div style={{ marginTop: "30px", width: "100%" }}>
                 <Button
                   onClick={() => {setStep(0); showNewReferral(false)}}

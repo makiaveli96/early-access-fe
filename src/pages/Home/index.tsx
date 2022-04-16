@@ -21,7 +21,7 @@ import { useMediaQuery } from "react-responsive";
 import NewReferral from "../../components/NewReferral";
 import Whitelist from "../../components/Whitelist";
 import { AuthContext } from "../../contexts/authContextApi";
-import { hasLoggedIn } from "../../components/api/routes";
+import { hasLoggedIn, getTweets } from "../../components/api/routes";
 import { format, parseISO } from "date-fns";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import { formatCurrency } from "../../utils/formatCurrency";
@@ -39,6 +39,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import EmailVerified from '../../components/EmailVerified'
 import WhitelistSuccess from "../../components/Whitelisted";
+import { ErrorHandler } from "../../helpers/Errorhandler";
+
+interface TweetsI {
+  media_key: string;
+  height: number;
+  url: string;
+  preview_image_url: string;
+  width: number,
+  type: string
+}
 
 const settings = {
   dots: true,
@@ -107,6 +117,8 @@ function Home() {
   const [activity, setActivity] = useState("none");
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+  const [tweets, setTweets] = useState<Array<TweetsI>>([])
+
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -154,6 +166,25 @@ function Home() {
     setRefs(referrals);
   }, []);
 
+  useEffect(()=>{
+    (async()=>{
+      try{
+        const arr = []
+        const res = await getTweets();
+        res.data.map(dat=>{
+          if(dat.type == 'photo'){
+            arr.push(dat)
+          }
+        })
+        setTweets(arr)
+      }catch(err){
+        ErrorHandler(err, navigate, setAuth)
+      }
+    })()
+   
+
+  },[])
+
   const toggleActivity = () => {
     if (activity == "none") {
       setActivity("flex");
@@ -190,7 +221,7 @@ function Home() {
                         text="New Referral"
                         bgColor="#0099D6"
                         textColor="white"
-                        style={{paddingLeft: '5px', paddingRight: '5px'}}
+                        style={{paddingLeft: '15px', paddingRight: '15px'}}
                       />
                     </div>
                   </div>
@@ -338,7 +369,7 @@ function Home() {
 
                   <div className={styles.header}>
                     <div style={{display: 'flex', alignItems: 'flex-start'}}>
-                      <img src="/icons/poket-logo.png" />
+                      <img src="/icons/poket-logo.png" style={{width: '30px', height: '30px'}} />
                       <div>
                         <p style={{fontSize: '15px'}}>@poket.finance</p>
                         {/* <p style={{ fontSize: "12px", color: "#9CA0AC" }}>
@@ -365,16 +396,20 @@ function Home() {
                   
               </div>
               <div className={styles.posts}>
+                {tweets.map(tweet=>(
+                  <a href="https://twitter.com/poketfinance" target="_blank">
                     <div className={styles.post_item}>
-                      <img src ="/post_img_1.png" width="250px" height="250px" />
+                      <img src ={tweet.url || tweet.preview_image_url} width="250px" height="250px" />
                     </div>
-                    <div className={styles.post_item}>
-                      <img src ="/post_img_1.png" width="250px" height="250px" />
-                    </div>
-                    <div className={styles.post_item}>
-                      <img src ="/post_img_1.png" width="250px" height="250px" />
-                    </div>
-                  </div>
+                  </a>
+                ))}
+                {/* <div className={styles.post_item}>
+                  <img src ="/post_img_1.png" width="250px" height="250px" />
+                </div>
+                <div className={styles.post_item}>
+                  <img src ="/post_img_1.png" width="250px" height="250px" />
+                </div> */}
+                </div>
             </div>
           </div>
         </div>

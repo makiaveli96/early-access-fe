@@ -235,24 +235,6 @@ function Perosonal() {
           onChange={(e) => setLastName(e.target.value)}
         />
       </div>
-
-      {/* <div>
-        <p style={{marginBottom: '10px', fontSize: '14px', color: '#64748B'}}>Date of Birth</p>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <MobileDatePicker
-          inputFormat="MM/dd/yyyy"
-          value={dob}
-          onChange={handleDateChange}
-          renderInput={(params) => <TextField style={{width: '100%'}} {...params} />}
-        />
-        </LocalizationProvider>
-        
-      </div> */}
-    </div>
-  );
-
-  const Country = (
-    <div style={{ marginBottom: "20px" }}>
       <div>
         <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
           Country of Citizenship*
@@ -296,7 +278,11 @@ function Perosonal() {
           )}
         />
       </div>
+    </div>
+  );
 
+  const Country = (
+    <div style={{ marginBottom: "20px" }}>
       <div>
         <p style={{ marginBottom: "10px", fontSize: "14px", color: "#64748B" }}>
           Country of Residence*
@@ -641,17 +627,17 @@ function Perosonal() {
       // case 0: return AccountType;
       case 0:
         return Name;
-      case 1:
-        return Country;
+      // case 1:
+        // return Country;
       // case 2: return VerifyNumber;
       // case 3: return Address;
-      case 2:
+      case 1:
         return Account;
-      case 3:
+      case 2:
         return NeededCurrencies;
-      case 4:
+      case 3:
         return NeededCrypto;
-      case 5:
+      case 4:
         return SupportedCountries;
     }
   };
@@ -666,20 +652,20 @@ function Perosonal() {
         if (!firstName || !lastName) {
           return Notifier("firstname and lastname are required", "warning");
         }
-        SaveProfileStep({ firstName, lastName });
+        SaveProfileStep({ firstName, lastName, countryOfCitizenship: countryOfCitizenship.name, });
         // setStep(step + 1);
         break;
+      // case 1:
+      //   // if(phone.length < 5){
+      //   //   return Notifier('enter a valid phone number', 'warning');
+      //   // }
+      //   // setStep(step + 1);
+      //   SaveProfileStep({
+      //     countryOfResidence: countryOfResidence.name,
+          
+      //   });
+      //   break;
       case 1:
-        // if(phone.length < 5){
-        //   return Notifier('enter a valid phone number', 'warning');
-        // }
-        // setStep(step + 1);
-        SaveProfileStep({
-          countryOfResidence: countryOfResidence.name,
-          countryOfCitizenship: countryOfCitizenship.name,
-        });
-        break;
-      case 2:
         // if(address.length < 5 || !state || city.length < 4){
         //   return Notifier('all fields are required', 'warning');
         // }
@@ -691,24 +677,24 @@ function Perosonal() {
         });
         // setStep(step + 1);
         break;
-      case 3:
-        if (supportedCurrencies.length == 0) {
-          return Notifier("select at least one currency", "warning");
+      case 2:
+        if (supportedCurrencies.length < 3) {
+          return Notifier("select at least 3 currencies", "warning");
         }
         // setStep(step + 1);
         SaveProfileStep({ supportedCurrencies })
         break;
-      case 4:
-        if (supportedCrypto.length == 0) {
-          return Notifier("select at least one cryptocurrency", "warning");
+      case 3:
+        if (supportedCrypto.length < 3) {
+          return Notifier("select at least 3 cryptocurrencies", "warning");
         }
         // setStep(step + 1);
         SaveProfileStep({ supportedCrypto })
 
         break;
-      case 5:
-        if (supportedCountries.length == 0) {
-          return Notifier("select at least one country", "warning");
+      case 4:
+        if (supportedCountries.length < 3) {
+          return Notifier("select at least 3 countries", "warning");
         }
         // setStep(step + 1);
         SaveProfileStep({ supportedCountries, referralPoints: userDetails?.referralPoints + 6000, isProfileSet: true })
@@ -791,7 +777,7 @@ function Perosonal() {
               <BsArrowLeft size={25} />
             </span>
           )}
-          <ModalProgress length={7} current={step} setStep={setStep} />
+          <ModalProgress length={6} current={step} setStep={setStep} />
           <span
             onClick={() => showProfile(false)}
             style={{ cursor: "pointer" }}

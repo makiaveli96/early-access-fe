@@ -1,0 +1,69 @@
+.main::-webkit-input-placeholder {
+  font-family: 'Montserrat';
+  src: local("Lato"), url(../../assets/Fonts/Montserrat_500.ttf) format("truetype");
+}
+
+.main:-ms-input-placeholder {
+  font-family: 'Montserrat';
+  src: local("Lato"), url(../../assets/Fonts/Montserrat_500.ttf) format("truetype");
+}
+
+.main:-moz-placeholder {
+  font-family: 'Montserrat';
+  src: local("Lato"), url(../../assets/Fonts/Montserrat_500.ttf) format("truetype");
+}
+
+.main::-moz-placeholder {
+  font-family: 'Montserrat';
+  src: local("Lato"), url(../../assets/Fonts/Montserrat_500.ttf) format("truetype");
+}
+
+.main {
+  height: 56px;
+  width: auto;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-right: 10px;
+  padding-left: 4px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main .input::-webkit-input-placeholder {
+  font-family: 'Montserrat';
+  color: #94A3B8;
+  src: local("Lato"), url(../../assets/Fonts/Montserrat_500.ttf) format("truetype");
+}
+
+.main .input:-ms-input-placeholder {
+  font-family: 'Montserrat';
+  color: #94A3B8;
+  src: local("Lato"), url(../../assets/Fonts/Montserrat_500.ttf) format("truetype");
+}
+
+.main .input::-ms-input-placeholder {
+  font-family: 'Montserrat';
+  color: #94A3B8;
+  src: local("Lato"), url(../../assets/Fonts/Montserrat_500.ttf) format("truetype");
+}
+
+.main .input::placeholder {
+  font-family: 'Montserrat';
+  color: #94A3B8;
+  src: local("Lato"), url(../../assets/Fonts/Montserrat_500.ttf) format("truetype");
+}
+
+.main .input {
+  outline: none;
+  height: 96%;
+  font-size: 14px;
+  text-indent: 10px;
+  border: 0px;
+}
+/*# sourceMappingURL=styles.module.css.map */

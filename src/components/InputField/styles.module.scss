@@ -1,0 +1,45 @@
+@import "../../scss/abstracts/mixins";
+
+
+.main::-webkit-input-placeholder {
+  font-family: 'Montserrat';
+  src: local('Lato'), url(../../assets/Fonts/Montserrat_500.ttf) format('truetype');
+}
+
+.main:-ms-input-placeholder {
+  font-family: 'Montserrat';
+  src: local('Lato'), url(../../assets/Fonts/Montserrat_500.ttf) format('truetype');
+}
+
+.main:-moz-placeholder {
+  font-family: 'Montserrat';
+  src: local('Lato'), url(../../assets/Fonts/Montserrat_500.ttf) format('truetype');
+}
+
+.main::-moz-placeholder {
+  font-family: 'Montserrat';
+  src: local('Lato'), url(../../assets/Fonts/Montserrat_500.ttf) format('truetype');
+}
+.main {
+  height: 56px;
+  width: auto;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  padding-left: 4px;
+  justify-content: space-between;
+  .input::placeholder {
+    font-family: 'Montserrat';
+    color: #94A3B8;
+    src: local('Lato'), url(../../assets/Fonts/Montserrat_500.ttf) format('truetype');
+  }
+  .input{
+    outline: none;
+    height: 96%;
+    // width: 90%;
+    font-size: 14px;
+    text-indent: 10px;
+    border: 0px;
+  }
+}

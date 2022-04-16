@@ -15,6 +15,8 @@ import { Notifier } from "../../components/Notifier";
 import { useMediaQuery } from 'react-responsive'
 import { Container } from "../../components/ProfileModal/AccountProfile/Personal";
 import Divider from "../../components/Divider";
+import { FiEyeOff, FiEye } from 'react-icons/fi'
+import InputField from "../../components/InputField";
 
 export function Center({ children }){
   return(
@@ -36,6 +38,8 @@ function Signin() {
     const { auth, setAuth, setUserDetails }: any = useContext(AuthContext);
     const [btnDisabled, setBtnDisabled] = useState(false)
     const [btnDisabled2, setBtnDisabled2] = useState(false);
+    const [type1, setType1] = useState('password');
+    const [type2, setType2] = useState('password');
   
     
   
@@ -126,7 +130,7 @@ function Signin() {
       <main className={styles.container}>
         <div className={styles.form}>
           <h1>Got early access? <br/>Sign in.</h1>
-          <div
+          {/* <div
             className={styles.switch}
           >
             <div
@@ -176,28 +180,34 @@ function Signin() {
                 </span>
               ))}
             </div>
-          </div>
+          </div> */}
           <Container>
             <p style={{color: '#57584E', fontSize: '14px'}}>Email Address</p>
-            <TextField
+            {/* <TextField
               value={email}
               style={{ width: "100%", backgroundColor: "white" }}
               type="email"
               placeholder="What is your email address?"
               onChange={(e) => setEmail(e.target.value)}
-            />
+
+            /> */}
+            <InputField value={email} inputType='text' onChange={e=>setEmail(e.target.value)} placeholder="What's your email address" />
+
           </Container>
 
-          <Container>
+          <Container> 
             <p style={{color: '#57584E', fontSize: '14px'}}>Password</p>
-            <TextField
+            <InputField value={password} inputFieldType="password" inputType={type1} setInputType={setType1} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password" />
+            {/* <input className={styles.textfield} placeholder="Enter your password" value={password} type={type1} onChange={e=>setPassword(e.target.value)} /> */}
+
+            {/* <TextField
               value={password}
               autoComplete="new-password"
               type="password"
               style={{ width: "100%", backgroundColor: "white" }}
               placeholder="Enter your password" 
               onChange={(e) => setPassword(e.target.value)}
-            />
+            /> */}
           </Container>
         
           <Container styles={{marginTop: '20px'}}>

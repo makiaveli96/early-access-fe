@@ -67,24 +67,24 @@ function Referral() {
     }
 
     const sendReferral=async()=>{
-        setLoading(true)
-        try{
-            const res = await sendInvites(userDetails.fullname, invitees);
-            if(res.status == 200){
-                setLoading(false)
-                setName('')
-                setEmail('')
-                setInvitees([])
-                showModal(true);
-                setAddBtnDisabled(true)
-            }else{
-                setLoading(false)
-                Notifier(res.message, 'error')
-            }
-        }catch(err){
-            setLoading(false)
-            ErrorHandler(err, navigate, setAuth)
-        }
+        // setLoading(true)
+        // try{
+        //     const res = await sendInvites(userDetails.fullname, invitees);
+        //     if(res.status == 200){
+        //         setLoading(false)
+        //         setName('')
+        //         setEmail('')
+        //         setInvitees([])
+        //         showModal(true);
+        //         setAddBtnDisabled(true)
+        //     }else{
+        //         setLoading(false)
+        //         Notifier(res.message, 'error')
+        //     }
+        // }catch(err){
+        //     setLoading(false)
+        //     ErrorHandler(err, navigate, setAuth)
+        // }
     }
 
     useEffect(()=>{

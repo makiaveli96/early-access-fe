@@ -129,7 +129,6 @@ function Business() {
   ];
 
   
-
   // useEffect(()=>{
   //   setUserCountry(country?.name)
   //   setUserState(state?.name)
@@ -725,20 +724,20 @@ function Business() {
           monthlyRemittance, })
         break;
       case 2:
-        if(supportedCurrencies.length == 0){
-          return Notifier('select at least one currency', 'warning');
+        if(supportedCurrencies.length < 3){
+          return Notifier('select at least 3 currencies', 'warning');
         }
         SaveProfileStep({ supportedCurrencies })
         break;
       case 3:
-        if(supportedCrypto.length == 0){
-          return Notifier('select at least one cryptocurrency', 'warning');
+        if(supportedCrypto.length < 3){
+          return Notifier('select at least 3 cryptocurrencies', 'warning');
         }
         SaveProfileStep({ supportedCrypto })
         break;
       case 4:
-        if(supportedCountries.length == 0){
-          return Notifier('select at least one country', 'warning');
+        if(supportedCountries.length < 3){
+          return Notifier('select at least one countries', 'warning');
         }
         SaveProfileStep({ supportedCountries })
         break;

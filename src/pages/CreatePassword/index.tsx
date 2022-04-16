@@ -15,6 +15,7 @@ import { useSearchParams } from "react-router-dom";
 import Button from "../../components/Button";
 import { Icon } from "@iconify/react";
 import { Notifier } from "../../components/Notifier";
+import InputField from "../../components/InputField";
 
 function Notification() {
   return (
@@ -41,6 +42,8 @@ function CreatePassword() {
   const { auth, setAuth, setUserDetails }: any = useContext(AuthContext);
   const [verificationNotfi, showVerificationNotif] = useState(false);
   const [isToken, setIsToken] = useState(true);
+  const [type1, setType1] = useState('password')
+  const [type2, setType2] = useState('password')
 
   function displayVerificationNotif() {
     showVerificationNotif(true);
@@ -140,13 +143,15 @@ function CreatePassword() {
                 >
                   Password
                 </p>
-                <TextField
+                {/* <TextField
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{ width: "100%", backgroundColor: "white" }}
                   type="password"
                   placeholder="Create a password for your account"
-                />
+                /> */}
+              <InputField value={password} inputFieldType="password" inputType={type1} setInputType={setType1} onChange={e=>setPassword(e.target.value)} placeholder="Create a password for you account" />
+
               </div>
               <div style={{ width: "100%" }}>
                 <p
@@ -158,13 +163,15 @@ function CreatePassword() {
                 >
                   Confirm password
                 </p>
-                <TextField
+                {/* <TextField
                   value={password2}
                   onChange={(e) => setPassword2(e.target.value)}
                   style={{ width: "100%", backgroundColor: "white" }}
                   type="password"
                   placeholder="Re-enter password"
-                />
+                /> */}
+              <InputField value={password2} inputFieldType="password" inputType={type2} setInputType={setType2} onChange={e=>setPassword2(e.target.value)} placeholder="Re-enter password" />
+
               </div>
               <p style={{ fontSize: "13px", color: "red" }}>{msg}</p>
               <br/>

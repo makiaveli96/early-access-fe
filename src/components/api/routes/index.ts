@@ -16,7 +16,8 @@ enum Routes {
   DELETE_PASSWORD='/ea/delete-password',
   UPLOAD_PROFILE_IMAGE="/ea/update-profile-image",
   GET_REFERRALS = '/ea/get-referrals',
-  SEND_EMAIL ='/ea/send-email'
+  SEND_EMAIL ='/ea/send-email',
+  GET_TWEETS="/ea/get-latest-tweets"
 }
 
 export async function ConfirmAccount(email: string, accountType: string ){
@@ -85,9 +86,9 @@ export async function saveAcccountDetails(body: object) {
   return await request(Routes.SAVE_ACCOUNT_DETAIILS, { token, body }, 'POST')
 }
 
-export async function sendInvites(sender: string, invitees: Array<any>){
+export async function sendInvites(sender: string, invitees: Array<any>, isReferralSent: boolean, referreralID: string, senderName: string){
   const token = localStorage.getItem('_EA_TOKEN');
-  let body = { sender, invitees };
+  let body = { sender, invitees, isReferralSent, referreralID, senderName };
   return await request(Routes.SEND_INVITES, { token, body }, 'POST')
 }
 
@@ -111,4 +112,9 @@ export async function sendEmail(from: string, subject, message: string){
   const token = localStorage.getItem('_EA_TOKEN');
   const body = { from, subject,message }
   return await request(Routes.SEND_EMAIL, { token, body }, 'POST')
+}
+
+export async function getTweets(){
+  const token = localStorage.getItem('_EA_TOKEN');
+  return await request(Routes.GET_TWEETS, { token }, 'GET')
 }
