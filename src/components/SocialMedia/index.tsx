@@ -13,7 +13,7 @@ function SocialMedia({ style, margin, type }: { style?: any; margin?: string, ty
         <SocialIcon
           style={style}
           network="facebook"
-          url={type == 'referral'? `https://www.facebook.com/sharer.php?u=https://poketfi.money?ref=${userDetails?.referralID}` : "https://www.facebook.com/poketfi"}
+          url={type == 'referral'? `https://www.facebook.com/sharer.php?u=https://poketfi.money?ref%3D${userDetails?.referralID}` : "https://www.facebook.com/poketfi"}
         />
       </span>
       <span style={{ margin: margin || "5px" }}>
