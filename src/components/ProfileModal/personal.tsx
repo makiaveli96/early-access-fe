@@ -696,7 +696,7 @@ function Perosonal() {
           return Notifier("select at least 3 countries", "warning");
         }
         // setStep(step + 1);
-        SaveProfileStep({ supportedCountries, referralPoints: userDetails?.referralPoints + 6000, isProfileSet: true })
+        SaveProfileStep({ supportedCountries, referralPoints: userDetails?.referralPoints + 6000, lastStep: true, isProfileSet: true })
         showProfile(false)
         showUploadImage(true)
         break;

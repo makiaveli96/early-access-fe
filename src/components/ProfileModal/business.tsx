@@ -749,6 +749,7 @@ function Business() {
           userHasCryptoWallet: userHasCryptoWallet,
           intendedUsageOfPoket: poketUseCase,
           referralPoints: userDetails?.referralPoints + 6000,
+          lastStep: true,
           isProfileSet: true
         });
         showProfile(false)

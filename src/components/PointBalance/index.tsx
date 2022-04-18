@@ -4,10 +4,13 @@ import styled from "styled-components";
 import { AuthContext } from "../../contexts/authContextApi";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useNavigate } from "react-router-dom";
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowUp, MdKeyboardArrowDown, MdRefresh } from "react-icons/md";
 import Divider from "../../components/Divider";
 import { format, parseISO } from "date-fns";
+import { getUserActivity } from '../../components/api/routes'
 import { GeneralContext } from "../../contexts/generalContextApi";
+import { ErrorHandler } from "../../helpers/Errorhandler";
+import { BsArrowCounterclockwise } from 'react-icons/bs'
 
 function PointBalance() {
   const { auth, setAuth, userDetails, setUserDetails }: any =
@@ -21,6 +24,8 @@ function PointBalance() {
   }
 
   const [activity, setActivity] = useState("none");
+  const [activityData, setActivityData] = useState([]);
+  const [fetchingActivity, setFetchingActivity] = useState(false)
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [refs, setRefs] = useState([]);
@@ -57,6 +62,30 @@ function PointBalance() {
     });
     setRefs(_referrals);
   }, []);
+
+  async function GetUserActivity(){
+    try{
+      setFetchingActivity(true)
+      const res = await getUserActivity();
+      if(res.status == 200){
+        const _activity = res.activity
+        _activity.sort(function (a, b) {
+          return new Date(b.time).valueOf() - new Date(a.time).valueOf();
+        });
+        setActivityData(_activity)
+        setFetchingActivity(false)
+      }else{
+        setFetchingActivity(false)
+      }
+    }catch(err){
+      setFetchingActivity(false)
+      ErrorHandler(err, navigate, setAuth)
+    }
+  }
+
+  useEffect(()=>{
+    GetUserActivity();
+  },[])
 
   const toggleActivity = () => {
     if (activity == "none") {
@@ -127,30 +156,38 @@ function PointBalance() {
           pts
         </span>
       </div>
-      <p
-        onClick={() => toggleActivity()}
-        style={{
-          color: "#0099D6",
-          cursor: "pointer",
-          display: "flex",
-          userSelect: "none",
-          alignItems: "center",
-          margin: 0,
-          fontSize: '13.5px',
-          fontWeight: "bold",
-          marginTop: "15px",
-          marginBottom: "10px",
-        }}
-      >
-        See Activity
+      <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between'}}>
+        <p
+          onClick={() => toggleActivity()}
+          style={{
+            color: "#0099D6",
+            cursor: "pointer",
+            display: "flex",
+            userSelect: "none",
+            alignItems: "center",
+            margin: 0,
+            fontSize: '13.5px',
+            fontWeight: "bold",
+            marginTop: "15px",
+            marginBottom: "10px",
+          }}
+        >
+          See Activity
+          {activity == "none" ? (
+            <MdKeyboardArrowDown size={20} />
+          ) : (
+            <MdKeyboardArrowUp size={20} />
+          )}
+        </p>
         {activity == "none" ? (
-          <MdKeyboardArrowDown size={20} />
-        ) : (
-          <MdKeyboardArrowUp size={20} />
+          <span />
+        ):(
+          <MdRefresh size={22} title="refresh" color="#002C3D" className={fetchingActivity? styles.spin2 : ''} onClick={()=>GetUserActivity()} style={{cursor: 'pointer'}} />
         )}
-      </p>
+      </div>
+     
       <div style={{ display: activity }} className={styles.activity}>
-        {[...userDetails?.businessReferrals, ...userDetails?.referrals]
+        {activityData
           .length == 0 && (
           <div style={{ width: "100%", marginBottom: "10px" }}>
             <p
@@ -165,9 +202,8 @@ function PointBalance() {
             </p>
           </div>
         )}
-        {refs.map((referral, i) => (
-          <>
-            {referral.status == 'done'? (
+        {activityData.map((activity, i) => (
+          // <>
                   <div style={{ width: "100%" }} key={i}>
                   <Divider type="dashed" width="100%" />
                   <div className={styles.activity__item}>
@@ -180,9 +216,9 @@ function PointBalance() {
                           fontSize: "13px",
                         }}
                       >
-                        You referred {referral.receiverEmail}
+                        {activity.message}
                       </p>
-                      {referral?.time && (
+                      {activity?.time && (
                         <p
                           style={{
                             color: "#B3BCCE",
@@ -190,17 +226,15 @@ function PointBalance() {
                             fontSize: "12px",
                           }}
                         >
-                          {format(parseISO(referral?.time), "LLL, dd, yyyy")}
+                          {format(parseISO(activity?.time), "LLL, dd, yyyy")}
                         </p>
                       )}
                     </div>
                     <span className={styles.activity_points}>
-                      {referral.points}
+                      {activity.points}
                     </span>
                   </div>
                 </div>
-            ):null}
-          </>
           
         ))}
       </div>

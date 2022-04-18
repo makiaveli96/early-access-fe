@@ -41,7 +41,11 @@ interface ContextTypesI {
   emailVerified: boolean,
   showEmailVerified: any,
   whitelistSuccess: boolean, 
-  showWhitelistSuccess: any
+  showWhitelistSuccess: any,
+  createPass: boolean, 
+  showCreatePass: any,
+  resetPassword: boolean, 
+  showResetPassword: any
 }
 
 export const GeneralContext = createContext<ContextTypesI | undefined>(undefined);
@@ -63,6 +67,8 @@ function GeneralContextApi(props) {
   const [ phoneModal, showPhoneModal] = useState(false);
   const [emailVerified, showEmailVerified] = useState(false)
   const [ whitelistSuccess, showWhitelistSuccess ] = useState(false)
+  const [ createPass, showCreatePass ] = useState(false)
+  const [resetPassword, showResetPassword] = useState(false)
 
 
   async function GetReferrals(email: string, navigate: NavigateFunction, setAuth: any){
@@ -93,7 +99,9 @@ function GeneralContextApi(props) {
     verifyEmail, showVerifyEmail,
     phoneModal, showPhoneModal,
     emailVerified, showEmailVerified,
-    whitelistSuccess, showWhitelistSuccess
+    whitelistSuccess, showWhitelistSuccess,
+    createPass, showCreatePass,
+    resetPassword, showResetPassword
   };
 
   return (

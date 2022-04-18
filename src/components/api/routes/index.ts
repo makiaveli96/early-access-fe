@@ -17,7 +17,9 @@ enum Routes {
   UPLOAD_PROFILE_IMAGE="/ea/update-profile-image",
   GET_REFERRALS = '/ea/get-referrals',
   SEND_EMAIL ='/ea/send-email',
-  GET_TWEETS="/ea/get-latest-tweets"
+  GET_TWEETS="/ea/get-latest-tweets",
+  GET_USER_ACTIVITY='/ea/get-user-activity',
+  RESET_PASS='/ea/reset-password'
 }
 
 export async function ConfirmAccount(email: string, accountType: string ){
@@ -30,8 +32,8 @@ export async function ConfirmEmailToken(token: string, type: string){
   return await request(`${Routes.CONFIRM_EMAIL_TOKEN}?type=${type}`, { body }, 'POST');
 }
 
-export async function CreatePassword(email: string, type: string, password: string){
-  let body = { email, type, password };
+export async function CreatePassword(email: string, type: string, password: string, token: string){
+  let body = { email, type, password, token };
   return await request(Routes.CREATE_PASSWORD, { body }, 'PATCH');
 }
 
@@ -117,4 +119,14 @@ export async function sendEmail(from: string, subject, message: string){
 export async function getTweets(){
   const token = localStorage.getItem('_EA_TOKEN');
   return await request(Routes.GET_TWEETS, { token }, 'GET')
+}
+
+export async function getUserActivity(){
+  const token = localStorage.getItem('_EA_TOKEN');
+  return await request(Routes.GET_USER_ACTIVITY, { token }, 'GET')
+}
+
+export async function resetPassword(email: string){
+  const body = { email }
+  return await request(Routes.RESET_PASS, { body }, 'POST')
 }

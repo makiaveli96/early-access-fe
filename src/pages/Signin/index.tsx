@@ -17,6 +17,9 @@ import { Container } from "../../components/ProfileModal/AccountProfile/Personal
 import Divider from "../../components/Divider";
 import { FiEyeOff, FiEye } from 'react-icons/fi'
 import InputField from "../../components/InputField";
+import { GeneralContext } from "../../contexts/generalContextApi";
+import CreatePasswordModal from '../../components/CreatePass'
+import ResetPassword from "../../components/ResetPassword";
 
 export function Center({ children }){
   return(
@@ -36,6 +39,7 @@ function Signin() {
     const [step, setStep] = useState(0);
     const [loading, setLoading] = useState(false);
     const { auth, setAuth, setUserDetails }: any = useContext(AuthContext);
+    const { showCreatePass, showResetPassword }: any = useContext(GeneralContext)
     const [btnDisabled, setBtnDisabled] = useState(false)
     const [btnDisabled2, setBtnDisabled2] = useState(false);
     const [type1, setType1] = useState('password');
@@ -97,7 +101,7 @@ function Signin() {
         }
       } catch (err) {
         setLoading(false);
-        ErrorHandler(err, navigate, setAuth);
+        ErrorHandler(err, navigate, setAuth, showCreatePass);
       }
     };
   
@@ -227,11 +231,15 @@ function Signin() {
             <Divider width="85%" marginBottom="20px" marginTop='20px' />
           </Center>
           <Center>
+            <p onClick={()=>showResetPassword(true)} style={{fontSize: '15px', margin: 0, color: 'orange', cursor: 'pointer'}}>Forgot password?</p>
+            <br />
             <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="https://poket-landing.herokuapp.com/#earlyaccess" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p>
             {/* <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="http://localhost/poket-website/#form" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p> */}
           </Center>
         </div>
       </main>
+      <CreatePasswordModal />
+      <ResetPassword />
     </>
     
   )

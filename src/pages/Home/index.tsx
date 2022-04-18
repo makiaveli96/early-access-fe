@@ -21,7 +21,7 @@ import { useMediaQuery } from "react-responsive";
 import NewReferral from "../../components/NewReferral";
 import Whitelist from "../../components/Whitelist";
 import { AuthContext } from "../../contexts/authContextApi";
-import { hasLoggedIn, getTweets } from "../../components/api/routes";
+import { hasLoggedIn, getTweets, getUserActivity } from "../../components/api/routes";
 import { format, parseISO } from "date-fns";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import { formatCurrency } from "../../utils/formatCurrency";
@@ -181,9 +181,7 @@ function Home() {
         ErrorHandler(err, navigate, setAuth)
       }
     })()
-   
-
-  },[])
+  },[]);
 
   const toggleActivity = () => {
     if (activity == "none") {

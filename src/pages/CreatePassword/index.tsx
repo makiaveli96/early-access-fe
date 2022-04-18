@@ -77,7 +77,7 @@ function CreatePassword() {
     try{
       if (password == password2) {
         setLoading(true);
-        const res = await _CreatePassword(email, type, password);
+        const res = await _CreatePassword(email, type, password, searchParams.get("token"));
         if (res.status == 200) {
           setLoading(false);
           setAuth(true);
@@ -95,7 +95,6 @@ function CreatePassword() {
       setLoading(false);
       ErrorHandler(err, navigate, setAuth)
     }
-    
   };
 
   useEffect(() => {
@@ -151,7 +150,7 @@ function CreatePassword() {
                   placeholder="Create a password for your account"
                 /> */}
               <InputField value={password} inputFieldType="password" inputType={type1} setInputType={setType1} onChange={e=>setPassword(e.target.value)} placeholder="Create a password for you account" />
-
+              <p style={{fontSize: '11px'}}>password must have a minimum of 6 characters</p>
               </div>
               <div style={{ width: "100%" }}>
                 <p
