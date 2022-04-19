@@ -46,6 +46,7 @@ function NewReferral() {
     if (invitees.length > 0) {
       setBtnDisabled(false);
     } else {
+      setAddBtnDisabled(true)
       setBtnDisabled(true);
     }
   }, [invitees]);
@@ -166,18 +167,18 @@ function NewReferral() {
   },[invitees])
 
   useEffect(() => {
-    if (name.length > 3 && email.length > 5) {
-      if (name.length < 3 || email.length > 5 && !Validator.validateEmail(email)) {
+    if(!multiple){
+      if (name.length < 3 || !Validator.validateEmail(email)) {
         setAddBtnDisabled(true);
-        setMessage("enter a valid name or email address");
+        setBtnDisabled(true)
+        // setMessage("enter a valid name or email address");
       } else {
         setMessage("");
         setBtnDisabled(false)
         setAddBtnDisabled(false);
       }
-    } else {
-      setAddBtnDisabled(true);
-      // setBtnDisabled(true)
+    }else{
+      setBtnDisabled(false)
     }
   }, [name, email]);
 
