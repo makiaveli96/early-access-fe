@@ -213,7 +213,7 @@ function Home() {
                     <div>
                       <h1>{formatCurrency(userDetails?.referralPoints)} pts</h1>
                       <Button
-                        onClick={() => userDetails?.isEmailVerified? showNewReferral(true) : showVerifyEmail(true)}
+                        onClick={() => showNewReferral(true)}
                         width="auto"
                         height="36px"
                         text="New Referral"
@@ -264,7 +264,7 @@ function Home() {
                     offers and launch dates.
                   </p>
                   <div className={styles.link_buttons}>
-                    <a>
+                    <a title="Discord coming soon!" style={{opacity: '.5', cursor: 'not-allowed'}}>
                       <img src="/icons/discord.png" />
                       <p>Discord community</p>
                       <Icon icon="bi:arrow-right" />
@@ -292,7 +292,8 @@ function Home() {
                   <h3>Get in touch</h3>
                   <Divider type="dashed" />
                   <p>
-                    Send a message or set up a meeting to learn more about how you can <br />use Poket for you and for your business
+                  Set up a meeting with sales to learn more about how to use Poket for your business.
+                    {/* Send a message or set up a meeting to learn more about how you can <br />use Poket for you and for your business */}
                   </p>
                   <Divider type="dashed" />
                   <div className={styles.link_buttons}>
@@ -348,7 +349,6 @@ function Home() {
                     : userDetails?.fullname}
                 </p>
                 <PointBalance />
-                <br />
                 <br />
                 <h3
                   style={{

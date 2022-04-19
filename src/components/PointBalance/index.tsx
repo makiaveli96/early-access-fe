@@ -156,7 +156,7 @@ function PointBalance() {
           pts
         </span>
       </div>
-      <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between'}}>
+      <div style={{display: 'flex', width: '100%', alignItems: 'center', marginTop: '10px', justifyContent: 'space-between'}}>
         <p
           onClick={() => toggleActivity()}
           style={{
@@ -209,6 +209,7 @@ function PointBalance() {
                   <div className={styles.activity__item}>
                     <div>
                       <p
+                       title={activity.message}
                         style={{
                           color: "#231712",
                           margin: 0,
@@ -216,7 +217,7 @@ function PointBalance() {
                           fontSize: "13px",
                         }}
                       >
-                        {activity.message}
+                        {activity.message.length > 30? activity.message.substring(0,27)+'...':activity.message}
                       </p>
                       {activity?.time && (
                         <p

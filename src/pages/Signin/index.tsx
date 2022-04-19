@@ -186,7 +186,7 @@ function Signin() {
             </div>
           </div> */}
           <Container>
-            <p style={{color: '#57584E', fontSize: '14px'}}>Email Address</p>
+            <p style={{color: '#57584E', fontSize: '14px', marginBottom: '4px'}}>Email Address</p>
             {/* <TextField
               value={email}
               style={{ width: "100%", backgroundColor: "white" }}
@@ -200,7 +200,7 @@ function Signin() {
           </Container>
 
           <Container> 
-            <p style={{color: '#57584E', fontSize: '14px'}}>Password</p>
+            <p style={{color: '#57584E', fontSize: '14px', marginBottom: '4px'}}>Password</p>
             <InputField value={password} inputFieldType="password" inputType={type1} setInputType={setType1} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password" />
             {/* <input className={styles.textfield} placeholder="Enter your password" value={password} type={type1} onChange={e=>setPassword(e.target.value)} /> */}
 
@@ -218,7 +218,7 @@ function Signin() {
             <Button
               onClick={()=>signin()}
               width="100%"
-              height="60px"
+              height="48px"
               disabled={btnDisabled2? true : loading}
               loading={loading}
               bgColor="#00AFF5"

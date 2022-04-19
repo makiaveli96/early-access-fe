@@ -178,7 +178,7 @@ function CreatePassword() {
                 disabled={btnDisabled ? true : loading}
                 onClick={() => createPassword()}
                 width="100%"
-                height="60px"
+                height="48px"
                 loading={loading}
                 bgColor="#00AFF5"
                 textColor="white"

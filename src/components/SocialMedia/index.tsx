@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { SocialIcon } from "react-social-icons";
 import { AuthContext } from '../../contexts/authContextApi'
 
-function SocialMedia({ style, margin, type }: { style?: any; margin?: string, type?: string }) {
+function SocialMedia({ style, margin, type, refMessage }: { style?: any; margin?: string, type?: string, refMessage?: string }) {
 
   const { userDetails } = useContext(AuthContext)
-  const refMessage = `Hello. I just joined Poket Early Access. With Poket, you can send and receive money around the world, across currencies, and at the best rates. Check it out: poketfi.money?ref=${userDetails?.referralID}`
+  // const refMessage = `I just joined Poket Early Access. With Poket, you can send and receive money around the world in cash and crypto at the best rates. Check it out: poketfi.money/ref=${userDetails?.referralID}`
+  // const refMessage = `Hello. I just joined Poket Early Access. With Poket, you can send and receive money around the world, across currencies, and at the best rates. Check it out: poketfi.money?ref=${userDetails?.referralID}`
   // const refMessage = `Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}`
 
   return (

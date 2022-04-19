@@ -8,7 +8,9 @@ import SocialMedia from '../SocialMedia';
 export default function Links(){
     
     const { userDetails } = useContext(AuthContext) 
-    const refMessage = `Hi, have you tried Poket Early Access? With Poket, you can send or receive money anywhere, across currencies and at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}` 
+    const refMessage = `I just joined Poket Early Access. With Poket, you can send and receive money around the world in cash and crypto at the best rates. Check it out: poketfi.money/ref=${userDetails?.referralID}`
+
+    // const refMessage = `Hi, have you tried Poket Early Access? With Poket, you can send or receive money anywhere, across currencies and at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}` 
     // const refMessage = `Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out poketfi.money/ref=${userDetails.referralID}`
     
     return(
@@ -23,7 +25,7 @@ export default function Links(){
                 <img src="/icons/copy.png" alt="copy" />
             </button>
             <div className={styles.social}>
-                <SocialMedia style={{ height: '36px', width: '36px' }} type="referral" />
+                <SocialMedia style={{ height: '36px', width: '36px' }} type="referral" refMessage={refMessage} />
                 {/* <a href="https://mobile.facebook.com/gradientfi" target="_blank">
                     <img src="/facebook_lg.png" alt="facebook" style={{height: '36px', width: '36px'}} />
                 </a>

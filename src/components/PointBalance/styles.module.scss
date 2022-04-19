@@ -37,15 +37,15 @@
     align-items: flex-start;
     justify-content: center;
     .activity{
-        width: 95%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
       }
       .activity__item{
-        height: 80px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        height: 50px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 100%;
         display: flex;
         flex-direction: row;
