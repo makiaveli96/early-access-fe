@@ -55,6 +55,9 @@ function NewReferral() {
   const addInvitee = () => {
     setMultiple(true)
     if (name && email) {
+      if(email == userDetails?.email){
+        return Notifier('Enter a different email address', "error");
+      }
       setInvitees((prev: any) => {
         var checkEmail = prev.find(
           (invite: any) => invite.email == email.trim()
@@ -123,10 +126,13 @@ function NewReferral() {
       }
     }else{
       if(!name || !email){
-        Notifier('Both fields are required', "error");
         setLoading(false)
         setBtnDisabled(true)
         return 
+      }
+      if(email == userDetails?.email){
+        setLoading(false);
+        return Notifier('Enter a different email address', "error");
       }
       try {
         const res = await sendInvites(userDetails.email, [{ name, email }], userDetails?.isReferralSent, userDetails?.referralID, userDetails?.fullname);
