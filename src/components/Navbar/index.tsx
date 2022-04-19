@@ -9,6 +9,8 @@ import { RiBitCoinFill, RiArrowRightSLine } from 'react-icons/ri';
 import { GeneralContext } from "../../contexts/generalContextApi";
 import { AuthContext } from '../../contexts/authContextApi';
 import { CgShoppingBag } from 'react-icons/cg'
+import { deletePassToken } from '../../components/api/routes';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
 function Navbar() {
@@ -25,6 +27,7 @@ function Navbar() {
     showPresale,
     showVerifyEmail
   }: any = useContext(GeneralContext);
+  const navigate = useNavigate();
   const { auth, setAuth, userDetails, setUserDetails }: any = useContext(AuthContext);
 
   function navClick(func: any){
@@ -35,6 +38,17 @@ function Navbar() {
     }
     showDrawer(-100); 
     showOverlay('none')
+  }
+
+  
+  const logOut=async()=>{
+    const res = await deletePassToken();
+    if(res.status == 200){
+      localStorage.removeItem('_EA_TOKEN');
+      setAuth(false);
+      setUserDetails(null)
+      navigate('/')
+    }
   }
 
   return (
@@ -137,6 +151,9 @@ function Navbar() {
               <span style={{border: '1px solid #09A4DA', padding: '3px', fontSize: '10px', color: '#09A4DA', borderRadius: '10px'}}>
                   BETA
               </span>
+            </li>
+            <li onClick={()=>logOut()}>
+              <p>Sign out</p>
             </li>
           </div>
         </div>

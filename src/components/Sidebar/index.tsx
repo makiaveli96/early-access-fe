@@ -115,7 +115,7 @@ function Sidebar() {
             </span>
           </li>
         </div>
-      </div>
+      </div> 
 
       <div className={styles.footer}>
         <li>
