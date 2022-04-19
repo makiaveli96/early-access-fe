@@ -45,7 +45,7 @@ function Referrals() {
             return { bgColor: '#FFFBEB', color: '#F59E0B' }
         case 'rejected':
             return { bgColor: '#FEF2F2', color: '#DC2626' };
-        case 'paid':
+        case 'done':
             return { bgColor: '#F0FDF4', color: '#16A34A' } 
     }
   }
@@ -71,7 +71,7 @@ function Referrals() {
       headerName: "Status",
       sortable: false,
       width: 160,
-      renderCell: (params) => <span style={{ color: getStatusColor(params.row.status)?.color }}>{params.row.status}</span>,
+      renderCell: (params) => <span style={{ color: getStatusColor(params.row.status)?.color }}>{params.row.status == 'done'? params.row.points : params.row.status}</span>,
     },
   ];
 
