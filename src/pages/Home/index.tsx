@@ -264,13 +264,13 @@ function Home() {
                     offers and launch dates.
                   </p>
                   <div className={styles.link_buttons}>
-                    <a title="Discord coming soon!" style={{opacity: '.5', cursor: 'not-allowed'}}>
+                    <a title="Coming soon!" style={{opacity: '.5', cursor: 'not-allowed'}}>
                       <img src="/icons/discord.png" />
                       <p>Discord community</p>
                       <Icon icon="bi:arrow-right" />
                     </a>
                     <br />
-                    <a>
+                    <a href="https://t.me/+IFasc1goy_1mMjE8" style={{textDecoration: "none"}}>
                       <Icon icon="logos:telegram" width="24px" height="24px" />
                       <p>Telegram community</p>
                       <Icon icon="bi:arrow-right" />
