@@ -20,6 +20,7 @@ import InputField from "../../components/InputField";
 import { GeneralContext } from "../../contexts/generalContextApi";
 import CreatePasswordModal from '../../components/CreatePass'
 import ResetPassword from "../../components/ResetPassword";
+import { landingPageDomain } from "../../utils/urls";
 
 export function Center({ children }){
   return(
@@ -233,7 +234,7 @@ function Signin() {
           <Center>
             <p onClick={()=>showResetPassword(true)} style={{fontSize: '15px', margin: 0, color: 'orange', cursor: 'pointer'}}>Forgot password?</p>
             <br />
-            <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="https://poket-landing.herokuapp.com/#earlyaccess" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p>
+            <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href={`${landingPageDomain}/#earlyaccess`} style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p>
             {/* <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="http://localhost/poket-website/#form" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p> */}
           </Center>
         </div>

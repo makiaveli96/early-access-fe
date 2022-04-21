@@ -557,11 +557,8 @@ function Business() {
           { name: 'Canadian Dollar' },
           { name: 'European Euro' },
           { name: 'Rwandan Franc' },
-          { name: 'Bitcoin' },
-          { name: "Ethereum" },
-          { name: "Ethereum Classic" },
         ]} 
-        allItems={[...Currencies, ...Cryptocurrencies]}
+        allItems={Currencies}
         selected={supportedCurrencies}
         setSelected={setSupportedCurrencies}
         placeholder="Add currency"

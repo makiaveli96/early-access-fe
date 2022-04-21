@@ -1,0 +1,1 @@
+export const landingPageDomain = 'https://poketfi.money'
