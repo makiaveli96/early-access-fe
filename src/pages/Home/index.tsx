@@ -270,7 +270,7 @@ function Home() {
                       <Icon icon="bi:arrow-right" />
                     </a>
                     <br />
-                    <a href="https://t.me/+IFasc1goy_1mMjE8" style={{textDecoration: "none"}}>
+                    <a href="https://t.me/+IFasc1goy_1mMjE8" target="_blank" style={{textDecoration: "none"}}>
                       <Icon icon="logos:telegram" width="24px" height="24px" />
                       <p>Telegram community</p>
                       <Icon icon="bi:arrow-right" />
