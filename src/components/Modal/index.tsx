@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Fade, Modal as ReactModal } from '@mui/material';
+import { Modal as ReactModal } from '@mui/material';
 import styles from './styles.module.css'
 
 interface PropsI {
@@ -37,9 +37,7 @@ function Modal({ modal, showModal, children, backdropClose, runOnClose }: PropsI
           timeout: 500,
       }}
     >
-      {/* <Fade in={modal}> */}
       {children}
-      {/* </Fade> */}
     </ReactModal>
   )
 }

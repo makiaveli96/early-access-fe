@@ -1,7 +1,7 @@
 .container {
   background-color: white;
-  width: 100%;
   position: fixed;
+  width: 100%;
   left: 0;
   top: 0;
   -webkit-box-shadow: 0px 1px 10px -3px rgba(0, 0, 0, 0.1);
@@ -10,8 +10,11 @@
 
 .main {
   margin: auto;
+  width: auto;
   max-width: 1300px;
   height: 83px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -25,17 +28,6 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  /* Media Query for Tablets Ipads portrait mode */
-  /* Media Query for Laptops and Desktops */
-  /* Media Query for Large screens */
-}
-
-@media (min-width: 0px) and (max-width: 767px) {
-  .main {
-    width: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
 }
 
 .nav__items {
