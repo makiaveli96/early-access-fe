@@ -4,14 +4,30 @@ import styles from './styles.module.css';
 import Modal from '../Modal'
 import Button from '../Button';
 import { Notifier } from '../Notifier';
+import { resendEmail } from '../../components/api/routes'
+import { AuthContext } from '../../contexts/authContextApi';
+import { ErrorHandler } from '../../helpers/Errorhandler';
+import { useNavigate } from 'react-router-dom';
 
 function Verifyemail() {
   
-  const { verifyEmail, showVerifyEmail } = useContext(GeneralContext)
+  const navigate = useNavigate();
+  const { verifyEmail, showVerifyEmail } = useContext(GeneralContext);
+  const { userDetails, setAuth }: any = useContext(AuthContext)
   
-  const resendVerificationLink=()=>{
-    Notifier('Verification link sent!', 'success');
-    showVerifyEmail(false)
+  const resendVerificationLink=async()=>{
+    try{
+      const res = await resendEmail(userDetails?.fullname, userDetails?.referralID, userDetails?.email, userDetails?.account)
+      if(res.status == 200){
+        Notifier('Verification link sent!', 'success');
+        showVerifyEmail(false)
+      }else{
+        Notifier('Something went wrong, please try again', 'error');
+      }
+    }catch(err){
+      ErrorHandler(err, navigate, setAuth)
+    }
+    
   }
 
 

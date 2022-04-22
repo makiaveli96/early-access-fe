@@ -19,7 +19,8 @@ enum Routes {
   SEND_EMAIL ='/ea/send-email',
   GET_TWEETS="/ea/get-latest-tweets",
   GET_USER_ACTIVITY='/ea/get-user-activity',
-  RESET_PASS='/ea/reset-password'
+  RESET_PASS='/ea/reset-password',
+  RESEND_EMAIL = '/ea/resend-email'
 }
 
 export async function ConfirmAccount(email: string, accountType: string ){
@@ -129,4 +130,10 @@ export async function getUserActivity(){
 export async function resetPassword(email: string){
   const body = { email }
   return await request(Routes.RESET_PASS, { body }, 'POST')
+}
+
+export async function resendEmail(name: string, referralID: string, email: string, accountType: string){
+  const token = localStorage.getItem('_EA_TOKEN');
+  const body = { name, referralID, email, accountType }
+  return await request(Routes.RESEND_EMAIL, { body, token }, 'POST')
 }
