@@ -15,9 +15,6 @@
   @include respond(mobile){
     width: 90%;
   }
-   @include respond(mobile){
-    width: 90%;
-  }
   .main::-webkit-scrollbar {
     display: none;
   }

@@ -43,19 +43,19 @@ const textBool = [
 ];
 
 const employeeRange = [
-  {label: 'less than 10'},
+  {label: 'Less than 10'},
   {label: '10 - 20 Employees'},
   {label: '20 - 50 Employees'},
   {label: '50 - 100 Employees'},
   {label: '100 - 500 Employees'},
-  {label: '500+ Employees'},
+  {label: '500+ Employees'}
 ]
 
 const numberRange = [
   {label: '1-5'},
   {label: '5 - 10'},
   {label: '10 - 50'},
-  {label: '50+'},
+  {label: '50+'}
 ]
 
 const amountRange = [
@@ -66,7 +66,7 @@ const amountRange = [
   {label: '$50,000 - $100,000'},
   {label: '$100,000 - $500,000'},
   {label: '$500,000 - $1,000,000'},
-  {label: '$1,000,000+'},
+  {label: '$1,000,000+'}
 ]
 
 function Business() {
@@ -822,8 +822,7 @@ function Business() {
 
 
   return (
-    <>
-      <main className={styles.container}>
+      <>
         <div style={{width: '80%'}}>
           <p style={{fontSize: '14px', fontWeight: 'bold', color: '#16A34A'}}>+1000 points</p>
         </div>
@@ -850,8 +849,7 @@ function Business() {
             <Button loading={saving} disabled={saving} onClick={()=>Next()} text="Next" width= '48%' textSize="14px" height="58px" bgColor='#0099D6' />
           </div>
         </div>
-      </main>
-    </>
+      </>
   );
 }
 

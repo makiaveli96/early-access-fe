@@ -89,7 +89,7 @@ const sendLink=async()=>{
           <div className={styles.main}>
             <img src="/verify_email_img.gif" width="60%" />
             <p style={{textAlign: 'center', lineHeight: '24px', fontSize: '16px'}}> <b>Reset link sent!</b><br/>
-              A reset link has been sent to your email address
+              A link has been sent to your email address
             </p>
           <Button onClick={()=>showResetPassword(false)} bgColor='#0099D6' width="100%" text='Continue' height='58px' />
           </div>

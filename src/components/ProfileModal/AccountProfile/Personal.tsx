@@ -103,7 +103,8 @@ function PersonalProfile() {
   }
 
   return (
-    <main className={styles.account_profile}>
+    <>
+    {/* <main className={styles.account_profile}> */}
       <div className={styles.body}>
         <div className={styles.col}>
           <span onClick={()=>{showProfile(false); showUploadImage(true);}} style={{ cursor: 'pointer' }}>
@@ -303,7 +304,7 @@ function PersonalProfile() {
         <Button onClick={()=>showProfile(false)} textColor="#57584E" bgColor='transparent' height="48px" width="160px" style={{border: '1px solid grey'}} text="Close" />
         <Button onClick={()=>SaveInfo()} loading={saving} disabled={btnDisabled? true : saving} bgColor='#0099D6' height="48px" width="160px"  text="Save" />
       </div>
-    </main>
+    </>
   )
 }
 

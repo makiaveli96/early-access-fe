@@ -23,15 +23,6 @@
   /* Media Query for Tablets Ipads portrait mode */
   /* Media Query for Laptops and Desktops */
   /* Media Query for Large screens */
-  /* Media Query for Tablets Ipads portrait mode */
-  /* Media Query for Laptops and Desktops */
-  /* Media Query for Large screens */
-}
-
-@media (min-width: 0px) and (max-width: 767px) {
-  .container {
-    width: 90%;
-  }
 }
 
 @media (min-width: 0px) and (max-width: 767px) {

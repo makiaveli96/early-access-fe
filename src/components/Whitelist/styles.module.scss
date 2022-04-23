@@ -44,6 +44,9 @@
       font-size: 15px;
     }
   }
+  @include respond(mobile){
+    width: 90%;
+  }  
   @include respond(small_screens){
     width: 90%;
   }  

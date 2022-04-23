@@ -234,7 +234,7 @@ function Signin() {
           <Center>
             <p onClick={()=>showResetPassword(true)} style={{fontSize: '15px', margin: 0, color: 'orange', cursor: 'pointer'}}>Forgot password?</p>
             <br />
-            <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href={`${landingPageDomain}/#earlyaccess`} style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p>
+            <p style={{fontSize: '15px', margin: 0, textAlign: 'center'}}>Haven’t joined Poket Early Access? <a href={`${landingPageDomain}/#earlyaccess`} style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p>
             {/* <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="http://localhost/poket-website/#form" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p> */}
           </Center>
         </div>

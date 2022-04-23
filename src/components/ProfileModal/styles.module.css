@@ -30,7 +30,7 @@
 
 @media (min-width: 0px) and (max-width: 767px) {
   .container {
-    width: 90%;
+    width: 190%;
   }
 }
 
@@ -64,7 +64,7 @@
   font-size: 15px;
 }
 
-@media only screen and (max-width: 766px) {
+@media (min-width: 0px) and (max-width: 767px) {
   .container {
     width: 90%;
   }
@@ -140,12 +140,11 @@
 }
 
 .account_profile .body {
-  height: 90%;
   width: 90%;
-  overflow-y: scroll;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow-y: scroll;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;

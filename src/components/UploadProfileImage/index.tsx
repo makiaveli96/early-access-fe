@@ -74,7 +74,7 @@ function UploadImage({ modal, showModal }) {
     <Modal modal={modal} showModal={showModal} backdropClose>
       <main className={styles.container}>
         <div className={styles.header}>
-          <span>Update profile photo</span>
+          <span style={{fontWeight: 'bold'}}>Update profile photo</span>
           <span onClick={()=>showUploadImage(false)} style={{cursor: 'pointer'}}>
             <Icon icon="clarity:times-line" height={25} width={25} />
           </span>
@@ -83,7 +83,7 @@ function UploadImage({ modal, showModal }) {
           {userDetails?.profilePhoto && (
             <img src={userDetails?.profilePhoto} style={{width: "80px", height: "80px", borderRadius: '50%'}} />
           )}
-          <p>Upload an image from your computer to set it as your profile photo. </p>
+          {/* <p>Upload from computer. </p> */}
           {profilePhoto? (
             <div className={styles.image_container}>
               <div className={styles.col1}>
@@ -96,7 +96,11 @@ function UploadImage({ modal, showModal }) {
               </span>
             </div>
           ):(
+            <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <img src="/icons/upload-icon.png" style={{marginBottom: '20px'}} />
             <label htmlFor="photo" className={styles.uploadBtn}> + Click to add photo</label>
+            </div>
+
           )}
           <input
             style={{display: 'none'}}

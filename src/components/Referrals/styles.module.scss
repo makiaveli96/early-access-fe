@@ -1,8 +1,8 @@
 @import "../../scss/abstracts/mixins";
 
 .container{
-  width: 50%;
-  height: 65%;
+  width: 650px;
+  max-height: 70%;
   background-color: white;
   border-radius: 20px;
   display: flex;
@@ -13,7 +13,7 @@
   outline: none;
   user-select: none;
   @include respond(mobile){
-    width: 90%;
+    width: 90vw
   }
   .header{
     width: 95%;
@@ -27,7 +27,7 @@
   }
   .main{
     width: 95%;
-    height: 80%;
+    height: 300px;
   }
   .footer{
     margin-top: 20px;

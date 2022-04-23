@@ -765,8 +765,8 @@ function Perosonal() {
   };
 
   return (
-    <>
-      <main className={styles.container}>
+      <>
+      {/* <main className={styles.container}> */}
         <div style={{width: '80%'}}>
           <p style={{fontSize: '14px', fontWeight: 'bold', color: '#16A34A'}}>+1000 points</p>
         </div>
@@ -859,8 +859,7 @@ function Perosonal() {
             </div>
           )} */}
         </div>
-      </main>
-    </>
+      </>
   );
 }
 

@@ -20,7 +20,7 @@ import Validator from "../../utils/validator";
 import { BsPenFill } from 'react-icons/bs'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { Icon } from "@iconify/react";
-
+import { motion } from "framer-motion"
 
 function NewReferral() {
   const { newReferral, showNewReferral, GetReferrals } = useContext(GeneralContext);
@@ -186,7 +186,7 @@ function NewReferral() {
     <>
       
       <Modal modal={newReferral} showModal={showNewReferral} backdropClose>
-        <>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         {
           step == 0 && (
           <main className={styles.container}>
@@ -361,7 +361,7 @@ function NewReferral() {
             </div>
           </main>
         )}
-        </>
+        </div>
       </Modal>
     </>
   );

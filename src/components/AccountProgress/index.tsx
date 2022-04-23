@@ -210,14 +210,14 @@ function AccountProgress() {
       </div>
       <main className={styles.container}>
         {_progress.map((item, i) => (
-          // <div ref={ref}>
-          <Stages
-            index={i}
-            check={getConditionWithIndex(i)}
-            text={item.value}
-            action={() => item.action(true)}
-          />
-          // </div>
+          <div key={i}>
+            <Stages
+              index={i}
+              check={getConditionWithIndex(i)}
+              text={item.value}
+              action={() => item.action(true)}
+            />
+          </div>
         ))}
       </main>
     </div>

@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import Personal from './personal';
 import Business from './business';
 import AccountProfile from './AccountProfile'
+import styles from './styles.module.css'
 import { GeneralContext } from "../../contexts/generalContextApi";
 
 function ProfileModal({ modal, showModal }) {
@@ -17,15 +18,17 @@ function ProfileModal({ modal, showModal }) {
     
     <Modal modal={modal} showModal={showModal}>
       {!userDetails.isProfileSet? (
-        <>
+        <div className={styles.container}>
           {userDetails.account == 'personal'? (
             <Personal />
           ):(
             <Business />
           )}
-        </>
+        </div>
       ):(
-        <AccountProfile />
+        <div className={styles.account_profile}>
+          <AccountProfile />
+        </div>
       )}
       
     </Modal>

@@ -366,7 +366,7 @@ function Home() {
 
                   <div className={styles.header}>
                     <div style={{display: 'flex', alignItems: 'flex-start'}}>
-                      <img src="/icons/poket-logo.png" style={{width: '30px', height: '30px'}} />
+                      <img src="/icons/poket-icon.png" style={{width: '25px', height: '25px'}} />
                       <div>
                         <p style={{fontSize: '15px'}}>@poket.finance</p>
                         {/* <p style={{ fontSize: "12px", color: "#9CA0AC" }}>
