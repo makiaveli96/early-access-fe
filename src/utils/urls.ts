@@ -1,1 +1,1 @@
-export const landingPageDomain = 'https://poketfi.money'
+export const landingPageDomain = 'https://www.poket.finance'
