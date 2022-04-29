@@ -13,7 +13,7 @@ import { sendVerificationCode, verifyCode, saveAcccountDetails } from '../../com
 import { Notifier } from '../Notifier';
 import { ErrorHandler } from '../../helpers/Errorhandler';
 import { useNavigate } from 'react-router-dom'
-
+import { track } from '../../utils/EventTracker';
 
 export function ModalHeader({ text, closeModal }:{text: string, closeModal: ()=>void}){
   return(
@@ -31,7 +31,7 @@ function Verifynubmer() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const { phoneModal, showPhoneModal } = useContext(GeneralContext);
-  const { setAuth, setUserDetails } = useContext(AuthContext)
+  const { setAuth, userDetails, setUserDetails } = useContext(AuthContext)
   const [verified, setVerified] = useState(false)
   const [step, setStep] = useState(0)
   const [ phone, setPhone ] = useState('');
@@ -56,15 +56,18 @@ function Verifynubmer() {
   const sendCode=()=>{
     if(phone.length > 5){
         setLoading(true);
+        track('send phone verification code', { userId: userDetails?._id, email: userDetails?.email, phoneNumber: phone }, true);
         (async()=>{
           const res = await sendVerificationCode(phone)
           if(res.status == 200){
+              track('phone verification code sent', { userId: userDetails?._id, email: userDetails?.email, phoneNumber: phone }, true);
               setLoading(false);
               Notifier(res.message, 'success')
               setStep(1)
           }else{
               setLoading(false);
               Notifier(res.message, 'error')
+              track('phone verification code error', { userId: userDetails?._id, email: userDetails?.email, phoneNumber: phone, error: res.message }, true);
           }
         })()
     }else{
@@ -82,15 +85,18 @@ const verifyPhoneCode=async()=>{
         setLoading(false)
         setVerified(true)
         setUserDetails(res.user);
-        Notifier(res.message, 'success')
+        Notifier(res.message, 'success');
+        track('phone number verified', { userId: userDetails?._id, email: userDetails?.email });
     }else{
       setOtpCode('')
       setLoading(false)
       Notifier(res.message, 'error')
+      track('phone number verification failed', { userId: userDetails?._id, email: userDetails?.email, error: res.message });
     }
   }catch(err){
     setOtpCode('')
     setLoading(false)
+    track('phone number verification failed', { userId: userDetails?._id, email: userDetails?.email, error: 'Something went wrong' });
     ErrorHandler(err, navigate, setAuth)
   }
  

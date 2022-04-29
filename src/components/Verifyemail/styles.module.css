@@ -23,7 +23,7 @@
   /* Media Query for Large screens */
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .container {
     width: 90%;
     height: auto;

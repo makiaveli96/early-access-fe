@@ -21,7 +21,7 @@
   display: none;
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .navbar {
     border-bottom: 0px;
   }
@@ -42,7 +42,7 @@
   /* Media Query for Large screens */
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .navbar .link {
     display: none;
   }
@@ -55,7 +55,7 @@
   /* Media Query for Large screens */
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .navbar .profile_icon {
     display: block;
   }
@@ -101,13 +101,13 @@
   /* Media Query for Large screens */
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .toggler {
     display: block;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 760px) and (max-width: 1024px) {
   .toggler {
     display: block;
   }
@@ -150,7 +150,7 @@
   overflow-x: hidden;
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .drawer {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -158,7 +158,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 760px) and (max-width: 1024px) {
   .drawer {
     width: 25%;
     display: -webkit-box;
@@ -190,7 +190,7 @@
   /* Media Query for Large screens */
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .backmodal {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -198,7 +198,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 760px) and (max-width: 1024px) {
   .backmodal {
     display: -webkit-box;
     display: -ms-flexbox;

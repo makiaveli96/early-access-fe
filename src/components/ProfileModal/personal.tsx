@@ -32,6 +32,7 @@ import { useNavigate } from "react-router-dom";
 import ModalProgress from "../ModalProgress";
 import OtpInput from "../../components/OtpInput";
 import ChipSelectorInput from "../ChipSelectorInput";
+import { track } from "../../utils/EventTracker";
 
 function Perosonal() {
   const navigate = useNavigate();
@@ -699,6 +700,7 @@ function Perosonal() {
         SaveProfileStep({ supportedCountries, referralPoints: userDetails?.referralPoints + 6000, lastStep: true, isProfileSet: true })
         showProfile(false)
         showUploadImage(true)
+        track('complete profile setup', { userId: userDetails?._id, accountType: userDetails?.account, email: userDetails?.email })
         break;
     }
   };
@@ -726,6 +728,11 @@ function Perosonal() {
       ErrorHandler(err, navigate, setAuth);
     }
   };
+
+  const closeModal=()=>{
+    showProfile(false);
+    track('closed profile setup', { userId: userDetails?._id, accountType: userDetails?.account, email: userDetails?.email }, true)
+  }
 
   const SaveInfo = async () => {
     let data = {
@@ -797,7 +804,7 @@ function Perosonal() {
               }}
             >
               <Button
-                onClick={() => showProfile(false)}
+                onClick={() => closeModal()}
                 text="Close"
                 width="48%"
                 textSize="14px"

@@ -21,6 +21,7 @@
 .main {
   width: auto;
   border-radius: 4px;
+  background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -62,8 +63,8 @@
 
 .main .input {
   outline: none;
-  background-color: transparent;
-  height: 36px;
+  background-color: white;
+  height: 45px;
   font-size: 14px;
   text-indent: 10px;
   border: 0px;

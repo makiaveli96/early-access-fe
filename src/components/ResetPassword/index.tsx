@@ -15,6 +15,7 @@ import { ErrorHandler } from '../../helpers/Errorhandler';
 import { useNavigate } from 'react-router-dom'
 import { TextField } from '@mui/material';
 import Validator from '../../utils/validator';
+import { track } from '../../utils/EventTracker'
 
 
 export function ModalHeader({ text, closeModal }:{text: string, closeModal: ()=>void}){
@@ -52,17 +53,21 @@ function ResetPassword() {
 const sendLink=async()=>{
   try{
     setLoading(true)
+    track('request reset password', { email })
     const res = await resetPasswordAPI(email)
     if(res.status == 200){
+        track('reset password link sent', { email })
         setLoading(false)
         setStep(1)
         showResetPassword(true)
         Notifier(res.message, 'success')
     }else{
+      track('reset password failed', { email })
       setLoading(false)
       Notifier(res.message, 'error')
     }
   }catch(err){
+    track('reset password failed', { email })
     setLoading(false)
     ErrorHandler(err, navigate, setAuth)
   }

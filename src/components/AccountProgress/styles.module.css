@@ -18,7 +18,7 @@
   /* Media Query for Large screens */
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .parent_container {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -49,7 +49,7 @@
   /* Media Query for Large screens */
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .container::-webkit-scrollbar {
     display: none;
   }
@@ -174,7 +174,7 @@
   /* Media Query for Large screens */
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .container .indicator_container .indicator_line {
     width: 170px;
   }
@@ -189,7 +189,7 @@
   /* Media Query for Large screens */
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .container .indicator_container .indicator_line__done {
     width: 170px;
   }

@@ -203,6 +203,7 @@ import ModalProgress from "../ModalProgress";
 import OtpInput from "../../components/OtpInput";
 import ChipSelectorInput from "../ChipSelectorInput";
 import { Container } from "../ProfileModal/AccountProfile/Personal";
+import { track } from "../../utils/EventTracker";
 
 
 const ageRanges = [
@@ -1052,9 +1053,10 @@ function Perosonal() {
   const applyForWhitelist=async()=>{
     try{
       setSaving(true)
-      
+      track("applied for whitelisting", { userId: userDetails?._id, email: userDetails?.email, accountType: userDetails?.account })
       const res = await WhitelistAccount(tokenAmount, paymentMethod, purchaseType);
       if(res.status == 200){
+        track("successful whitelist application", { userId: userDetails?._id, email: userDetails?.email, accountType: userDetails?.account })
         SaveProfileStep({
           referralPoints: userDetails?.referralPoints + 20000, 
         });
@@ -1064,10 +1066,12 @@ function Perosonal() {
         setUserDetails(res.user);
         Notifier('Thanks for applying for our whitelisting!', 'success')
       }else{
+        track("failed whitelist application", { userId: userDetails?._id, email: userDetails?.email, accountType: userDetails?.account }, true)
         setSaving(false)
         Notifier(res.message || 'Something went wrong, please try again.', 'error')
       }
     }catch(err){
+      track("failed whitelist application", { userId: userDetails?._id, email: userDetails?.email, accountType: userDetails?.account }, true)
       setSaving(false)
       ErrorHandler(err, navigate, setAuth)
     }

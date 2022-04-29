@@ -58,13 +58,13 @@
   font-size: 15px;
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .container {
     width: 90%;
   }
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .container {
     width: 90%;
   }
@@ -109,7 +109,7 @@
   /* Media Query for Large screens */
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .account_profile {
     width: 90%;
     -webkit-box-orient: vertical;
@@ -119,7 +119,7 @@
   }
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .account_profile {
     width: 90%;
     -webkit-box-orient: vertical;
@@ -155,7 +155,7 @@
   /* Media Query for Large screens */
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .account_profile .body {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -164,7 +164,7 @@
   }
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .account_profile .body {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -193,7 +193,7 @@
   /* Media Query for Large screens */
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 760px) {
   .account_profile .body .col {
     width: 100%;
   }
@@ -215,7 +215,7 @@
   /* Media Query for Large screens */
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
+@media (min-width: 0px) and (max-width: 760px) {
   .account_profile .footer {
     width: 90%;
   }

@@ -23,6 +23,7 @@
 .main {
   width: auto;
   border-radius: 4px;
+  background-color: white;
   display: flex;
   align-items: center;
   padding-right: 10px;
@@ -37,9 +38,9 @@
   }
   .input{
     outline: none;
-    background-color: transparent;
+    background-color: white;
     // height: 90%;
-    height: 36px;
+    height: 45px;
 
     // width: 90%;
     font-size: 14px;

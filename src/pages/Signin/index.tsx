@@ -21,6 +21,7 @@ import { GeneralContext } from "../../contexts/generalContextApi";
 import CreatePasswordModal from '../../components/CreatePass'
 import ResetPassword from "../../components/ResetPassword";
 import { landingPageDomain } from "../../utils/urls";
+import { track } from "../../utils/EventTracker";
 
 export function Center({ children }){
   return(
@@ -88,12 +89,14 @@ function Signin() {
       try {
         const res = await SignIn(email, signInOption, password);
         if (res.status == 200) {
+          track('successful login', { userId: res.user._id, accountType: res.user.account, email })
           setLoading(false);
           setAuth(true);
           setUserDetails(res.user);
           localStorage.setItem("_EA_TOKEN", res.token);
           navigate("/home");
         } else {
+          track('failed login attempt', { email })
           setLoading(false);
           setMsg(res.message);
           setTimeout(() => {
@@ -101,6 +104,7 @@ function Signin() {
           }, 2000);
         }
       } catch (err) {
+        track('failed login attempt', { email })
         setLoading(false);
         ErrorHandler(err, navigate, setAuth, showCreatePass);
       }
@@ -133,111 +137,67 @@ function Signin() {
       <ToastContainer />
       <HomeNavbar />
       <main className={styles.container}>
-        <div className={styles.form}>
-          <h1>Got early access? <br/>Sign in.</h1>
-          {/* <div
-            className={styles.switch}
-          >
-            <div
-              style={{
-                width: "90%",
-                height: "45px",
-                boxShadow: "inset -1px 2px 6px rgba(0, 0, 0, 0.06)",
-                borderRadius: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-                backgroundColor: "white",
-              }}
-            >
-              {signInOptions.map((option) => (
-              <span
-                  onClick={() => setSignInOption(option.label)}
-                  style={
-                    option.label == signInOption
-                      ? {
-                          fontSize: "15px",
-                          cursor: "pointer",
-                          width: "50%",
-                          height: "45px",
-                          borderRadius: "50px",
-                          backgroundColor: "#00AFF5",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          textAlign: "center",
-                          color: "white",
-                          textTransform: "capitalize",
-                        }
-                      : {
-                          fontSize: "15px",
-                          cursor: "pointer",
-                          width: "50%",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          textAlign: "center",
-                          textTransform: "capitalize",
-                        }
-                  }
-                >
-                  {option.label}
-                </span>
-              ))}
+        <main className={styles.main}>
+          <div className={styles.hero_image} >
+            <img src ="/lady-w-phone2.png" />
+          </div>
+          <div className={styles.form_container}>
+            <div className={styles.form}>
+              <h1>Got early access? <br/>Sign in.</h1>
+              <Container>
+                <p style={{color: '#57584E', fontSize: '14px', marginBottom: '4px'}}>Email Address</p>
+                {/* <TextField
+                  value={email}
+                  style={{ width: "100%", backgroundColor: "white" }}
+                  type="email"
+                  placeholder="What is your email address?"
+                  onChange={(e) => setEmail(e.target.value)}
+
+                /> */}
+                <InputField value={email} inputType='text' onChange={e=>setEmail(e.target.value)} placeholder="What's your email address" />
+
+              </Container>
+
+              <Container> 
+                <p style={{color: '#57584E', fontSize: '14px', marginBottom: '4px'}}>Password</p>
+                <InputField value={password} inputFieldType="password" inputType={type1} setInputType={setType1} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password" />
+                {/* <input className={styles.textfield} placeholder="Enter your password" value={password} type={type1} onChange={e=>setPassword(e.target.value)} /> */}
+
+                {/* <TextField
+                  value={password}
+                  autoComplete="new-password"
+                  type="password"
+                  style={{ width: "100%", backgroundColor: "white" }}
+                  placeholder="Enter your password" 
+                  onChange={(e) => setPassword(e.target.value)}
+                /> */}
+              </Container>
+            
+              <Container styles={{marginTop: '20px'}}>
+                <Button
+                  onClick={()=>signin()}
+                  width="100%"
+                  height="55px"
+                  disabled={btnDisabled2? true : loading}
+                  loading={loading}
+                  bgColor="#00AFF5"
+                  textColor="white" 
+                  text="SIGN IN"
+                  iconUri="/arrow-right.png"
+                />
+              </Container>
+              <Center>
+                <Divider width="85%" marginBottom="20px" marginTop='20px' />
+              </Center>
+              <Center>
+                <p onClick={()=>showResetPassword(true)} style={{fontSize: '15px', margin: 0, color: '#00AFF5', cursor: 'pointer'}}>Forgot password?</p>
+                <br />
+                <p style={{fontSize: '15px', margin: 0, textAlign: 'center'}}>Haven’t joined Poket Early Access? <a href={`${landingPageDomain}/#earlyaccess`} style={{color: '#00AFF5', textDecoration: 'none'}}>Sign Up</a></p>
+                {/* <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="http://localhost/poket-website/#form" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p> */}
+              </Center>
             </div>
-          </div> */}
-          <Container>
-            <p style={{color: '#57584E', fontSize: '14px', marginBottom: '4px'}}>Email Address</p>
-            {/* <TextField
-              value={email}
-              style={{ width: "100%", backgroundColor: "white" }}
-              type="email"
-              placeholder="What is your email address?"
-              onChange={(e) => setEmail(e.target.value)}
-
-            /> */}
-            <InputField value={email} inputType='text' onChange={e=>setEmail(e.target.value)} placeholder="What's your email address" />
-
-          </Container>
-
-          <Container> 
-            <p style={{color: '#57584E', fontSize: '14px', marginBottom: '4px'}}>Password</p>
-            <InputField value={password} inputFieldType="password" inputType={type1} setInputType={setType1} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password" />
-            {/* <input className={styles.textfield} placeholder="Enter your password" value={password} type={type1} onChange={e=>setPassword(e.target.value)} /> */}
-
-            {/* <TextField
-              value={password}
-              autoComplete="new-password"
-              type="password"
-              style={{ width: "100%", backgroundColor: "white" }}
-              placeholder="Enter your password" 
-              onChange={(e) => setPassword(e.target.value)}
-            /> */}
-          </Container>
-        
-          <Container styles={{marginTop: '20px'}}>
-            <Button
-              onClick={()=>signin()}
-              width="100%"
-              height="48px"
-              disabled={btnDisabled2? true : loading}
-              loading={loading}
-              bgColor="#00AFF5"
-              textColor="white" 
-              text="SIGN IN"
-              iconUri="/arrow-right.png"
-            />
-          </Container>
-          <Center>
-            <Divider width="85%" marginBottom="20px" marginTop='20px' />
-          </Center>
-          <Center>
-            <p onClick={()=>showResetPassword(true)} style={{fontSize: '15px', margin: 0, color: '#00AFF5', cursor: 'pointer'}}>Forgot password?</p>
-            <br />
-            <p style={{fontSize: '15px', margin: 0, textAlign: 'center'}}>Haven’t joined Poket Early Access? <a href={`${landingPageDomain}/#earlyaccess`} style={{color: '#00AFF5', textDecoration: 'none'}}>Sign Up</a></p>
-            {/* <p style={{fontSize: '15px', margin: 0}}>Haven’t joined Poket Early Access? <a href="http://localhost/poket-website/#form" style={{color: 'orange', textDecoration: 'none'}}>Sign Up</a></p> */}
-          </Center>
-        </div>
+          </div>
+        </main>
       </main>
       <CreatePasswordModal />
       <ResetPassword />

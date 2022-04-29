@@ -21,6 +21,7 @@ import { BsPenFill } from 'react-icons/bs'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion"
+import { track } from "../../utils/EventTracker";
 
 function NewReferral() {
   const { newReferral, showNewReferral, GetReferrals } = useContext(GeneralContext);
@@ -117,12 +118,15 @@ function NewReferral() {
           setStep(1)
           setAddBtnDisabled(true);
           setMultiple(false)
+          track('new referral', { userId: userDetails?._id, email: userDetails?.email, invitees }, true)
         } else {
           setLoading(false);
           Notifier(res.message, "error"); 
+          track('failed referral', { userId: userDetails?._id, email: userDetails?.email, invitees }, true)
         }
       } catch (err) {
         setLoading(false);
+        track('failed referral', { userId: userDetails?._id, email: userDetails?.email, invitees }, true)
         ErrorHandler(err, navigate, setAuth);
       }
     }else{
@@ -147,12 +151,15 @@ function NewReferral() {
           setStep(1)
           setBtnDisabled(true)
           setAddBtnDisabled(true);
+          track('new referral', { userId: userDetails?._id, email: userDetails?.email, invitee: [{ name, email }] }, true)
         } else {
           setLoading(false);
           Notifier(res.message, "error");
+          track('failed referral', { userId: userDetails?._id, email: userDetails?.email, invitees }, true)
         }
       } catch (err) {
         setLoading(false);
+        track('failed referral', { userId: userDetails?._id, email: userDetails?.email, invitees }, true)
         ErrorHandler(err, navigate, setAuth);
       }
     }

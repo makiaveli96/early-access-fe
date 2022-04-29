@@ -27,6 +27,7 @@ import ModalProgress from "../ModalProgress";
 import OtpInput from '../../components/OtpInput'
 import ChipSelectorInput from "../ChipSelectorInput";
 import Cryptocurrencies from "../../utils/crypto-currencies";
+import { track } from "../../utils/EventTracker";
 
 
 const industries = [
@@ -751,6 +752,7 @@ function Business() {
         });
         showProfile(false)
         showUploadImage(true)
+        track('complete profile setup', { userId: userDetails?._id, accountType: userDetails?.account, email: userDetails?.email })
         break;
     } 
   }
@@ -778,6 +780,11 @@ function Business() {
       ErrorHandler(err, navigate, setAuth);
     }
   };
+
+  const closeModal=()=>{
+    showProfile(false);
+    track('closed profile setup', { userId: userDetails?._id, accountType: userDetails?.account, email: userDetails?.email }, true)
+  }
  
   const SaveInfo=async()=>{
     let data = {  
@@ -845,7 +852,7 @@ function Business() {
           <p>Build a business profile</p>
           {RenderStage()}
           <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-            <Button onClick={()=>showProfile(false)} text="Close" width= '48%' textSize="14px" height="58px" textColor="black" bgColor='transparent' style={{border: '.5px solid #CBD5E1'}} />
+            <Button onClick={()=>closeModal()} text="Close" width= '48%' textSize="14px" height="58px" textColor="black" bgColor='transparent' style={{border: '.5px solid #CBD5E1'}} />
             <Button loading={saving} disabled={saving} onClick={()=>Next()} text="Next" width= '48%' textSize="14px" height="58px" bgColor='#0099D6' />
           </div>
         </div>

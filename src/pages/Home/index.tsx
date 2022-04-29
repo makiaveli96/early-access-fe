@@ -40,6 +40,7 @@ import "slick-carousel/slick/slick-theme.css";
 import EmailVerified from '../../components/EmailVerified'
 import WhitelistSuccess from "../../components/Whitelisted";
 import { ErrorHandler } from "../../helpers/Errorhandler";
+import { track } from "../../utils/EventTracker";
 
 interface TweetsI {
   media_key: string;
@@ -152,6 +153,7 @@ function Home() {
 
     if (searchParams.get("email_verified") == 'true') {
       showEmailVerified(true)
+      track('email address verified', { userId: userDetails?._id, email: userDetails?.email })
     }
 
     userDetails.businessReferrals.forEach((ref) => {
