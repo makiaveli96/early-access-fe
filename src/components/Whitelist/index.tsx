@@ -934,7 +934,7 @@ function Perosonal() {
             <Icon icon="clarity:times-line" height={25} width={25} />
           </span>
         </div>
-        <div className={styles.main}>
+        <div className={styles.main}> 
           <h3>Get Whitelisted</h3>
           <p style={{fontSize: '14px'}}>Learn more about our tokens, presale event and whitelisting your account <a style={{color: '#0099D6', textDecoration: 'none'}} href="https://www.poket.finance/frequently-asked">here</a>.</p>
           {RenderStage()}
