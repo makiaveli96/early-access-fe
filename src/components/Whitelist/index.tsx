@@ -936,7 +936,7 @@ function Perosonal() {
         </div>
         <div className={styles.main}> 
           <h3>Get Whitelisted</h3>
-          <p style={{fontSize: '14px'}}>Learn more about our tokens, presale event and whitelisting your account <a style={{color: '#0099D6', textDecoration: 'none'}} href="https://www.poket.finance/frequently-asked">here</a>.</p>
+          <p style={{fontSize: '14px'}}>Learn more about our tokens, presale event and whitelisting your account <a style={{color: '#0099D6', textDecoration: 'none'}} href="https://www.poket.finance/faqs">here</a>.</p>
           {RenderStage()}
           <>
             {userDetails?.account == 'personal'? (

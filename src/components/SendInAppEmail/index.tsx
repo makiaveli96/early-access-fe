@@ -53,7 +53,7 @@ function SendInAppMessage() {
               <Icon icon="clarity:times-line" height={25} width={25} />
             </span>
           </div>
-          <p>Send us a message about any questions you might have or explore our <a href="https://www.poket.finance/frequently-asked" style={{color: '#0099D6', textDecoration: 'none'}}>FAQs</a></p>
+          <p>Send us a message about any questions you might have or explore our <a href="https://www.poket.finance/faqs" style={{color: '#0099D6', textDecoration: 'none'}}>FAQs</a></p>
           <div className={styles.form}>
             {/* <input  /> */}
             <div style={{width: '100%'}}>
