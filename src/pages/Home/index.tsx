@@ -41,6 +41,7 @@ import EmailVerified from '../../components/EmailVerified'
 import WhitelistSuccess from "../../components/Whitelisted";
 import { ErrorHandler } from "../../helpers/Errorhandler";
 import { track } from "../../utils/EventTracker";
+import WelcomeModal from "../../components/Welcome";
 
 interface TweetsI {
   media_key: string;
@@ -102,7 +103,9 @@ function Home() {
     contactUsRef,
     showContactForm,
     showVerifyEmail,
-    showEmailVerified
+    showEmailVerified,
+    welcomeModal,
+    showWelcomeModal
   }: any = useContext(GeneralContext);
 
   const [refs, setRefs] = useState([]);
@@ -148,6 +151,7 @@ function Home() {
           setUserDetails(res.user);
         }
       })();
+      showWelcomeModal(true)
       setOpenModal(true);
     }
 
@@ -413,26 +417,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <Modal modal={openModal} showModal={setOpenModal} backdropClose={true}>
-        <Box sx={style}>
-          <div style={{ width: "90%" }}>
-            {/* <h3>You made it !</h3> */}
-            <img src="/box_animation.gif" width="80%" />
-            <p style={{ fontSize: "16px", lineHeight: "24px" }}>
-              Congratulations on joining our Early Access, you have received{" "}
-              <span style={{ color: "#00AFF5" }}>{userDetails?.account == 'personal'? '10,000':'25,000'} points</span> from Poket
-              to get you started!
-            </p>
-          </div>
-          <Button
-            onClick={() => setOpenModal(false)}
-            text="Continue"
-            width="90%"
-            height="48px"
-            bgColor="#0099D6"
-          />
-        </Box>
-      </Modal>
+      <WelcomeModal />
       <ProfileModal modal={profile} showModal={showProfile} />
       <UploadImage modal={uploadImage} showModal={showUploadImage} />
       <Referrals />
