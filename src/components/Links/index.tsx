@@ -10,7 +10,7 @@ import { track } from '../../utils/EventTracker'
 export default function Links(){
     
     const { userDetails } = useContext(AuthContext) 
-    const refMessage = `I just joined Poket Early Access. With Poket, you can send and receive money around the world in cash, stablecoin and crypto at the best rates. Check it out: ${landingPageDomain}?ref=${userDetails?.referralID}`
+    const refMessage = `I just joined Poket Early Access. With Poket, you can send and receive money around the world in cash, stablecoin and crypto at the best rates. Platform to be launched in a few weeks. Check it out: ${landingPageDomain}?ref=${userDetails?.referralID}`
 
     // const refMessage = `Hi, have you tried Poket Early Access? With Poket, you can send or receive money anywhere, across currencies and at the best fees. Check it out www.poket.finance/ref=${userDetails.referralID}` 
     // const refMessage = `Hi! Have you tried Poket? Poket allows me send money anywhere across currencies at the best fees. Check it out www.poket.finance/ref=${userDetails.referralID}`
