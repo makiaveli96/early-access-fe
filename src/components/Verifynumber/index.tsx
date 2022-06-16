@@ -56,14 +56,15 @@ function Verifynubmer() {
   const sendCode=()=>{
     if(phone.length > 5){
         setLoading(true);
-        track('send phone verification code', { userId: userDetails?._id, email: userDetails?.email, phoneNumber: phone }, true);
+        // track('send phone verification code', { userId: userDetails?._id, email: userDetails?.email, phoneNumber: phone }, true);
         (async()=>{
           const res = await sendVerificationCode(phone)
           if(res.status == 200){
-              track('phone verification code sent', { userId: userDetails?._id, email: userDetails?.email, phoneNumber: phone }, true);
               setLoading(false);
               Notifier(res.message, 'success')
               setStep(1)
+              track('phone verification code sent', { userId: userDetails?._id, email: userDetails?.email, phoneNumber: phone }, true);
+
           }else{
               setLoading(false);
               Notifier(res.message, 'error')
@@ -103,7 +104,7 @@ const verifyPhoneCode=async()=>{
 }
 
   return (
-    <Modal modal={phoneModal} showModal={showPhoneModal} backdropClose>
+    <Modal modal={phoneModal} showModal={showPhoneModal} backdropClose runOnClose={()=>setStep(0)}>
       {!verified? (
         <main className={styles.container}>
           <div className={styles.main}>
@@ -128,7 +129,7 @@ const verifyPhoneCode=async()=>{
               </Container>
             )}     
             <footer className={styles.footer}>
-              <Button onClick={()=>showPhoneModal(false)} bgColor='transparent' width="45%" text='Close' height='58px' textColor="black" style={{border: '1px solid #CBD5E1'}} />
+              <Button onClick={()=>{showPhoneModal(false); setStep(0)}} bgColor='transparent' width="45%" text='Close' height='58px' textColor="black" style={{border: '1px solid #CBD5E1'}} />
               {step == 0? (
                 <Button onClick={()=>sendCode()} loading={loading} disabled={loading} bgColor='#0099D6' width="45%" text='Next' height='58px' />
               ):(
