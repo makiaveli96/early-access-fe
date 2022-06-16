@@ -33,13 +33,6 @@ export default function Links(){
             </button>
             <div className={styles.social}>
                 <SocialMedia style={{ height: '36px', width: '36px' }} type="referral" refMessage={refMessage} />
-                {/* <a href="https://mobile.facebook.com/gradientfi" target="_blank">
-                    <img src="/facebook_lg.png" alt="facebook" style={{height: '36px', width: '36px'}} />
-                </a>
-                <img src="/linkedin_lg.png" alt="linkedin" style={{height: '36px', width: '36px'}} />
-                <a href="https://twitter.com/PoketFinance" target="_blank">
-                    <img src="/twitter_lg.png" alt="twitter" style={{height: '36px', width: '36px'}}/>
-                </a> */}
             </div>
         </div>
         
