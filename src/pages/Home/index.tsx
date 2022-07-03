@@ -308,7 +308,7 @@ function Home() {
                       <FiMail color="#002C3D" />
                     </a>
                     <br />
-                    <a href="https://calendly.com/hellopoket/30min" target="_blank">
+                    <a href="https://calendly.com/meet-omichael/grd-poket" target="_blank">
                       <p>Schedule a meeting</p>
                       <FiUsers color="#002C3D" />
                     </a>
